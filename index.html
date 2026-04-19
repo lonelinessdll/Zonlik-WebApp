@@ -82,7 +82,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .intro-screen.fade-out {
@@ -100,14 +100,14 @@
             line-height: 1.8;
             color: #b0c4de;
             margin-bottom: 30px;
-            min-height: 200px;
+            min-height: 150px;
             font-family: 'JetBrains Mono', 'Courier New', monospace;
             text-shadow: 0 0 15px rgba(0, 180, 255, 0.2);
         }
 
         .intro-text .line {
             opacity: 0;
-            animation: fadeInText 0.6s forwards;
+            animation: fadeInText 0.4s forwards;
             margin-bottom: 6px;
         }
 
@@ -142,7 +142,7 @@
 
         .start-options {
             display: none;
-            animation: fadeInUp 0.6s forwards;
+            animation: fadeInUp 0.4s forwards;
         }
 
         .start-options.show {
@@ -168,19 +168,18 @@
             margin-bottom: 16px;
             cursor: pointer;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+            transition: all 0.2s;
         }
 
         .start-card:hover {
             border-color: rgba(0, 180, 255, 0.5);
-            transform: translateY(-3px);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 180, 255, 0.1);
+            transform: translateY(-2px);
         }
 
         .start-card.selected {
             border-color: #00b4ff;
             background: rgba(0, 180, 255, 0.05);
-            box-shadow: 0 0 40px rgba(0, 180, 255, 0.15);
+            box-shadow: 0 0 30px rgba(0, 180, 255, 0.15);
         }
 
         .start-card h3 {
@@ -188,7 +187,6 @@
             margin-bottom: 16px;
             font-size: 22px;
             font-weight: 600;
-            letter-spacing: -0.5px;
         }
 
         .start-card .stats {
@@ -221,7 +219,6 @@
             cursor: pointer;
             box-shadow: 0 10px 30px rgba(0, 180, 255, 0.3);
             transition: all 0.2s;
-            letter-spacing: 0.5px;
             text-transform: uppercase;
         }
 
@@ -229,11 +226,6 @@
             opacity: 0.3;
             cursor: not-allowed;
             box-shadow: none;
-        }
-
-        .start-btn:not(:disabled):hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 40px rgba(0, 180, 255, 0.4);
         }
 
         /* ---------- ИГРОВОЙ КОНТЕЙНЕР ---------- */
@@ -257,12 +249,6 @@
             border-radius: 32px;
             padding: 22px;
             margin-bottom: 18px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), inset 0 0 0 rgba(255, 255, 255, 0.02);
-            transition: transform 0.2s, border-color 0.2s;
-        }
-
-        .panel:hover {
-            border-color: rgba(0, 180, 255, 0.1);
         }
 
         .panel-title {
@@ -305,17 +291,14 @@
             font-weight: 700;
             color: #fff;
             margin-top: 6px;
-            letter-spacing: -0.5px;
         }
 
         .stat-value.success {
             color: #00e5a0;
-            text-shadow: 0 0 15px rgba(0, 229, 160, 0.3);
         }
 
         .stat-value.warning {
             color: #ffb347;
-            text-shadow: 0 0 15px rgba(255, 179, 71, 0.3);
         }
 
         .heat-bar {
@@ -332,8 +315,7 @@
             background: linear-gradient(90deg, #ffb347, #ff5e5e);
             border-radius: 4px;
             width: 0%;
-            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 12px rgba(255, 94, 94, 0.5);
+            transition: width 0.5s;
         }
 
         /* ---------- КНОПКИ ---------- */
@@ -350,46 +332,28 @@
             margin-bottom: 10px;
             backdrop-filter: blur(5px);
             transition: all 0.2s;
-            letter-spacing: 0.3px;
         }
 
         .button:hover {
             background: rgba(0, 180, 255, 0.05);
             border-color: rgba(0, 180, 255, 0.3);
-            transform: translateY(-1px);
-        }
-
-        .button:active {
-            transform: translateY(1px);
         }
 
         .button.primary {
             background: linear-gradient(135deg, rgba(0, 180, 255, 0.15), rgba(123, 97, 255, 0.15));
             border-color: rgba(0, 180, 255, 0.4);
             color: #fff;
-            font-weight: 700;
-        }
-
-        .button.primary:hover {
-            background: linear-gradient(135deg, rgba(0, 180, 255, 0.25), rgba(123, 97, 255, 0.25));
-            border-color: #00b4ff;
-            box-shadow: 0 0 25px rgba(0, 180, 255, 0.2);
         }
 
         .button:disabled {
             opacity: 0.3;
             cursor: not-allowed;
-            transform: none;
         }
 
         .button-group {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
-        }
-
-        .button-group .button {
-            margin-bottom: 0;
         }
 
         /* ---------- ТАБЫ ---------- */
@@ -410,22 +374,16 @@
             font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
             border-radius: 18px;
             cursor: pointer;
             transition: all 0.2s;
-        }
-
-        .tab:hover {
-            background: rgba(30, 40, 55, 0.7);
-            color: #b0c4de;
+            white-space: nowrap;
         }
 
         .tab.active {
             background: linear-gradient(135deg, rgba(0, 180, 255, 0.2), rgba(123, 97, 255, 0.2));
             color: #fff;
             border-color: rgba(0, 180, 255, 0.5);
-            box-shadow: 0 8px 20px rgba(0, 180, 255, 0.1);
         }
 
         .tab-content {
@@ -450,12 +408,6 @@
             border-radius: 24px;
             padding: 18px;
             margin-bottom: 12px;
-            transition: all 0.2s;
-        }
-
-        .recipe-item:hover {
-            background: rgba(0, 180, 255, 0.03);
-            border-color: rgba(0, 180, 255, 0.15);
         }
 
         .recipe-name {
@@ -489,7 +441,6 @@
             padding: 14px 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
             font-size: 14px;
-            font-weight: 500;
         }
 
         .inventory-item:last-child {
@@ -503,7 +454,6 @@
             border-radius: 20px;
             padding: 18px;
             margin-bottom: 14px;
-            transition: all 0.2s;
         }
 
         .client-name {
@@ -517,6 +467,14 @@
             font-size: 13px;
             color: #9aabbf;
             font-style: italic;
+            margin-bottom: 8px;
+        }
+
+        .client-stats {
+            display: flex;
+            gap: 16px;
+            font-size: 11px;
+            color: #8a9ab5;
         }
 
         /* ---------- АКТИВНЫЕ ВАРКИ ---------- */
@@ -526,22 +484,6 @@
             border-radius: 20px;
             padding: 16px;
             margin-bottom: 12px;
-        }
-
-        .cook-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .cook-name {
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .cook-percent {
-            color: #00b4ff;
-            font-weight: 700;
         }
 
         .progress-bar-container {
@@ -558,12 +500,6 @@
             border-radius: 4px;
             width: 0%;
             transition: width 0.3s linear;
-            box-shadow: 0 0 15px rgba(0, 180, 255, 0.5);
-        }
-
-        .timer {
-            color: #00b4ff;
-            font-weight: 600;
         }
 
         /* ---------- МОДАЛКИ ---------- */
@@ -602,13 +538,6 @@
             width: 100%;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), 0 0 50px rgba(0, 180, 255, 0.1);
-            animation: slideUp 0.3s ease;
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         /* ---------- ТОСТЫ ---------- */
@@ -618,7 +547,6 @@
             left: 50%;
             transform: translateX(-50%);
             background: rgba(18, 24, 34, 0.95);
-            backdrop-filter: blur(20px);
             border: 1px solid rgba(0, 180, 255, 0.3);
             padding: 16px 30px;
             border-radius: 60px;
@@ -628,7 +556,6 @@
             opacity: 0;
             transition: opacity 0.3s, transform 0.3s;
             z-index: 2000;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             pointer-events: none;
         }
 
@@ -647,110 +574,23 @@
             display: flex;
             justify-content: space-between;
             font-weight: 600;
-            backdrop-filter: blur(10px);
         }
 
-        /* ---------- МИНИ-ИГРА (ВЗВЕШИВАНИЕ) ---------- */
-        .weigh-scale {
-            position: relative;
-            height: 50px;
-            background: #101520;
-            border-radius: 30px;
-            margin: 30px 0;
-            border: 1px solid #2a3a50;
-            box-shadow: inset 0 4px 10px rgba(0, 0, 0, 0.5);
-        }
-
-        .weigh-target-zone {
-            position: absolute;
-            height: 100%;
-            background: rgba(0, 229, 160, 0.15);
-            border-radius: 30px;
-            border: 1px dashed #00e5a0;
-        }
-
-        .weigh-marker {
-            position: absolute;
-            top: -30px;
-            margin-left: -10px;
-            font-size: 24px;
-            color: #fff;
-            filter: drop-shadow(0 0 10px #00b4ff);
-            transition: left 0.1s;
-        }
-
-        .weigh-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #00b4ff, #7b61ff);
-            border-radius: 30px;
-            width: 0%;
-            opacity: 0.8;
-        }
-
-        .weigh-value {
-            font-size: 36px;
-            font-weight: 800;
-            text-align: center;
-            margin: 15px 0;
-            background: linear-gradient(135deg, #fff, #b0c4de);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .weigh-attempts {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .attempt {
-            font-size: 28px;
-            color: #00e5a0;
-            filter: drop-shadow(0 0 8px #00e5a0);
-        }
-
-        .attempt.lost {
-            color: #ff5e5e;
-            filter: none;
-        }
-
-        .weigh-controls {
-            display: flex;
-            gap: 12px;
-        }
-
-        .weigh-btn {
+        /* ---------- МИНИ-ИГРА ---------- */
+        .flask-choice {
             flex: 1;
-            padding: 18px;
-            border-radius: 20px;
-            border: none;
-            font-weight: 700;
-            font-size: 16px;
+            text-align: center;
             cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .weigh-btn.primary {
-            background: linear-gradient(135deg, #00b4ff, #7b61ff);
-            color: #fff;
-        }
-
-        /* ---------- СЮЖЕТНЫЕ ВЫБОРЫ ---------- */
-        .choice-btn {
-            background: rgba(0, 180, 255, 0.05);
-            border: 1px solid rgba(0, 180, 255, 0.2);
-            border-radius: 18px;
             padding: 16px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-weight: 500;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.2s;
         }
 
-        .choice-btn:hover {
-            background: rgba(0, 180, 255, 0.15);
-            border-color: #00b4ff;
+        .flask-choice:hover {
+            background: rgba(0, 180, 255, 0.1);
+            border-color: rgba(0, 180, 255, 0.3);
         }
     </style>
 </head>
@@ -766,7 +606,7 @@
                 <div class="start-card" data-start="zero">
                     <h3>🆕 С НУЛЯ</h3>
                     <div class="stats">
-                        <span>💰 2 000 ₽</span>
+                        <span>💰 5 000 ₽</span>
                         <span>🛏️ Общага</span>
                     </div>
                     <div class="desc">"Стипендии не хватает. Пора что-то менять."</div>
@@ -774,18 +614,18 @@
                 <div class="start-card" data-start="debt">
                     <h3>💸 С ДОЛГОМ</h3>
                     <div class="stats">
-                        <span>💰 10 000 ₽</span>
-                        <span>⚠️ Долг 5 000 ₽</span>
+                        <span>💰 25 000 ₽</span>
+                        <span>⚠️ Долг 15 000 ₽</span>
                     </div>
-                    <div class="desc">"Занял у Серёги. Надо отдать за неделю."</div>
+                    <div class="desc">"Занял у Серёги. Надо отдавать."</div>
                 </div>
                 <div class="start-card" data-start="heat">
                     <h3>🚔 ПОД КОЛПАКОМ</h3>
                     <div class="stats">
-                        <span>💰 20 000 ₽</span>
+                        <span>💰 50 000 ₽</span>
                         <span>🔥 50% тепла</span>
                     </div>
-                    <div class="desc">"Меня уже знают. Надо быть осторожнее."</div>
+                    <div class="desc">"Меня уже знают. Осторожно."</div>
                 </div>
                 <button class="start-btn" id="confirm-start" disabled>НАЧАТЬ РАБОТУ</button>
             </div>
@@ -800,8 +640,11 @@
 
         <div class="panel">
             <div class="panel-title">
-                <span>🧪 ЛАБОРАТОРИЯ v3.1</span>
-                <span id="user-id">ID: ---</span>
+                <span>🧪 ЛАБОРАТОРИЯ v3.5</span>
+                <div style="display: flex; gap: 8px;">
+                    <button class="button" id="stats-btn" style="width: auto; padding: 6px 12px; margin: 0; font-size: 12px;">📊</button>
+                    <span id="user-id">ID: ---</span>
+                </div>
             </div>
             <div class="stats-grid">
                 <div class="stat">
@@ -815,9 +658,7 @@
                 <div class="stat">
                     <div class="stat-label">ТЕПЛО</div>
                     <div class="stat-value warning" id="heat">0%</div>
-                    <div class="heat-bar">
-                        <div class="heat-fill" id="heat-fill"></div>
-                    </div>
+                    <div class="heat-bar"><div class="heat-fill" id="heat-fill"></div></div>
                 </div>
                 <div class="stat">
                     <div class="stat-label">РЕПУТАЦИЯ</div>
@@ -827,40 +668,41 @@
         </div>
 
         <div class="tabs">
-            <div class="tab active" data-tab="cook">🧪 ВАРКА</div>
-            <div class="tab" data-tab="inventory">📦 СКЛАД</div>
-            <div class="tab" data-tab="clients">👥 КЛИЕНТЫ</div>
-            <div class="tab" data-tab="market">📊 РЫНОК</div>
+            <div class="tab active" data-tab="cook">🧪 ЛАБОРАТОРИЯ</div>
+            <div class="tab" data-tab="inventory">📦 ХРАНИЛИЩЕ</div>
+            <div class="tab" data-tab="clients">👥 ПОКУПАТЕЛИ</div>
+            <div class="tab" data-tab="info">ℹ️ ИНФОРМАЦИЯ</div>
         </div>
 
-        <!-- ВАРКА -->
+        <!-- ЛАБОРАТОРИЯ -->
         <div class="tab-content active" id="tab-cook">
             <div class="panel">
-                <div class="panel-title">АКТИВНЫЕ ПРОЦЕССЫ</div>
+                <div class="panel-title">АКТИВНЫЕ СИНТЕЗЫ</div>
                 <div id="active-cooks-container"></div>
                 <button class="button primary" id="boost-cook-btn" onclick="boostCook()">⚡ УСКОРИТЬ (1/1)</button>
             </div>
             <div class="panel">
-                <div class="panel-title">ДОСТУПНЫЕ СИНТЕЗЫ</div>
+                <div class="panel-title">ДОСТУПНЫЕ РЕЦЕПТЫ</div>
                 <div class="button-group" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 12px;">
                     <button class="button" data-filter="all">ВСЕ</button>
                     <button class="button" data-filter="light">🌿 ЛЁГКИЕ</button>
                     <button class="button" data-filter="medium">💊 СРЕДНИЕ</button>
                     <button class="button" data-filter="heavy">🔮 ТЯЖЁЛЫЕ</button>
                     <button class="button" data-filter="designer">🧬 ДИЗАЙН</button>
+                    <button class="button" data-filter="craft">⚙️ КРАФТ</button>
                 </div>
                 <div class="recipe-list" id="recipe-list"></div>
             </div>
         </div>
 
-        <!-- СКЛАД -->
+        <!-- ХРАНИЛИЩЕ -->
         <div class="tab-content" id="tab-inventory">
             <div class="panel">
-                <div class="panel-title">РЕАКТИВЫ И МАТЕРИАЛЫ</div>
+                <div class="panel-title">РЕАКТИВЫ</div>
                 <div id="ingredients-list"></div>
             </div>
             <div class="panel">
-                <div class="panel-title">ГОТОВАЯ ПРОДУКЦИЯ</div>
+                <div class="panel-title">ПРОДУКЦИЯ</div>
                 <div id="products-list"></div>
             </div>
             <div class="panel">
@@ -868,40 +710,40 @@
                 <div id="equipment-list"></div>
             </div>
             <div class="panel">
-                <button class="button primary" id="buy-ingredients-btn">🛒 ЗАКУПКА РЕАКТИВОВ</button>
-                <button class="button" id="sell-all-btn">💰 СБЫТ ПРОДУКЦИИ</button>
+                <button class="button primary" id="buy-ingredients-btn">🛒 ЗАКУПКА</button>
+                <button class="button" id="sell-all-btn">💰 СБЫТ</button>
             </div>
         </div>
 
-        <!-- КЛИЕНТЫ -->
+        <!-- ПОКУПАТЕЛИ -->
         <div class="tab-content" id="tab-clients">
             <div class="panel">
-                <div class="panel-title">ПОСТОЯННЫЕ КЛИЕНТЫ</div>
+                <div class="panel-title">ПОСТОЯННЫЕ</div>
                 <div id="clients-list"></div>
             </div>
             <div class="panel">
-                <button class="button primary" id="wait-client-btn">🚪 ЖДАТЬ КЛИЕНТА</button>
-                <button class="button" id="client-stories-btn">📖 ИСТОРИИ РАЙОНА</button>
+                <button class="button primary" id="wait-client-btn">🚪 ЖДАТЬ</button>
+                <button class="button" id="client-stories-btn">📖 ИСТОРИИ</button>
             </div>
         </div>
 
-        <!-- РЫНОК -->
-        <div class="tab-content" id="tab-market">
+        <!-- ИНФОРМАЦИЯ -->
+        <div class="tab-content" id="tab-info">
             <div class="panel">
-                <div class="panel-title">ТЕКУЩИЕ ЦЕНЫ</div>
+                <div class="panel-title">📊 РЫНОЧНЫЕ ЦЕНЫ</div>
                 <div id="market-prices"></div>
                 <div style="color: #666; font-size: 11px; margin-top: 12px; text-align: center;">
                     Обновление через <span id="market-timer">24:00:00</span>
                 </div>
             </div>
             <div class="panel">
-                <div class="panel-title">АПГРЕЙД ЛАБОРАТОРИИ</div>
+                <div class="panel-title">🏚️ АПГРЕЙД</div>
                 <div id="lab-info"></div>
                 <button class="button primary" id="upgrade-lab-btn" style="margin-top: 12px;">⬆️ УЛУЧШИТЬ</button>
             </div>
             <div class="panel">
-                <div class="panel-title">СТАТИСТИКА</div>
-                <div id="game-stats"></div>
+                <div class="panel-title">⭐ РЕПУТАЦИЯ РАЙОНА</div>
+                <div id="district-rep-info"></div>
             </div>
         </div>
     </div>
@@ -917,7 +759,7 @@
 
     <div class="modal" id="client-modal">
         <div class="modal-content">
-            <div class="panel-title" id="client-modal-title">КЛИЕНТ</div>
+            <div class="panel-title" id="client-modal-title">ПОКУПАТЕЛЬ</div>
             <div id="client-modal-content"></div>
             <div class="button-group" style="margin-top: 16px;">
                 <button class="button primary" id="client-sell-btn">✅ ПРОДАТЬ</button>
@@ -937,474 +779,199 @@
         </div>
     </div>
 
-    <div class="modal" id="story-modal">
+    <div class="modal" id="stats-modal">
         <div class="modal-content">
-            <div class="panel-title" id="story-title">📖 СОБЫТИЕ</div>
-            <p id="story-text" style="margin: 16px 0; color: #ccc;"></p>
-            <div id="story-choices"></div>
-        </div>
-    </div>
-
-    <div class="modal" id="event-modal">
-        <div class="modal-content">
-            <div class="panel-title">⚠️ СЛУЧАЙНОЕ СОБЫТИЕ</div>
-            <p id="event-text" style="margin: 16px 0; color: #ccc;"></p>
-            <button class="button primary" id="event-close">ПОНЯТНО</button>
+            <div class="panel-title">📊 СТАТИСТИКА</div>
+            <div id="stats-modal-content"></div>
+            <button class="button" id="close-stats-modal" style="margin-top: 16px;">ЗАКРЫТЬ</button>
         </div>
     </div>
 
     <div class="modal" id="mingame-modal">
         <div class="modal-content">
-            <div class="panel-title">⚖️ ТОЧНОЕ ВЗВЕШИВАНИЕ</div>
-            <div class="weigh-scale">
-                <div class="weigh-target-zone" id="weigh-target-zone"></div>
-                <div class="weigh-marker" id="weigh-marker">▼</div>
-                <div class="weigh-fill" id="weigh-fill"></div>
+            <div class="panel-title">🧪 ВЫБОР РЕАГЕНТА</div>
+            <p style="color:#aaa; margin-bottom: 20px; text-align: center;">Одна колба ускорит синтез. Две — испортят.</p>
+            <div style="display: flex; gap: 12px; justify-content: center;">
+                <div class="flask-choice" data-choice="0">🧪<br>Колба А</div>
+                <div class="flask-choice" data-choice="1">⚗️<br>Колба Б</div>
+                <div class="flask-choice" data-choice="2">🔮<br>Колба В</div>
             </div>
-            <div class="weigh-value" id="weigh-value">0.00 г</div>
-            <div class="weigh-attempts" id="weigh-attempts"></div>
-            <div class="weigh-controls">
-                <button class="weigh-btn primary" id="weigh-add">➕ ДОБАВИТЬ</button>
-                <button class="weigh-btn" id="weigh-check">✅ ПРОВЕРИТЬ</button>
-            </div>
-            <button class="button" id="close-mingame-modal" style="margin-top: 16px;">ЗАКРЫТЬ</button>
+            <button class="button" id="close-mingame-modal" style="margin-top: 20px;">ЗАКРЫТЬ</button>
         </div>
     </div>
 
     <div class="toast" id="toast"></div>
 
     <script>
-        // ---------- ДАННЫЕ ИГРЫ ----------
+        // ---------- ДАННЫЕ ----------
         const INGREDIENTS = {
-            seeds: { name: '🌱 Семена конопли', price: 25, limit: 999, desc: 'Феминизированные, из Голландии.' },
-            soil: { name: '🪴 Почвенный субстрат', price: 100, limit: 999, desc: 'Смесь торфа и перлита.' },
-            acetone: { name: '🧴 Ацетон', price: 80, limit: 10, desc: 'Растворитель. В хозмаге.' },
-            matches: { name: '🔥 Спички', price: 5, limit: 50, desc: 'Для красного фосфора.' },
-            ephedrine: { name: '💊 Эфедрин', price: 200, limit: 5, desc: 'Из аптеки, но по рецепту.' },
-            codeine: { name: '💊 Кодеин', price: 100, limit: 5, desc: 'Обезболивающее. Без рецепта не продадут.' },
-            red_phosphorus: { name: '🔥 Красный фосфор', price: 300, limit: 3, desc: 'Со спичек или из химреактивов.' },
-            iodine: { name: '🧪 Йод кристаллический', price: 200, limit: 3, desc: 'Аптечный раствор не подойдёт.' },
-            phenylacetone: { name: '🧬 P2P (Фенилацетон)', price: 1000, limit: 2, desc: 'Прекурсор амфетамина.' },
-            methylamine: { name: '🧪 Метиламин', price: 500, limit: 3, desc: 'Газ или раствор. Осторожно.' },
-            morphine: { name: '💉 Морфин', price: 800, limit: 2, desc: 'Медицинский. Очень редкий.' },
-            acetic_anhydride: { name: '⚗️ Уксусный ангидрид', price: 1500, limit: 1, desc: 'Ключ к героину.' },
-            safrole: { name: '🌿 Сафрол', price: 750, limit: 2, desc: 'Из сассафраса. Для МДМА.' },
-            piperonal: { name: '🌸 Пиперональ', price: 650, limit: 3, desc: 'Гелиотропин. Для "солей".' },
-            hydrochloric_acid: { name: '⚠️ Соляная кислота', price: 125, limit: 5, desc: '35%. Продаётся в литрах.' },
-            ether: { name: '💨 Диэтиловый эфир', price: 175, limit: 3, desc: 'Для экстракции кокаина.' },
-            coca_base: { name: '🍃 Паста коки', price: 1250, limit: 1, desc: 'Из Южной Америки.' },
-            ergotamine: { name: '🌾 Эрготамин', price: 1000, limit: 1, desc: 'Спорынья. Основа ЛСД.' },
-            hydriodic_acid: { name: '⚗️ Йодоводород', price: 400, limit: 2, desc: 'Восстановитель для мета.' },
-            ammonia: { name: '💨 Аммиак', price: 75, limit: 10, desc: 'Нашатырь. Бытовой.' },
-            dmt_bark: { name: '🌳 Кора мимозы', price: 400, limit: 5, desc: 'Содержит ДМТ.' },
-            syrian_rue: { name: '🌿 Семена гармалы', price: 200, limit: 5, desc: 'Ингибитор МАО.' },
-            cactus: { name: '🌵 Кактус Пейот', price: 750, limit: 3, desc: 'Содержит мескалин.' },
-            ketamine_base: { name: '💊 Кетамин (основа)', price: 600, limit: 2, desc: 'Ветеринарный анестетик.' },
-            methanol: { name: '🧪 Метанол', price: 100, limit: 5, desc: 'Древесный спирт. Ядовит.' },
-            sodium: { name: '💧 Натрий металлический', price: 150, limit: 3, desc: 'Реагирует с водой.' },
-            spores: { name: '🔬 Споры грибов', price: 250, limit: 5, desc: 'Псилоцибе кубенсис.' },
-            substrate: { name: '🧫 Субстрат', price: 150, limit: 10, desc: 'Для выращивания грибов.' },
-            sulfuric_acid: { name: '⚠️ Серная кислота', price: 150, limit: 5, desc: 'Аккумуляторная.' }
+            seeds: { name: '🌱 Семена', price: 25, limit: 999, craftable: false },
+            soil: { name: '🪴 Грунт', price: 100, limit: 999, craftable: false },
+            spores: { name: '🔬 Споры', price: 250, limit: 5, craftable: false },
+            substrate: { name: '🧫 Субстрат', price: 150, limit: 10, craftable: false },
+            acetone: { name: '🧴 Ацетон', price: 80, limit: 10, craftable: false },
+            matches: { name: '🔥 Спички', price: 5, limit: 50, craftable: false },
+            ephedrine: { name: '💊 Эфедрин', price: 200, limit: 5, craftable: false },
+            codeine: { name: '💊 Кодеин', price: 100, limit: 5, craftable: false },
+            phenylacetone: { name: '🧬 P2P', price: 1000, limit: 2, craftable: true },
+            methylamine: { name: '🧪 Метиламин', price: 500, limit: 3, craftable: false },
+            morphine: { name: '💉 Морфин', price: 800, limit: 2, craftable: false },
+            acetic_anhydride: { name: '⚗️ Уксусный ангидрид', price: 1500, limit: 1, craftable: true },
+            safrole: { name: '🌿 Сафрол', price: 750, limit: 2, craftable: true },
+            piperonal: { name: '🌸 Пиперональ', price: 650, limit: 3, craftable: false },
+            hydrochloric_acid: { name: '⚠️ Соляная кислота', price: 125, limit: 5, craftable: false },
+            ether: { name: '💨 Эфир', price: 175, limit: 3, craftable: false },
+            coca_base: { name: '🍃 Паста коки', price: 1250, limit: 1, craftable: false },
+            ergotamine: { name: '🌾 Эрготамин', price: 1000, limit: 1, craftable: false },
+            hydriodic_acid: { name: '⚗️ Йодоводород', price: 400, limit: 2, craftable: false },
+            ammonia: { name: '💨 Аммиак', price: 75, limit: 10, craftable: false },
+            dmt_bark: { name: '🌳 Кора мимозы', price: 400, limit: 5, craftable: false },
+            syrian_rue: { name: '🌿 Гармала', price: 200, limit: 5, craftable: false },
+            cactus: { name: '🌵 Пейот', price: 750, limit: 3, craftable: false },
+            ketamine_base: { name: '💊 Кетамин', price: 600, limit: 2, craftable: false },
+            methanol: { name: '🧪 Метанол', price: 100, limit: 5, craftable: false },
+            sodium: { name: '💧 Натрий', price: 150, limit: 3, craftable: false },
+            sulfuric_acid: { name: '⚠️ Серная кислота', price: 150, limit: 5, craftable: false },
+            red_phosphorus: { name: '🔥 Красный фосфор', price: 300, limit: 0, craftable: true },
+            iodine: { name: '🧪 Йод', price: 200, limit: 0, craftable: true },
+            phenylacetic_acid: { name: '🧪 Фенилуксусная к-та', price: 400, limit: 5, craftable: false },
+            acetic_acid: { name: '🧴 Уксусная к-та', price: 50, limit: 20, craftable: false },
+            sassafras_bark: { name: '🌳 Кора сассафраса', price: 150, limit: 10, craftable: false },
+            iodine_solution: { name: '💧 Йод (раствор)', price: 60, limit: 10, craftable: false },
+            peroxide: { name: '💧 Перекись водорода', price: 30, limit: 20, craftable: false }
+        };
+
+        const CRAFT_RECIPES = {
+            red_phosphorus: { name: '🔥 Красный фосфор', type: 'craft', ingredients: { matches: 20 }, time: 1, yield: [1, 2], equipment: ['burner'], labLevel: 1, desc: 'Соскоблить со спичек и нагреть.' },
+            iodine: { name: '🧪 Йод кристаллический', type: 'craft', ingredients: { iodine_solution: 3, peroxide: 1 }, time: 0.5, yield: [1, 1], equipment: ['filter'], labLevel: 1, desc: 'Выделить из аптечного раствора.' },
+            phenylacetone: { name: '🧬 P2P', type: 'craft', ingredients: { phenylacetic_acid: 1, acetic_anhydride: 1 }, time: 3, yield: [1, 2], equipment: ['burner', 'distiller'], labLevel: 2, desc: 'Кетонизация по Фриделю-Крафтсу.' },
+            safrole: { name: '🌿 Сафрол', type: 'craft', ingredients: { sassafras_bark: 5 }, time: 2, yield: [1, 2], equipment: ['distiller'], labLevel: 2, desc: 'Паровая дистилляция коры.' },
+            acetic_anhydride: { name: '⚗️ Уксусный ангидрид', type: 'craft', ingredients: { acetic_acid: 3, sulfuric_acid: 1 }, time: 2, yield: [1, 1], equipment: ['distiller'], labLevel: 2, desc: 'Дегидратация уксусной кислоты.' }
         };
 
         const RECIPES = {
-            weed: { name: '🌿 Каннабис', type: 'light', ingredients: { seeds: 10, soil: 1 }, time: 0.5, yield: [5, 10], price: 150, risk: 5, equipment: [], labLevel: 1, desc: 'Высушенные соцветия. Содержит ТГК.' },
-            mushrooms: { name: '🍄 Псилоцибин', type: 'light', ingredients: { spores: 1, substrate: 1 }, time: 1, yield: [3, 5], price: 500, risk: 8, equipment: [], labLevel: 1, desc: 'Галлюциногенные грибы.' },
-            amphetamine: { name: '💨 Амфетамин', type: 'medium', ingredients: { phenylacetone: 1, methylamine: 1, sulfuric_acid: 1 }, time: 2, yield: [5, 10], price: 800, risk: 20, equipment: ['burner', 'flask'], labLevel: 2, desc: 'Стимулятор ЦНС. Синтез через P2P.' },
-            methamphetamine: { name: '❄️ Метамфетамин', type: 'medium', ingredients: { ephedrine: 5, red_phosphorus: 1, iodine: 1 }, time: 4, yield: [3, 7], price: 3500, risk: 35, equipment: ['burner', 'flask', 'cooler'], labLevel: 2, desc: 'N-метиламфетамин. Кристаллы.' },
-            mdma: { name: '🧡 МДМА', type: 'medium', ingredients: { safrole: 1, methylamine: 1 }, time: 3, yield: [5, 10], price: 1200, risk: 25, equipment: ['flask', 'filter'], labLevel: 2, desc: 'Экстази. Эмпатоген.' },
-            heroin: { name: '💉 Диацетилморфин', type: 'heavy', ingredients: { morphine: 1, acetic_anhydride: 1 }, time: 6, yield: [2, 5], price: 8000, risk: 50, equipment: ['flask', 'filter', 'burner'], labLevel: 3, desc: 'Героин. Король опиатов.' },
-            cocaine: { name: '❄️ Кокаин', type: 'heavy', ingredients: { coca_base: 1, acetone: 2, ether: 1 }, time: 2, yield: [5, 10], price: 3000, risk: 40, equipment: ['flask', 'filter'], labLevel: 3, desc: 'Белый порошок. Статус.' },
-            lsd: { name: '🌈 ЛСД', type: 'designer', ingredients: { ergotamine: 1, hydriodic_acid: 1, ammonia: 1 }, time: 8, yield: [50, 100], price: 500, risk: 30, equipment: ['flask', 'distiller'], labLevel: 4, desc: 'Кислота. Марки.' },
-            alpha_pvp: { name: '🧪 α-PVP', type: 'heavy', ingredients: { piperonal: 3, methylamine: 2, hydrochloric_acid: 2, acetone: 3 }, time: 5, yield: [3, 6], price: 2500, risk: 65, equipment: ['burner', 'flask', 'cooler', 'filter'], labLevel: 3, desc: 'Альфа-ПВП. "Соль".' },
-            dmt: { name: '👁️ ДМТ', type: 'designer', ingredients: { dmt_bark: 5, syrian_rue: 2 }, time: 4, yield: [1, 3], price: 4000, risk: 25, equipment: ['flask', 'distiller'], labLevel: 4, desc: 'Молекула духа. Прорыв.' },
-            mescaline: { name: '🌵 Мескалин', type: 'designer', ingredients: { cactus: 3 }, time: 6, yield: [1, 2], price: 2000, risk: 15, equipment: ['flask', 'distiller'], labLevel: 4, desc: 'Из пейота. Цветные видения.' }
+            weed: { name: '🌿 Каннабис', type: 'light', ingredients: { seeds: 15, soil: 2 }, time: 2, yield: [3, 6], price: 80, risk: 10, equipment: [], labLevel: 1, desc: 'Долго растёт, дёшево стоит.' },
+            mushrooms: { name: '🍄 Псилоцибин', type: 'light', ingredients: { spores: 2, substrate: 2 }, time: 4, yield: [2, 4], price: 250, risk: 15, equipment: [], labLevel: 1, desc: 'Требует стерильности.' },
+            amphetamine: { name: '💨 Амфетамин', type: 'medium', ingredients: { phenylacetone: 2, methylamine: 2, sulfuric_acid: 2 }, time: 6, yield: [3, 6], price: 400, risk: 30, equipment: ['burner', 'flask'], labLevel: 2, desc: 'Синтез долгий и вонючий.' },
+            methamphetamine: { name: '❄️ Метамфетамин', type: 'medium', ingredients: { ephedrine: 8, red_phosphorus: 2, iodine: 2 }, time: 12, yield: [2, 4], price: 1500, risk: 45, equipment: ['burner', 'flask', 'cooler'], labLevel: 2, desc: 'Очень сложный и опасный синтез.' },
+            mdma: { name: '🧡 МДМА', type: 'medium', ingredients: { safrole: 2, methylamine: 2 }, time: 8, yield: [3, 5], price: 600, risk: 35, equipment: ['flask', 'filter'], labLevel: 2, desc: 'Требует чистоты реактивов.' },
+            heroin: { name: '💉 Диацетилморфин', type: 'heavy', ingredients: { morphine: 2, acetic_anhydride: 2 }, time: 24, yield: [1, 3], price: 3000, risk: 60, equipment: ['flask', 'filter', 'burner'], labLevel: 3, desc: 'Смертельно опасно. Огромный риск.' },
+            cocaine: { name: '❄️ Кокаин', type: 'heavy', ingredients: { coca_base: 2, acetone: 3, ether: 2 }, time: 6, yield: [4, 8], price: 1200, risk: 40, equipment: ['flask', 'filter'], labLevel: 3, desc: 'Экстракция и очистка.' },
+            lsd: { name: '🌈 ЛСД', type: 'designer', ingredients: { ergotamine: 2, hydriodic_acid: 2, ammonia: 2 }, time: 16, yield: [50, 100], price: 300, risk: 40, equipment: ['flask', 'distiller'], labLevel: 4, desc: 'Тонкий синтез. Нужен опыт.' },
+            alpha_pvp: { name: '🧪 α-PVP', type: 'heavy', ingredients: { piperonal: 4, methylamine: 3, hydrochloric_acid: 3, acetone: 4 }, time: 10, yield: [2, 4], price: 1000, risk: 70, equipment: ['burner', 'flask', 'cooler', 'filter'], labLevel: 3, desc: 'Грязный синтез. Много побочек.' },
+            dmt: { name: '👁️ ДМТ', type: 'designer', ingredients: { dmt_bark: 8, syrian_rue: 3 }, time: 8, yield: [1, 2], price: 2000, risk: 30, equipment: ['flask', 'distiller'], labLevel: 4, desc: 'Экстракция из коры.' },
+            mescaline: { name: '🌵 Мескалин', type: 'designer', ingredients: { cactus: 5 }, time: 12, yield: [1, 2], price: 1000, risk: 20, equipment: ['flask', 'distiller'], labLevel: 4, desc: 'Долгая экстракция.' }
         };
 
+        const ALL_RECIPES = { ...RECIPES, ...CRAFT_RECIPES };
+
         const EQUIPMENT = {
-            burner: { name: '🔥 Газовая горелка', price: 500, maxDur: 10, desc: 'Для нагрева реактивов.' },
-            flask: { name: '🧪 Лабораторная посуда', price: 400, maxDur: 8, desc: 'Колбы, пробирки, мензурки.' },
-            filter: { name: '📄 Фильтры', price: 250, maxDur: 5, desc: 'Бумажные и угольные.' },
-            cooler: { name: '🧊 Охладитель', price: 1000, maxDur: 20, desc: 'Контроль температуры.' },
-            distiller: { name: '⚗️ Дистиллятор', price: 1500, maxDur: 15, desc: 'Для перегонки жидкостей.' },
-            protection: { name: '🛡️ Защитное оборудование', price: 750, maxDur: 12, desc: 'Снижает риск на 20%.' }
+            burner: { name: '🔥 Горелка', price: 500, maxDur: 10 },
+            flask: { name: '🧪 Посуда', price: 400, maxDur: 8 },
+            filter: { name: '📄 Фильтры', price: 250, maxDur: 5 },
+            cooler: { name: '🧊 Охладитель', price: 1000, maxDur: 20 },
+            distiller: { name: '⚗️ Дистиллятор', price: 1500, maxDur: 15 },
+            protection: { name: '🛡️ Защита', price: 750, maxDur: 12 }
         };
 
         const LAB_LEVELS = {
-            1: { name: '🛏️ Съёмная комната', slots: 1, risk_mod: 1.0, cost: 2000 },
-            2: { name: '🔧 Гаражный бокс', slots: 2, risk_mod: 0.7, cost: 10000 },
-            3: { name: '🏡 Дача за городом', slots: 3, risk_mod: 0.5, cost: 50000 },
-            4: { name: '🏭 Промышленный ангар', slots: 5, risk_mod: 0.3, cost: 250000 },
-            5: { name: '🏰 Подземная лаборатория', slots: 10, risk_mod: 0.1, cost: 0 }
+            1: { name: '🛏️ Общага', slots: 1, risk_mod: 1.0, cost: 15000 },
+            2: { name: '🔧 Гараж', slots: 2, risk_mod: 0.7, cost: 75000 },
+            3: { name: '🏡 Дача', slots: 3, risk_mod: 0.5, cost: 300000 },
+            4: { name: '🏭 Ангар', slots: 5, risk_mod: 0.3, cost: 1500000 },
+            5: { name: '🏰 Бункер', slots: 10, risk_mod: 0.1, cost: 0 }
         };
 
         const CLIENTS = [
-            { name: 'Сергей', story: 'С параллельного потока. Знает всех барыг.', prefers: ['amphetamine', 'mdma'] },
-            { name: 'Дэн', story: 'Музыкант. Группа "Хтонь". Нужны стимуляторы.', prefers: ['methamphetamine', 'amphetamine'] },
-            { name: 'Лена', story: 'С третьего курса. Тусовщица.', prefers: ['mdma', 'cocaine'] },
-            { name: 'Варя', story: 'Тихая, но постоянная. Берёт много.', prefers: ['heroin'] },
-            { name: 'Кир', story: 'Художник. Ищет вдохновение.', prefers: ['lsd', 'dmt', 'mescaline'] },
-            { name: 'Макс', story: 'Бывший спортсмен. Подсел на стимуляторы.', prefers: ['methamphetamine', 'alpha_pvp'] },
-            { name: 'Антон', story: 'Сосед по общаге. Молчаливый.', prefers: ['ketamine_base', 'heroin'] }
-        ];
-
-        const STORY_EVENTS = [
-            { level: 2, title: 'Катя', text: 'Катя спросила, откуда деньги. Что ответишь?', choices: [
-                { text: 'Подработка на складе', effect: () => { gameState.reputation += 5; showToast('Она поверила. Репутация +5'); } },
-                { text: 'Не твоё дело', effect: () => { gameState.reputation = Math.max(0, gameState.reputation - 10); gameState.heat = Math.min(100, gameState.heat + 10); showToast('Она обиделась. Тепло +10%'); } }
-            ]},
-            { level: 3, title: 'Серёга', text: 'Серёга просит помочь с крупной партией.', choices: [
-                { text: 'Согласиться', effect: () => { gameState.balance += 3000; gameState.heat += 20; showToast('+3000 ₽, но тепло +20%'); } },
-                { text: 'Отказаться', effect: () => { gameState.reputation -= 5; showToast('Серёга обиделся. Репутация -5'); } }
-            ]},
-            { level: 4, title: 'Участковый', text: 'Участковый Петров заглянул "на чай".', choices: [
-                { text: 'Дать взятку (2000 ₽)', effect: () => { if (gameState.balance >= 2000) { gameState.balance -= 2000; gameState.heat = Math.max(0, gameState.heat - 30); showToast('Тепло -30%'); } else { showToast('Нет денег! Тепло +15%'); gameState.heat += 15; } } },
-                { text: 'Прикинуться дураком', effect: () => { gameState.heat = Math.min(100, gameState.heat + 15); showToast('Он ушёл, но стал подозрительнее. +15% тепла'); } }
-            ]}
-        ];
-
-        const RANDOM_EVENTS = [
-            { text: 'Соседи вызвали ментов!', effect: () => { gameState.heat = Math.min(100, gameState.heat + 20); showToast('Тепло +20%'); } },
-            { text: 'Барыга дал скидку!', effect: () => { gameState.balance += 500; showToast('+500 ₽'); } },
-            { text: 'Приступ эпилепсии... Вы потеряли время.', effect: () => { gameState.activeCooks.forEach(c => c.endTime += 30 * 60 * 1000); gameState.heat += 5; showToast('Варки задержаны на 30 мин.'); } },
-            { text: 'Нашёл заначку в гараже!', effect: () => { gameState.balance += 300; showToast('+300 ₽'); } },
-            { text: 'Катя приготовила ужин. Настроение лучше.', effect: () => { gameState.reputation = Math.min(100, gameState.reputation + 3); showToast('Репутация +3'); } }
+            { name: 'Сергей', story: 'С потока. Знает всех.', prefers: ['amphetamine', 'mdma'] },
+            { name: 'Дэн', story: 'Музыкант. Группа "Хтонь".', prefers: ['methamphetamine'] },
+            { name: 'Лена', story: 'Тусовщица.', prefers: ['mdma', 'cocaine'] },
+            { name: 'Варя', story: 'Тихая, но постоянная.', prefers: ['heroin'] },
+            { name: 'Кир', story: 'Художник.', prefers: ['lsd', 'dmt'] },
+            { name: 'Макс', story: 'Бывший спортсмен.', prefers: ['methamphetamine', 'alpha_pvp'] }
         ];
 
         const STORY_LINES = [
-            { text: "Мне восемнадцать.", delay: 3000 },
-            { text: "Учусь в колледже на электрика.", delay: 3500 },
-            { text: "У меня эпилепсия. С детства.", delay: 4000 },
-            { text: "Врач выписал фенобарбитал, но его не хватает.", delay: 4500 },
-            { text: "Есть Катя. Встречаемся полгода.", delay: 4000 },
-            { text: "Она не знает, чем я занимаюсь.", delay: 4000 },
-            { text: "Серёга предложил вариант.", delay: 3500 },
-            { text: "Я сначала отказался.", delay: 3000 },
-            { text: "Но потом случился приступ при Кате.", delay: 4500 },
-            { text: "Нужны деньги на лекарства.", delay: 4000 },
-            { text: "Я согласился.", delay: 3000 },
-            { text: "Теперь я химик.", delay: 3500 }
+            { text: "Мне восемнадцать.", delay: 1800 },
+            { text: "Учусь на электрика. Общага, долги.", delay: 2500 },
+            { text: "У меня эпилепсия. Лекарства дорогие.", delay: 2800 },
+            { text: "Есть Даша. Встречаемся полгода.", delay: 2500 },
+            { text: "Она не знает, чем я занимаюсь.", delay: 2500 },
+            { text: "Серёга предложил подзаработать.", delay: 2200 },
+            { text: "Я согласился. Выбора не было.", delay: 2000 },
+            { text: "Теперь я химик.", delay: 2000 }
         ];
 
-        // ---------- ГЛОБАЛЬНОЕ СОСТОЯНИЕ ----------
+        // ---------- СОСТОЯНИЕ ----------
         let gameState = {
-            userId: null,
-            balance: 0,
-            labLevel: 1,
-            heat: 0,
-            reputation: 50,
-            inventory: {},
-            activeCooks: [],
-            clients: [],
-            equipment: {
-                burner: { owned: false, durability: 0 },
-                flask: { owned: false, durability: 0 },
-                filter: { owned: false, durability: 0 },
-                cooler: { owned: false, durability: 0 },
-                distiller: { owned: false, durability: 0 },
-                protection: { owned: false, durability: 0 }
-            },
-            stats: { earned: 0, sold: 0, cooked: 0 },
-            debt: null,
-            marketPrices: {},
-            lastPriceUpdate: null,
-            dailyLimits: {},
-            lastLimitReset: null,
-            unlockedRecipes: ['weed', 'mushrooms'],
+            userId: null, balance: 5000, labLevel: 1, heat: 0, reputation: 50, districtRep: 50,
+            inventory: {}, activeCooks: [], clients: [],
+            equipment: { burner: { owned: false, durability: 0 }, flask: { owned: false, durability: 0 }, filter: { owned: false, durability: 0 }, cooler: { owned: false, durability: 0 }, distiller: { owned: false, durability: 0 }, protection: { owned: false, durability: 0 } },
+            stats: { earned: 0, sold: 0, cooked: 0 }, debt: null,
+            marketPrices: {}, lastPriceUpdate: null,
+            dailyLimits: {}, unlockedRecipes: ['weed', 'mushrooms', 'red_phosphorus', 'iodine'],
             storyLevelsSeen: []
         };
 
-        let currentFilter = 'all';
-        let currentClient = null;
-        let pendingSale = null;
-        let selectedStart = null;
-        let dailyBoostUsed = false;
-        let pendingConfirm = null;
-        let marketUpdateInterval = null;
-        let eventInterval = null;
-
-        // Мини-игра
-        let weighCurrent = 0;
-        let weighTarget = 0;
-        let weighAttempts = 0;
-        const weighMax = 3;
-        let weighActive = false;
+        let currentFilter = 'all', currentClient = null, pendingSale = null, selectedStart = null, dailyBoostUsed = false, pendingConfirm = null, marketUpdateInterval = null;
         let currentCookForGame = null;
 
         // ---------- УТИЛИТЫ ----------
-        function getUserId() {
-            return new URLSearchParams(window.location.search).get('id') || 'guest';
-        }
+        function getUserId() { return new URLSearchParams(window.location.search).get('id') || 'guest'; }
+        function showToast(t) { const toast = document.getElementById('toast'); toast.textContent = t; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000); }
+        function save() { localStorage.setItem(`chemist_${gameState.userId}`, JSON.stringify(gameState)); }
+        function load() { const s = localStorage.getItem(`chemist_${gameState.userId}`); if (s) { const d = JSON.parse(s); Object.assign(gameState, d); } }
+        function resetLimits() { gameState.dailyLimits = {}; for (let k in INGREDIENTS) gameState.dailyLimits[k] = 0; gameState.lastLimitReset = new Date().toDateString(); }
+        function checkDailyLimitReset() { if (gameState.lastLimitReset !== new Date().toDateString()) resetLimits(); }
 
-        function showToast(text) {
-            const toast = document.getElementById('toast');
-            toast.textContent = text;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
-        }
-
-        function save() {
-            localStorage.setItem(`chemist_${gameState.userId}`, JSON.stringify({
-                balance: gameState.balance,
-                labLevel: gameState.labLevel,
-                heat: gameState.heat,
-                reputation: gameState.reputation,
-                inventory: gameState.inventory,
-                activeCooks: gameState.activeCooks,
-                clients: gameState.clients,
-                equipment: gameState.equipment,
-                stats: gameState.stats,
-                debt: gameState.debt,
-                marketPrices: gameState.marketPrices,
-                lastPriceUpdate: gameState.lastPriceUpdate,
-                dailyLimits: gameState.dailyLimits,
-                lastLimitReset: gameState.lastLimitReset,
-                unlockedRecipes: gameState.unlockedRecipes,
-                storyLevelsSeen: gameState.storyLevelsSeen
-            }));
-        }
-
-        function load() {
-            const saved = localStorage.getItem(`chemist_${gameState.userId}`);
-            if (saved) {
-                const data = JSON.parse(saved);
-                Object.assign(gameState, data);
-            }
-            if (!gameState.dailyLimits) resetLimits();
-            if (!gameState.unlockedRecipes) gameState.unlockedRecipes = ['weed', 'mushrooms'];
-            if (!gameState.storyLevelsSeen) gameState.storyLevelsSeen = [];
-        }
-
-        function resetLimits() {
-            gameState.dailyLimits = {};
-            for (let k in INGREDIENTS) gameState.dailyLimits[k] = 0;
-            gameState.lastLimitReset = new Date().toDateString();
-        }
-
-        function checkDailyLimitReset() {
-            if (gameState.lastLimitReset !== new Date().toDateString()) resetLimits();
-        }
+        // ---------- РЫНОК (МСК) ----------
+        function getMskMidnight() { const now = new Date(); const msk = new Date(now.getTime() + 3*60*60*1000); msk.setUTCHours(0,0,0,0); return msk.getTime() - 3*60*60*1000; }
+        function getNextMidnight() { const now = Date.now(); const mid = getMskMidnight(); return now >= mid ? mid + 24*60*60*1000 : mid; }
+        function updateAllPrices() { for (let id in RECIPES) gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random()*0.8)); gameState.lastPriceUpdate = Date.now(); save(); }
+        function checkMarketUpdate() { if (!gameState.lastPriceUpdate || gameState.lastPriceUpdate < getMskMidnight()) updateAllPrices(); updateMarketTimer(); }
+        function updateMarketTimer() { if (marketUpdateInterval) clearInterval(marketUpdateInterval); marketUpdateInterval = setInterval(() => { const diff = getNextMidnight() - Date.now(); if (diff <= 0) { updateAllPrices(); renderMarketPrices(); } const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000); const el = document.getElementById('market-timer'); if (el) el.textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`; }, 1000); }
+        function initMarketPrices() { if (!gameState.lastPriceUpdate) { for (let id in RECIPES) gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random()*0.8)); gameState.lastPriceUpdate = Date.now(); } checkMarketUpdate(); }
 
         // ---------- ИНТРО ----------
         let currentLine = 0;
         function startIntro() {
             const introText = document.getElementById('intro-text');
-            if (localStorage.getItem(`chemist_intro_${getUserId()}`) === 'seen') {
-                showStartOptions();
-                return;
-            }
-            introText.innerHTML = '';
-            currentLine = 0;
-            function next() {
-                if (currentLine < STORY_LINES.length) {
-                    const line = STORY_LINES[currentLine];
-                    const div = document.createElement('div');
-                    div.className = 'line';
-                    if (line.text) div.innerHTML = `<span class="highlight">></span> ${line.text}`;
-                    introText.appendChild(div);
-                    currentLine++;
-                    setTimeout(next, line.delay);
-                } else {
-                    document.querySelector('.intro-text').style.display = 'none';
-                    showStartOptions();
-                }
-            }
+            if (localStorage.getItem(`chemist_intro_${getUserId()}`) === 'seen') { showStartOptions(); return; }
+            introText.innerHTML = ''; currentLine = 0;
+            function next() { if (currentLine < STORY_LINES.length) { const l = STORY_LINES[currentLine]; const d = document.createElement('div'); d.className = 'line'; d.innerHTML = `<span class="highlight">></span> ${l.text}`; introText.appendChild(d); currentLine++; setTimeout(next, l.delay); } else { document.querySelector('.intro-text').style.display = 'none'; showStartOptions(); } }
             next();
-            document.getElementById('skip-intro').onclick = () => {
-                introText.innerHTML = '';
-                showStartOptions();
-            };
+            document.getElementById('skip-intro').onclick = () => { introText.innerHTML = ''; showStartOptions(); };
         }
+        function showStartOptions() { document.getElementById('start-options').classList.add('show'); localStorage.setItem(`chemist_intro_${getUserId()}`, 'seen'); document.querySelectorAll('.start-card').forEach(c => c.onclick = () => { document.querySelectorAll('.start-card').forEach(x => x.classList.remove('selected')); c.classList.add('selected'); selectedStart = c.dataset.start; document.getElementById('confirm-start').disabled = false; }); document.getElementById('confirm-start').onclick = () => { applyStart(selectedStart); finishIntro(); }; }
+        function applyStart(t) { if (t==='zero') { gameState.balance=5000; gameState.labLevel=1; gameState.inventory={seeds:30,soil:5,acetone:10,matches:30,iodine_solution:5,peroxide:3}; } else if (t==='debt') { gameState.balance=25000; gameState.labLevel=2; gameState.inventory={seeds:50,soil:10,ephedrine:10,matches:50,iodine_solution:10}; gameState.debt={amount:15000,daysLeft:7}; } else { gameState.balance=50000; gameState.labLevel=3; gameState.heat=50; gameState.inventory={ephedrine:20,matches:100,phenylacetic_acid:5,acetic_acid:10,methylamine:5}; } initMarketPrices(); resetLimits(); save(); }
+        function finishIntro() { document.getElementById('intro-screen').classList.add('fade-out'); setTimeout(() => { document.getElementById('intro-screen').style.display='none'; document.getElementById('game-container').classList.add('show'); initGame(); }, 800); }
+        function skipIntroIfSeen() { if (localStorage.getItem(`chemist_intro_${getUserId()}`) === 'seen') { document.getElementById('intro-screen').style.display='none'; document.getElementById('game-container').classList.add('show'); load(); initMarketPrices(); initGame(); return true; } return false; }
 
-        function showStartOptions() {
-            document.getElementById('start-options').classList.add('show');
-            localStorage.setItem(`chemist_intro_${getUserId()}`, 'seen');
-            document.querySelectorAll('.start-card').forEach(c => {
-                c.onclick = () => {
-                    document.querySelectorAll('.start-card').forEach(x => x.classList.remove('selected'));
-                    c.classList.add('selected');
-                    selectedStart = c.dataset.start;
-                    document.getElementById('confirm-start').disabled = false;
-                };
-            });
-            document.getElementById('confirm-start').onclick = () => {
-                applyStart(selectedStart);
-                finishIntro();
-            };
-        }
-
-        function applyStart(type) {
-            if (type === 'zero') {
-                gameState.balance = 2000;
-                gameState.labLevel = 1;
-                gameState.inventory = { seeds: 20, soil: 2, acetone: 5, matches: 10 };
-            } else if (type === 'debt') {
-                gameState.balance = 10000;
-                gameState.labLevel = 2;
-                gameState.inventory = { seeds: 30, soil: 3, ephedrine: 5, red_phosphorus: 2 };
-                gameState.debt = { amount: 5000, daysLeft: 7 };
-            } else {
-                gameState.balance = 20000;
-                gameState.labLevel = 3;
-                gameState.heat = 50;
-                gameState.inventory = { ephedrine: 10, red_phosphorus: 5, iodine: 3, phenylacetone: 2 };
-            }
-            initMarketPrices();
-            resetLimits();
-            save();
-        }
-
-        function finishIntro() {
-            document.getElementById('intro-screen').classList.add('fade-out');
-            setTimeout(() => {
-                document.getElementById('intro-screen').style.display = 'none';
-                document.getElementById('game-container').classList.add('show');
-                initGame();
-            }, 1000);
-        }
-
-        function skipIntroIfSeen() {
-            if (localStorage.getItem(`chemist_intro_${getUserId()}`) === 'seen') {
-                document.getElementById('intro-screen').style.display = 'none';
-                document.getElementById('game-container').classList.add('show');
-                load();
-                initMarketPrices();
-                initGame();
-                return true;
-            }
-            return false;
-        }
-
-        // ---------- РЫНОК ----------
-        function initMarketPrices() {
-            if (!gameState.lastPriceUpdate) {
-                for (let id in RECIPES) {
-                    gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random() * 0.8));
-                }
-                gameState.lastPriceUpdate = Date.now();
-            }
-            checkMarketUpdate();
-        }
-
-        function updateAllPrices() {
-            for (let id in RECIPES) {
-                gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random() * 0.8));
-            }
-            gameState.lastPriceUpdate = Date.now();
-            save();
-            renderMarketPrices();
-        }
-
-        function checkMarketUpdate() {
-            if (Date.now() - gameState.lastPriceUpdate >= 86400000) updateAllPrices();
-            updateMarketTimer();
-        }
-
-        function updateMarketTimer() {
-            if (marketUpdateInterval) clearInterval(marketUpdateInterval);
-            marketUpdateInterval = setInterval(() => {
-                const diff = (gameState.lastPriceUpdate + 86400000) - Date.now();
-                if (diff <= 0) updateAllPrices();
-                const h = Math.floor(diff / 3600000);
-                const m = Math.floor((diff % 3600000) / 60000);
-                const s = Math.floor((diff % 60000) / 1000);
-                const el = document.getElementById('market-timer');
-                if (el) el.textContent = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-            }, 1000);
-        }
-
-        // ---------- СЛУЧАЙНЫЕ СОБЫТИЯ ----------
-        function startEventTimer() {
-            if (eventInterval) clearInterval(eventInterval);
-            eventInterval = setInterval(() => {
-                const evt = RANDOM_EVENTS[Math.floor(Math.random() * RANDOM_EVENTS.length)];
-                document.getElementById('event-text').textContent = evt.text;
-                evt.effect();
-                document.getElementById('event-modal').classList.add('active');
-                save();
-                updateUI();
-            }, 15 * 60 * 1000); // 15 минут
-        }
-
-        // ---------- СЮЖЕТНЫЕ ВЫБОРЫ ----------
-        function checkStoryEvent() {
-            const level = gameState.labLevel;
-            const evt = STORY_EVENTS.find(e => e.level === level && !gameState.storyLevelsSeen.includes(level));
-            if (evt) {
-                gameState.storyLevelsSeen.push(level);
-                document.getElementById('story-title').textContent = evt.title;
-                document.getElementById('story-text').textContent = evt.text;
-                const choicesDiv = document.getElementById('story-choices');
-                choicesDiv.innerHTML = '';
-                evt.choices.forEach(c => {
-                    const btn = document.createElement('div');
-                    btn.className = 'choice-btn';
-                    btn.textContent = c.text;
-                    btn.onclick = () => {
-                        c.effect();
-                        document.getElementById('story-modal').classList.remove('active');
-                        save();
-                        updateUI();
-                    };
-                    choicesDiv.appendChild(btn);
-                });
-                document.getElementById('story-modal').classList.add('active');
-            }
-        }
-
-        // ---------- ИНИЦИАЛИЗАЦИЯ ИГРЫ ----------
+        // ---------- ИНИЦИАЛИЗАЦИЯ ----------
         function initGame() {
-            gameState.userId = getUserId();
-            document.getElementById('user-id').textContent = `ID: ${gameState.userId}`;
-            
-            updateUI();
-            renderRecipes();
-            renderInventory();
-            renderEquipment();
-            renderClients();
-            renderLabInfo();
-            renderGameStats();
-            renderMarketPrices();
-            renderActiveCooks();
-            startTimers();
-            startEventTimer();
-
-            // Обработчики
+            gameState.userId = getUserId(); document.getElementById('user-id').textContent = `ID: ${gameState.userId}`;
+            updateUI(); renderRecipes(); renderInventory(); renderEquipment(); renderClients(); renderLabInfo(); renderMarketPrices(); renderActiveCooks(); renderDistrictRep();
             document.querySelectorAll('.tab').forEach(t => t.onclick = () => switchTab(t.dataset.tab));
-            document.querySelectorAll('[data-filter]').forEach(b => b.onclick = () => {
-                currentFilter = b.dataset.filter;
-                renderRecipes();
-            });
+            document.querySelectorAll('[data-filter]').forEach(b => b.onclick = () => { currentFilter = b.dataset.filter; renderRecipes(); });
             document.getElementById('buy-ingredients-btn').onclick = showBuyModal;
-            document.getElementById('sell-all-btn').onclick = () => showConfirm('💰 СБЫТ', 'Продать ВСЮ продукцию?', sellAll);
+            document.getElementById('sell-all-btn').onclick = () => showConfirm('💰 СБЫТ', 'Продать всё?', sellAll);
             document.getElementById('wait-client-btn').onclick = waitClient;
             document.getElementById('upgrade-lab-btn').onclick = upgradeLab;
             document.getElementById('close-buy-modal').onclick = closeModal;
             document.getElementById('client-sell-btn').onclick = sellToClient;
             document.getElementById('client-decline-btn').onclick = declineClient;
             document.getElementById('client-stories-btn').onclick = showRandomStory;
-            document.getElementById('confirm-yes').onclick = () => {
-                if (pendingConfirm) pendingConfirm();
-                closeConfirm();
-            };
+            document.getElementById('stats-btn').onclick = showStatsModal;
+            document.getElementById('close-stats-modal').onclick = () => document.getElementById('stats-modal').classList.remove('active');
+            document.getElementById('confirm-yes').onclick = () => { if (pendingConfirm) pendingConfirm(); closeConfirm(); };
             document.getElementById('confirm-no').onclick = closeConfirm;
-            document.getElementById('event-close').onclick = () => document.getElementById('event-modal').classList.remove('active');
-            document.getElementById('weigh-add').onclick = weighAdd;
-            document.getElementById('weigh-check').onclick = weighCheck;
-            document.getElementById('close-mingame-modal').onclick = closeMinigame;
-
-            const lastBoost = localStorage.getItem(`chemist_boost_${gameState.userId}`) === new Date().toDateString();
-            dailyBoostUsed = lastBoost;
+            document.querySelectorAll('.flask-choice').forEach(c => c.onclick = () => playMinigame(parseInt(c.dataset.choice)));
+            document.getElementById('close-mingame-modal').onclick = () => document.getElementById('mingame-modal').classList.remove('active');
+            const last = localStorage.getItem(`chemist_boost_${gameState.userId}`) === new Date().toDateString();
+            dailyBoostUsed = last;
             document.getElementById('boost-cook-btn').textContent = dailyBoostUsed ? '⚡ УСКОРИТЬ (0/1)' : '⚡ УСКОРИТЬ (1/1)';
-
-            if (window.Telegram?.WebApp) {
-                const tg = window.Telegram.WebApp;
-                tg.ready();
-                tg.expand();
-                tg.MainButton.setText('💰 ВЫВОД').show().onClick(() => {
-                    window.location.href = `https://t.me/zonlik_bot?start=withdraw_${btoa(JSON.stringify({ id: gameState.userId, amount: gameState.balance }))}`;
-                });
-            }
+            setInterval(() => { if (gameState.heat > 0) { gameState.heat = Math.max(0, gameState.heat-1); updateUI(); } renderActiveCooks(); }, 60000);
+            if (window.Telegram?.WebApp) { const tg = window.Telegram.WebApp; tg.ready(); tg.expand(); tg.MainButton.setText('💰 ВЫВОД').show().onClick(() => { window.location.href = `https://t.me/zonlik_bot?start=withdraw_${btoa(JSON.stringify({id:gameState.userId,amount:gameState.balance}))}`; }); }
         }
 
         function updateUI() {
@@ -1413,509 +980,87 @@
             document.getElementById('heat').textContent = `${gameState.heat}%`;
             document.getElementById('heat-fill').style.width = `${gameState.heat}%`;
             document.getElementById('reputation').textContent = gameState.reputation;
-            
-            const banner = document.getElementById('debt-banner');
-            if (gameState.debt && gameState.debt.amount > 0) {
-                banner.style.display = 'flex';
-                document.getElementById('debt-amount').textContent = gameState.debt.amount;
-                document.getElementById('debt-days').textContent = gameState.debt.daysLeft;
-            } else {
-                banner.style.display = 'none';
-            }
+            const b = document.getElementById('debt-banner');
+            if (gameState.debt) { b.style.display = 'flex'; document.getElementById('debt-amount').textContent = gameState.debt.amount; document.getElementById('debt-days').textContent = gameState.debt.daysLeft; }
+            else b.style.display = 'none';
         }
 
-        function switchTab(id) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            document.querySelector(`[data-tab="${id}"]`).classList.add('active');
-            document.getElementById(`tab-${id}`).classList.add('active');
-            if (id === 'market') renderMarketPrices();
-        }
+        function switchTab(id) { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.querySelector(`[data-tab="${id}"]`).classList.add('active'); document.getElementById(`tab-${id}`).classList.add('active'); if (id==='info') { renderMarketPrices(); renderLabInfo(); renderDistrictRep(); } }
 
-        // ---------- ЛОГИКА ВАРКИ ----------
-        function startCook(recipeId) {
-            const r = RECIPES[recipeId];
-            if (!gameState.unlockedRecipes.includes(recipeId)) { showToast('❌ Рецепт не открыт'); return; }
+        // ---------- КРАФТ И ВАРКА ----------
+        function startCook(rid) {
+            const r = ALL_RECIPES[rid];
+            if (!gameState.unlockedRecipes.includes(rid)) { showToast('❌ Рецепт закрыт'); return; }
             if (gameState.activeCooks.length >= LAB_LEVELS[gameState.labLevel].slots) { showToast('❌ Нет слотов'); return; }
-            
-            for (let [k, v] of Object.entries(r.ingredients)) {
-                if ((gameState.inventory[k] || 0) < v) { showToast('❌ Не хватает реактивов'); return; }
-            }
-            for (let eq of r.equipment) {
-                if (!gameState.equipment[eq]?.owned || gameState.equipment[eq].durability <= 0) {
-                    showToast(`❌ Нет ${EQUIPMENT[eq].name}`); return;
-                }
-            }
-
-            for (let [k, v] of Object.entries(r.ingredients)) {
-                gameState.inventory[k] -= v;
-                if (gameState.inventory[k] <= 0) delete gameState.inventory[k];
-            }
-            for (let eq of r.equipment) {
-                gameState.equipment[eq].durability--;
-                if (gameState.equipment[eq].durability <= 0) {
-                    gameState.equipment[eq].owned = false;
-                    showToast(`⚠️ ${EQUIPMENT[eq].name} сломано`);
-                }
-            }
-
-            let risk = r.risk;
+            for (let [k,v] of Object.entries(r.ingredients)) if ((gameState.inventory[k]||0) < v) { showToast('❌ Нет реактивов'); return; }
+            for (let eq of r.equipment) if (!gameState.equipment[eq]?.owned || gameState.equipment[eq].durability <= 0) { showToast('❌ Нет оборудования'); return; }
+            for (let [k,v] of Object.entries(r.ingredients)) { gameState.inventory[k] -= v; if (gameState.inventory[k] <= 0) delete gameState.inventory[k]; }
+            for (let eq of r.equipment) { gameState.equipment[eq].durability--; if (gameState.equipment[eq].durability <= 0) { gameState.equipment[eq].owned = false; showToast(`⚠️ ${EQUIPMENT[eq].name} сломано`); } }
+            let risk = r.risk || 0;
             if (gameState.equipment.protection?.owned) risk = Math.floor(risk * 0.8);
             risk = Math.floor(risk * LAB_LEVELS[gameState.labLevel].risk_mod);
-
-            gameState.activeCooks.push({
-                id: Date.now() + Math.random(),
-                recipeId,
-                recipeName: r.name,
-                endTime: Date.now() + r.time * 3600000,
-                risk
-            });
-
+            const isCraft = CRAFT_RECIPES[rid] !== undefined;
+            gameState.activeCooks.push({ id: Date.now()+Math.random(), recipeId: rid, recipeName: r.name, endTime: Date.now() + r.time*3600000, risk, isCraft });
             gameState.heat = Math.min(100, gameState.heat + risk);
-            gameState.stats.cooked++;
-            save();
-            updateUI();
-            renderRecipes();
-            renderInventory();
-            renderEquipment();
-            renderActiveCooks();
+            if (!isCraft) gameState.stats.cooked++;
+            save(); updateUI(); renderRecipes(); renderInventory(); renderEquipment(); renderActiveCooks();
             showToast(`✅ Синтез: ${r.name}`);
         }
         window.startCook = startCook;
 
         function renderActiveCooks() {
-            const container = document.getElementById('active-cooks-container');
-            const now = Date.now();
+            const c = document.getElementById('active-cooks-container'); const now = Date.now();
             const active = gameState.activeCooks.filter(c => c.endTime > now);
             const done = gameState.activeCooks.filter(c => c.endTime <= now);
-
             done.forEach(c => {
-                const r = RECIPES[c.recipeId];
-                const amt = Math.floor(Math.random() * (r.yield[1] - r.yield[0] + 1)) + r.yield[0];
-                gameState.inventory[c.recipeId] = (gameState.inventory[c.recipeId] || 0) + amt;
-                showToast(`✅ ${r.name} готов! +${amt}`);
+                const r = ALL_RECIPES[c.recipeId];
+                const amt = Math.floor(Math.random()*(r.yield[1]-r.yield[0]+1))+r.yield[0];
+                gameState.inventory[c.recipeId] = (gameState.inventory[c.recipeId]||0) + amt;
+                showToast(`✅ ${r.name} +${amt}`);
             });
-
-            if (done.length) {
-                gameState.activeCooks = active;
-                save();
-                renderInventory();
-            }
-
-            if (!active.length) {
-                container.innerHTML = '<div style="color: #666; text-align: center; padding: 15px;">Нет активных синтезов</div>';
-                return;
-            }
-
-            let html = '';
-            active.forEach(c => {
-                const r = RECIPES[c.recipeId];
-                const total = r.time * 3600000;
-                const elapsed = total - (c.endTime - now);
-                const pct = Math.min(100, Math.floor((elapsed / total) * 100));
-                const rem = c.endTime - now;
-                const hrs = Math.floor(rem / 3600000);
-                const mins = Math.floor((rem % 3600000) / 60000);
-
-                html += `<div class="active-cook">
-                    <div class="cook-header"><span class="cook-name">${c.recipeName}</span><span class="cook-percent">${pct}%</span></div>
-                    <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${pct}%"></div></div>
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span class="timer">${hrs}ч ${mins}м</span>
-                        <button class="button" style="width: auto; padding: 6px 12px;" onclick="openMinigame('${c.id}')">⚖️ МИНИ-ИГРА</button>
-                    </div>
-                </div>`;
-            });
-            container.innerHTML = html;
+            if (done.length) { gameState.activeCooks = active; save(); renderInventory(); }
+            if (!active.length) { c.innerHTML = '<div style="color:#666;text-align:center;">Нет синтезов</div>'; return; }
+            let h = ''; active.forEach(c => { const r = ALL_RECIPES[c.recipeId]; const pct = Math.min(100, Math.floor(((r.time*3600000 - (c.endTime - now))/(r.time*3600000))*100)); const rem = c.endTime - now; const hrs = Math.floor(rem/3600000), mins = Math.floor((rem%3600000)/60000); h += `<div class="active-cook"><div style="display:flex;justify-content:space-between;"><span>${c.recipeName}</span><span>${pct}%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width:${pct}%"></div></div><div style="display:flex;justify-content:space-between;"><span>${hrs}ч ${mins}м</span><button class="button" style="width:auto;padding:4px 10px;" onclick="openMinigame('${c.id}')">⚖️ МИНИ-ИГРА</button></div></div>`; }); c.innerHTML = h;
         }
 
-        function boostCook() {
-            if (dailyBoostUsed) { showToast('❌ Уже использовано'); return; }
-            if (!gameState.activeCooks.length) { showToast('❌ Нет варок'); return; }
-            
-            const c = gameState.activeCooks.shift();
-            const r = RECIPES[c.recipeId];
-            const amt = Math.floor(Math.random() * (r.yield[1] - r.yield[0] + 1)) + r.yield[0];
-            gameState.inventory[c.recipeId] = (gameState.inventory[c.recipeId] || 0) + amt;
-            
-            dailyBoostUsed = true;
-            localStorage.setItem(`chemist_boost_${gameState.userId}`, new Date().toDateString());
-            document.getElementById('boost-cook-btn').textContent = '⚡ УСКОРИТЬ (0/1)';
-            
-            save();
-            updateUI();
-            renderActiveCooks();
-            renderInventory();
-            showToast(`✅ ${r.name} готов! +${amt}`);
-        }
+        function openMinigame(cookId) { const c = gameState.activeCooks.find(cc => cc.id == cookId); if (!c) return; currentCookForGame = c; document.getElementById('mingame-modal').classList.add('active'); }
+        window.openMinigame = openMinigame;
+        function playMinigame(choice) { const win = Math.floor(Math.random()*3) === choice; if (win) { currentCookForGame.endTime -= 30*60*1000; showToast('✅ Верно! -30 мин'); } else { gameState.heat = Math.min(100, gameState.heat+15); showToast('❌ Примесь! +15% тепла'); } document.getElementById('mingame-modal').classList.remove('active'); save(); updateUI(); renderActiveCooks(); }
+
+        function boostCook() { if (dailyBoostUsed) { showToast('❌ Уже использовано'); return; } if (!gameState.activeCooks.length) { showToast('❌ Нет варок'); return; } const c = gameState.activeCooks.shift(); const r = ALL_RECIPES[c.recipeId]; const amt = Math.floor(Math.random()*(r.yield[1]-r.yield[0]+1))+r.yield[0]; gameState.inventory[c.recipeId] = (gameState.inventory[c.recipeId]||0) + amt; dailyBoostUsed = true; localStorage.setItem(`chemist_boost_${gameState.userId}`, new Date().toDateString()); document.getElementById('boost-cook-btn').textContent = '⚡ УСКОРИТЬ (0/1)'; save(); updateUI(); renderActiveCooks(); renderInventory(); showToast(`✅ ${r.name} +${amt}`); }
         window.boostCook = boostCook;
 
-        // ---------- МИНИ-ИГРА ----------
-        function openMinigame(cookId) {
-            const c = gameState.activeCooks.find(cc => cc.id == cookId);
-            if (!c) return;
-            
-            currentCookForGame = c;
-            weighCurrent = 0;
-            weighTarget = 3 + Math.random() * 7;
-            weighAttempts = weighMax;
-            weighActive = true;
+        function renderRecipes() { let h = ''; for (let [id,r] of Object.entries(ALL_RECIPES)) { if (!gameState.unlockedRecipes.includes(id)) continue; if (currentFilter !== 'all' && r.type !== currentFilter) continue; const ing = Object.entries(r.ingredients).map(([k,v])=>`${INGREDIENTS[k]?.name||k}:${v}`).join(', '); const can = Object.entries(r.ingredients).every(([k,v])=>(gameState.inventory[k]||0)>=v) && r.equipment.every(e=>gameState.equipment[e]?.owned && gameState.equipment[e].durability>0); h += `<div class="recipe-item" style="opacity:${can?1:0.6}"><div class="recipe-name"><span>${r.name}</span><span>${r.time}ч</span></div><div class="recipe-desc">${r.desc}</div><div class="recipe-ingredients">📦 ${ing}</div><div style="display:flex;justify-content:space-between;"><span>${CRAFT_RECIPES[id]?'Крафт':(gameState.marketPrices[id]||0)+' ₽'}</span><button class="button" style="width:auto;" onclick="startCook('${id}')" ${!can?'disabled':''}>🧪</button></div></div>`; } document.getElementById('recipe-list').innerHTML = h || '<div style="color:#666;">Нет рецептов</div>'; }
 
-            document.getElementById('weigh-target-zone').style.left = `${(weighTarget / 10) * 100 - 5}%`;
-            document.getElementById('weigh-target-zone').style.width = '10%';
-            document.getElementById('weigh-marker').style.left = '0%';
-            document.getElementById('weigh-fill').style.width = '0%';
-            document.getElementById('weigh-value').textContent = '0.00 г';
-            updateAttempts();
-            document.getElementById('mingame-modal').classList.add('active');
-        }
-        window.openMinigame = openMinigame;
-
-        function weighAdd() {
-            if (!weighActive) return;
-            weighCurrent = Math.min(10, weighCurrent + 0.2 + Math.random() * 0.8);
-            const p = (weighCurrent / 10) * 100;
-            document.getElementById('weigh-marker').style.left = `${p}%`;
-            document.getElementById('weigh-fill').style.width = `${p}%`;
-            document.getElementById('weigh-value').textContent = `${weighCurrent.toFixed(2)} г`;
-        }
-
-        function weighCheck() {
-            if (!weighActive) return;
-            const diff = Math.abs(weighCurrent - weighTarget);
-            weighAttempts--;
-            updateAttempts();
-
-            if (diff <= 0.5) {
-                showToast('✅ Точно! -30 мин варки');
-                if (currentCookForGame) {
-                    currentCookForGame.endTime -= 30 * 60 * 1000;
-                    save();
-                    renderActiveCooks();
-                }
-                closeMinigame();
-            } else if (weighAttempts <= 0) {
-                showToast('❌ Неверно! +15% тепла');
-                gameState.heat = Math.min(100, gameState.heat + 15);
-                updateUI();
-                closeMinigame();
-            } else {
-                showToast(`⚠️ Осталось ${weighAttempts} попыток`);
-            }
-        }
-
-        function updateAttempts() {
-            const cont = document.getElementById('weigh-attempts');
-            cont.innerHTML = '';
-            for (let i = 0; i < weighMax; i++) {
-                const span = document.createElement('span');
-                span.className = `attempt ${i >= weighAttempts ? 'lost' : ''}`;
-                span.textContent = '●';
-                cont.appendChild(span);
-            }
-        }
-
-        function closeMinigame() {
-            weighActive = false;
-            document.getElementById('mingame-modal').classList.remove('active');
-            currentCookForGame = null;
-        }
-
-        // ---------- ИНВЕНТАРЬ И СКЛАД ----------
-        function renderRecipes() {
-            const cont = document.getElementById('recipe-list');
-            let html = '';
-            for (let [id, r] of Object.entries(RECIPES)) {
-                if (!gameState.unlockedRecipes.includes(id)) continue;
-                if (currentFilter !== 'all' && r.type !== currentFilter) continue;
-                
-                const canCook = Object.entries(r.ingredients).every(([k, v]) => (gameState.inventory[k] || 0) >= v) &&
-                               r.equipment.every(eq => gameState.equipment[eq]?.owned && gameState.equipment[eq].durability > 0);
-                
-                const ingText = Object.entries(r.ingredients).map(([k, v]) => `${INGREDIENTS[k]?.name || k}: ${v}`).join(', ');
-                const price = gameState.marketPrices[id] || r.price;
-                
-                html += `<div class="recipe-item" style="opacity: ${canCook ? 1 : 0.6}">
-                    <div class="recipe-name"><span>${r.name}</span><span>${r.time}ч</span></div>
-                    <div class="recipe-desc">${r.desc}</div>
-                    <div class="recipe-ingredients">📦 ${ingText}</div>
-                    <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-                        <span style="color: ${price >= r.price ? '#00e5a0' : '#ff5e5e'};">${price} ₽</span>
-                        <button class="button" style="width: auto; padding: 8px 16px;" onclick="startCook('${id}')" ${!canCook ? 'disabled' : ''}>🧪 СИНТЕЗ</button>
-                    </div>
-                </div>`;
-            }
-            cont.innerHTML = html || '<div style="color: #666; text-align: center;">Нет открытых рецептов</div>';
-        }
-
-        function renderInventory() {
-            let ingHtml = '', prodHtml = '';
-            for (let [k, v] of Object.entries(gameState.inventory)) {
-                if (INGREDIENTS[k] && v > 0) ingHtml += `<div class="inventory-item"><span>${INGREDIENTS[k].name}</span><span>${v}</span></div>`;
-                if (RECIPES[k] && v > 0) prodHtml += `<div class="inventory-item"><span>${RECIPES[k].name}</span><span>${v}</span></div>`;
-            }
-            document.getElementById('ingredients-list').innerHTML = ingHtml || '<div style="color: #666;">Пусто</div>';
-            document.getElementById('products-list').innerHTML = prodHtml || '<div style="color: #666;">Пусто</div>';
-        }
-
-        function renderEquipment() {
-            let html = '';
-            for (let [id, e] of Object.entries(EQUIPMENT)) {
-                if (gameState.equipment[id]?.owned) {
-                    const dur = gameState.equipment[id].durability;
-                    const maxDur = e.maxDur;
-                    html += `<div class="inventory-item">
-                        <span>${e.name}</span>
-                        <span>${dur}/${maxDur} <button class="button" style="width: auto; padding: 4px 10px;" onclick="repairEquipment('${id}')">🔧</button></span>
-                    </div>`;
-                }
-            }
-            document.getElementById('equipment-list').innerHTML = html || '<div style="color: #666;">Нет оборудования</div>';
-        }
-
-        function repairEquipment(id) {
-            const e = EQUIPMENT[id];
-            const cost = Math.floor(e.price * 0.3);
-            if (gameState.balance < cost) { showToast('❌ Нет денег'); return; }
-            showConfirm('🔧 РЕМОНТ', `Починить ${e.name} за ${cost} ₽?`, () => {
-                gameState.balance -= cost;
-                gameState.equipment[id].durability = e.maxDur;
-                save();
-                updateUI();
-                renderEquipment();
-                showToast('🔧 Готово');
-            });
-        }
+        function renderInventory() { let ing='', prod=''; for (let [k,v] of Object.entries(gameState.inventory)) { if (INGREDIENTS[k]) ing += `<div class="inventory-item"><span>${INGREDIENTS[k].name}</span><span>${v}</span></div>`; if (RECIPES[k]) prod += `<div class="inventory-item"><span>${RECIPES[k].name}</span><span>${v}</span></div>`; } document.getElementById('ingredients-list').innerHTML = ing || '<div>Пусто</div>'; document.getElementById('products-list').innerHTML = prod || '<div>Пусто</div>'; }
+        function renderEquipment() { let h = ''; for (let [id,e] of Object.entries(EQUIPMENT)) if (gameState.equipment[id]?.owned) h += `<div class="inventory-item"><span>${e.name}</span><span>${gameState.equipment[id].durability}/${e.maxDur} <button class="button" style="width:auto;" onclick="repairEquipment('${id}')">🔧</button></span></div>`; document.getElementById('equipment-list').innerHTML = h || '<div>Нет</div>'; }
+        function repairEquipment(id) { const e = EQUIPMENT[id]; const cost = Math.floor(e.price*0.3); if (gameState.balance < cost) { showToast('❌ Нет денег'); return; } showConfirm('🔧 РЕМОНТ', `Починить за ${cost} ₽?`, ()=>{ gameState.balance -= cost; gameState.equipment[id].durability = e.maxDur; save(); updateUI(); renderEquipment(); }); }
         window.repairEquipment = repairEquipment;
 
-        function showBuyModal() {
-            checkDailyLimitReset();
-            let html = '';
-            for (let [id, ing] of Object.entries(INGREDIENTS)) {
-                const limit = ing.limit || 999;
-                const bought = gameState.dailyLimits[id] || 0;
-                html += `<div class="inventory-item">
-                    <span>${ing.name} <span style="color: #8a9ab5;">(${bought}/${limit})</span></span>
-                    <span>${ing.price} ₽ <button class="button" style="width: auto; padding: 4px 12px;" onclick="buyIngredient('${id}')" ${bought >= limit ? 'disabled' : ''}>КУПИТЬ</button></span>
-                </div>`;
-            }
-            document.getElementById('buy-list').innerHTML = html;
-            document.getElementById('buy-modal').classList.add('active');
-        }
-
-        function buyIngredient(id) {
-            checkDailyLimitReset();
-            const ing = INGREDIENTS[id];
-            const limit = ing.limit || 999;
-            if ((gameState.dailyLimits[id] || 0) >= limit) { showToast('❌ Лимит на сегодня'); return; }
-            if (gameState.balance < ing.price) { showToast('❌ Нет денег'); return; }
-            
-            gameState.balance -= ing.price;
-            gameState.inventory[id] = (gameState.inventory[id] || 0) + 1;
-            gameState.dailyLimits[id] = (gameState.dailyLimits[id] || 0) + 1;
-            save();
-            updateUI();
-            renderInventory();
-            showToast(`✅ ${ing.name}`);
-        }
+        function showBuyModal() { checkDailyLimitReset(); let h = ''; for (let [id,ing] of Object.entries(INGREDIENTS)) { if (ing.craftable) continue; const lim = ing.limit||999; const bought = gameState.dailyLimits[id]||0; h += `<div class="inventory-item"><span>${ing.name} (${bought}/${lim})</span><span>${ing.price} ₽ <button class="button" style="width:auto;" onclick="buyIngredient('${id}')" ${bought>=lim?'disabled':''}>КУПИТЬ</button></span></div>`; } document.getElementById('buy-list').innerHTML = h; document.getElementById('buy-modal').classList.add('active'); }
+        function buyIngredient(id) { checkDailyLimitReset(); const ing = INGREDIENTS[id]; const lim = ing.limit||999; if ((gameState.dailyLimits[id]||0) >= lim) { showToast('❌ Лимит'); return; } if (gameState.balance < ing.price) { showToast('❌ Нет денег'); return; } gameState.balance -= ing.price; gameState.inventory[id] = (gameState.inventory[id]||0) + 1; gameState.dailyLimits[id] = (gameState.dailyLimits[id]||0) + 1; save(); updateUI(); renderInventory(); }
         window.buyIngredient = buyIngredient;
 
         // ---------- КЛИЕНТЫ ----------
-        function renderClients() {
-            const cont = document.getElementById('clients-list');
-            if (!gameState.clients.length) {
-                cont.innerHTML = '<div style="color: #666; text-align: center;">Нет постоянных клиентов</div>';
-                return;
-            }
-            let html = '';
-            gameState.clients.slice(0, 5).forEach(c => {
-                html += `<div class="client-card">
-                    <div class="client-name">${c.name}</div>
-                    <div class="client-story">${c.story}</div>
-                </div>`;
-            });
-            cont.innerHTML = html;
-        }
+        function renderClients() { if (!gameState.clients.length) { document.getElementById('clients-list').innerHTML = '<div>Нет</div>'; return; } let h = ''; gameState.clients.slice(0,5).forEach(c => { h += `<div class="client-card"><div class="client-name">${c.name}</div><div class="client-story">${c.story}</div><div class="client-stats"><span>💊 ${c.addiction||0}%</span><span>❤️ ${c.health||100}%</span><span>⭐ ${c.loyalty||50}</span></div></div>`; }); document.getElementById('clients-list').innerHTML = h; }
+        function waitClient() { const cl = CLIENTS[Math.floor(Math.random()*CLIENTS.length)]; let av = cl.prefers.filter(p => gameState.inventory[p]); if (!av.length) { showToast(`❌ ${cl.name} ушёл`); return; } const pid = av[Math.floor(Math.random()*av.length)]; const amt = Math.min(3, gameState.inventory[pid]); const price = (gameState.marketPrices[pid]||RECIPES[pid].price) * amt; currentClient = cl; pendingSale = { pid, amt, price }; document.getElementById('client-modal-title').textContent = cl.name; document.getElementById('client-modal-content').innerHTML = `<p>"${cl.story}"</p><p>Хочет: ${RECIPES[pid].name} (${amt})</p><p>Цена: ${price} ₽</p>`; document.getElementById('client-modal').classList.add('active'); }
+        function sellToClient() { if (!pendingSale) return; const { pid, amt, price } = pendingSale; if ((gameState.inventory[pid]||0) < amt) { showToast('❌ Нет товара'); closeModal(); return; } gameState.inventory[pid] -= amt; gameState.balance += price; gameState.stats.earned += price; gameState.stats.sold++; let cl = gameState.clients.find(c=>c.name===currentClient.name); if (!cl) { cl = { ...currentClient, health: 100, addiction: 0, loyalty: 50 }; gameState.clients.push(cl); } cl.addiction = Math.min(100, (cl.addiction||0) + 7); cl.health = Math.max(0, (cl.health||100) - 3); cl.loyalty = Math.min(100, (cl.loyalty||50) + 2); if (cl.health <= 0) { gameState.clients = gameState.clients.filter(c=>c.name!==cl.name); gameState.districtRep = Math.max(0, gameState.districtRep-5); showToast(`💀 ${cl.name} умер от передоза. Репутация района -5`); } else { gameState.districtRep = Math.min(100, gameState.districtRep+1); } save(); updateUI(); renderInventory(); renderClients(); closeModal(); showToast(`✅ +${price} ₽`); }
+        function declineClient() { gameState.reputation = Math.max(0, gameState.reputation-1); updateUI(); closeModal(); showToast('❌ Ушёл'); }
+        function sellAll() { let t = 0; for (let [k,v] of Object.entries(gameState.inventory)) if (RECIPES[k]) { t += (gameState.marketPrices[k]||RECIPES[k].price) * v; delete gameState.inventory[k]; } if (!t) { showToast('❌ Нечего'); return; } gameState.balance += t; gameState.stats.earned += t; save(); updateUI(); renderInventory(); showToast(`💰 +${t.toFixed(2)} ₽`); }
+        function showRandomStory() { const cl = CLIENTS[Math.floor(Math.random()*CLIENTS.length)]; showToast(`${cl.name}: "${cl.story}"`); }
 
-        function waitClient() {
-            const cl = CLIENTS[Math.floor(Math.random() * CLIENTS.length)];
-            let av = cl.prefers.filter(p => gameState.inventory[p] > 0);
-            if (!av.length) { showToast(`❌ ${cl.name} ушёл — нет товара`); return; }
-            
-            const pid = av[Math.floor(Math.random() * av.length)];
-            const amt = Math.min(3, gameState.inventory[pid]);
-            const price = (gameState.marketPrices[pid] || RECIPES[pid].price) * amt;
-            
-            currentClient = cl;
-            pendingSale = { pid, amt, price };
-            
-            document.getElementById('client-modal-title').textContent = cl.name;
-            document.getElementById('client-modal-content').innerHTML = `
-                <p style="margin-bottom: 10px;"><em>"${cl.story}"</em></p>
-                <p>Хочет: <strong>${RECIPES[pid].name}</strong> (${amt} ед.)</p>
-                <p style="margin-top: 10px;">Цена: <strong style="color: #00e5a0;">${price} ₽</strong></p>
-            `;
-            document.getElementById('client-modal').classList.add('active');
-        }
+        // ---------- РЫНОК / ИНФО ----------
+        function renderMarketPrices() { let h = ''; Object.entries(gameState.marketPrices).sort((a,b)=>b[1]-a[1]).forEach(([id,p])=>{ const r = RECIPES[id]; if (r) h += `<div class="inventory-item"><span>${r.name}</span><span style="color:${p>=r.price?'#00e5a0':'#ff5e5e'};">${p} ₽</span></div>`; }); document.getElementById('market-prices').innerHTML = h; }
+        function renderLabInfo() { const info = LAB_LEVELS[gameState.labLevel]; const next = LAB_LEVELS[gameState.labLevel+1]; document.getElementById('lab-info').innerHTML = `<div class="inventory-item"><span>Уровень</span><span>${gameState.labLevel} — ${info.name}</span></div><div class="inventory-item"><span>Слотов</span><span>${info.slots}</span></div>${next?`<div class="inventory-item"><span>Апгрейд</span><span>${next.cost} ₽</span></div>`:''}`; const btn = document.getElementById('upgrade-lab-btn'); if (!next) { btn.disabled=true; btn.textContent='🏆 МАКС'; } else if (gameState.balance < next.cost) { btn.disabled=true; btn.textContent='❌ НЕТ СРЕДСТВ'; } else { btn.disabled=false; btn.textContent=`⬆️ УЛУЧШИТЬ (${next.cost} ₽)`; } }
+        function upgradeLab() { const n = LAB_LEVELS[gameState.labLevel+1]; if (!n || gameState.balance < n.cost) return; showConfirm('🏚️ АПГРЕЙД', `Улучшить до ${n.name} за ${n.cost} ₽?`, ()=>{ gameState.balance -= n.cost; gameState.labLevel++; for (let [id,r] of Object.entries(ALL_RECIPES)) if (r.labLevel === gameState.labLevel && !gameState.unlockedRecipes.includes(id)) { gameState.unlockedRecipes.push(id); showToast(`🔓 ${r.name}`); } save(); updateUI(); renderLabInfo(); renderRecipes(); }); }
+        function renderDistrictRep() { document.getElementById('district-rep-info').innerHTML = `<div class="inventory-item"><span>Уровень</span><span>${gameState.districtRep}/100</span></div><div class="inventory-item"><span>Скидка у барыг</span><span>${Math.floor(gameState.districtRep/5)}%</span></div>`; }
+        function showStatsModal() { const c = document.getElementById('stats-modal-content'); c.innerHTML = `<div class="inventory-item"><span>🆔 ID</span><span>${gameState.userId}</span></div><div class="inventory-item"><span>🧪 Синтезов</span><span>${gameState.stats.cooked}</span></div><div class="inventory-item"><span>💰 Продаж</span><span>${gameState.stats.sold}</span></div><div class="inventory-item"><span>💵 Заработано</span><span>${gameState.stats.earned.toFixed(2)} ₽</span></div><div class="inventory-item"><span>⭐ Репутация</span><span>${gameState.reputation}</span></div>`; document.getElementById('stats-modal').classList.add('active'); }
 
-        function sellToClient() {
-            if (!pendingSale) return;
-            const { pid, amt, price } = pendingSale;
-            if ((gameState.inventory[pid] || 0) < amt) { showToast('❌ Товар пропал'); closeModal(); return; }
-            
-            gameState.inventory[pid] -= amt;
-            gameState.balance += price;
-            gameState.reputation = Math.min(100, gameState.reputation + 2);
-            gameState.stats.earned += price;
-            gameState.stats.sold++;
-            
-            const ex = gameState.clients.find(c => c.name === currentClient.name);
-            if (ex) ex.addiction = Math.min(100, (ex.addiction || 30) + 5);
-            else gameState.clients.push({ ...currentClient, health: 80, addiction: 30 });
-            
-            save();
-            updateUI();
-            renderInventory();
-            renderClients();
-            closeModal();
-            showToast(`✅ Продано за ${price} ₽`);
-        }
+        function closeModal() { document.getElementById('client-modal').classList.remove('active'); document.getElementById('buy-modal').classList.remove('active'); }
+        function showConfirm(t,m,a) { document.getElementById('confirm-title').textContent = t; document.getElementById('confirm-message').textContent = m; pendingConfirm = a; document.getElementById('confirm-modal').classList.add('active'); }
+        function closeConfirm() { document.getElementById('confirm-modal').classList.remove('active'); pendingConfirm = null; }
 
-        function declineClient() {
-            gameState.reputation = Math.max(0, gameState.reputation - 1);
-            updateUI();
-            closeModal();
-            showToast('❌ Клиент ушёл');
-        }
-
-        function sellAll() {
-            let total = 0;
-            for (let [k, v] of Object.entries(gameState.inventory)) {
-                if (RECIPES[k] && v > 0) {
-                    total += (gameState.marketPrices[k] || RECIPES[k].price) * v;
-                    delete gameState.inventory[k];
-                }
-            }
-            if (total === 0) { showToast('❌ Нечего продавать'); return; }
-            
-            gameState.balance += total;
-            gameState.stats.earned += total;
-            gameState.stats.sold++;
-            save();
-            updateUI();
-            renderInventory();
-            showToast(`💰 Продано на ${total.toFixed(2)} ₽`);
-        }
-
-        function showRandomStory() {
-            const cl = CLIENTS[Math.floor(Math.random() * CLIENTS.length)];
-            showToast(`${cl.name}: "${cl.story}"`);
-        }
-
-        // ---------- РЫНОК И АПГРЕЙД ----------
-        function renderMarketPrices() {
-            let html = '';
-            Object.entries(gameState.marketPrices).sort((a, b) => b[1] - a[1]).forEach(([id, price]) => {
-                const r = RECIPES[id];
-                if (!r) return;
-                const diff = price - r.price;
-                const sign = diff >= 0 ? '+' : '';
-                html += `<div class="inventory-item">
-                    <span>${r.name}</span>
-                    <span style="color: ${diff >= 0 ? '#00e5a0' : '#ff5e5e'};">${price} ₽ (${sign}${Math.round(diff / r.price * 100)}%)</span>
-                </div>`;
-            });
-            document.getElementById('market-prices').innerHTML = html;
-        }
-
-        function renderLabInfo() {
-            const info = LAB_LEVELS[gameState.labLevel];
-            const next = LAB_LEVELS[gameState.labLevel + 1];
-            document.getElementById('lab-info').innerHTML = `
-                <div class="inventory-item"><span>Уровень</span><span>${gameState.labLevel} — ${info.name}</span></div>
-                <div class="inventory-item"><span>Слотов</span><span>${info.slots}</span></div>
-                <div class="inventory-item"><span>Множитель риска</span><span>${(info.risk_mod * 100).toFixed(0)}%</span></div>
-                ${next ? `<div class="inventory-item"><span>Следующий уровень</span><span>${next.cost} ₽</span></div>` : ''}
-            `;
-            
-            const btn = document.getElementById('upgrade-lab-btn');
-            if (!next) {
-                btn.disabled = true;
-                btn.textContent = '🏆 МАКСИМУМ';
-            } else if (gameState.balance < next.cost) {
-                btn.disabled = true;
-                btn.textContent = `❌ НЕ ХВАТАЕТ ${next.cost} ₽`;
-            } else {
-                btn.disabled = false;
-                btn.textContent = `⬆️ УЛУЧШИТЬ (${next.cost} ₽)`;
-            }
-        }
-
-        function upgradeLab() {
-            const next = LAB_LEVELS[gameState.labLevel + 1];
-            if (!next || gameState.balance < next.cost) return;
-            
-            showConfirm('🏚️ АПГРЕЙД', `Улучшить до "${next.name}" за ${next.cost} ₽?`, () => {
-                gameState.balance -= next.cost;
-                gameState.labLevel++;
-                gameState.heat = Math.max(0, gameState.heat - 20);
-                
-                for (let [id, r] of Object.entries(RECIPES)) {
-                    if (r.labLevel === gameState.labLevel && !gameState.unlockedRecipes.includes(id)) {
-                        gameState.unlockedRecipes.push(id);
-                        showToast(`🔓 Открыт рецепт: ${r.name}`);
-                    }
-                }
-                
-                save();
-                updateUI();
-                renderLabInfo();
-                renderRecipes();
-                checkStoryEvent();
-                showToast(`✅ Улучшено до ${next.name}`);
-            });
-        }
-
-        function renderGameStats() {
-            document.getElementById('game-stats').innerHTML = `
-                <div class="inventory-item"><span>Синтезировано</span><span>${gameState.stats.cooked}</span></div>
-                <div class="inventory-item"><span>Продаж</span><span>${gameState.stats.sold}</span></div>
-                <div class="inventory-item"><span>Заработано</span><span>${gameState.stats.earned.toFixed(2)} ₽</span></div>
-            `;
-        }
-
-        // ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
-        function closeModal() {
-            document.getElementById('client-modal').classList.remove('active');
-            document.getElementById('buy-modal').classList.remove('active');
-        }
-
-        function showConfirm(title, msg, action) {
-            document.getElementById('confirm-title').textContent = title;
-            document.getElementById('confirm-message').textContent = msg;
-            pendingConfirm = action;
-            document.getElementById('confirm-modal').classList.add('active');
-        }
-
-        function closeConfirm() {
-            document.getElementById('confirm-modal').classList.remove('active');
-            pendingConfirm = null;
-        }
-
-        function startTimers() {
-            setInterval(() => {
-                if (gameState.heat > 0) {
-                    gameState.heat = Math.max(0, gameState.heat - 1);
-                    updateUI();
-                }
-                renderActiveCooks();
-            }, 60000);
-        }
-
-        // ---------- ЗАПУСК ----------
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!skipIntroIfSeen()) startIntro();
-        });
+        document.addEventListener('DOMContentLoaded', ()=>{ if (!skipIntroIfSeen()) startIntro(); });
     </script>
 </body>
 </html>
