@@ -1,70 +1,606 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zonlik Bot</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--tg-theme-bg-color, #1a1a1a);
+            color: var(--tg-theme-text-color, #ffffff);
             padding: 16px;
-            background: var(--tg-theme-bg-color, #fff);
-            color: var(--tg-theme-text-color, #000);
+            min-height: 100vh;
         }
-        .profile {
-            padding: 16px;
-            border-radius: 12px;
-            background: var(--tg-theme-secondary-bg-color, #f0f0f0);
+        
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
         }
-        .button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 16px;
+        
+        .header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--tg-theme-hint-color, #2AABEE);
+        }
+        
+        .card {
+            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+        }
+        
+        .profile-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--tg-theme-section-separator-color, #3a3a3a);
+        }
+        
+        .profile-row:last-child {
+            border-bottom: none;
+        }
+        
+        .profile-label {
+            color: var(--tg-theme-hint-color, #888);
+            font-size: 14px;
+        }
+        
+        .profile-value {
+            font-weight: 500;
+            font-size: 16px;
+        }
+        
+        .balance {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4CAF50;
+            text-align: center;
+            margin: 16px 0;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .tab {
+            flex: 1;
+            padding: 12px;
+            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
+            color: var(--tg-theme-text-color, #fff);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tab.active {
             background: var(--tg-theme-button-color, #2AABEE);
             color: var(--tg-theme-button-text-color, #fff);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin-bottom: 16px;
+        }
+        
+        .input-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--tg-theme-hint-color, #888);
+            font-size: 14px;
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 14px 16px;
+            background: var(--tg-theme-bg-color, #1a1a1a);
+            border: 1px solid var(--tg-theme-section-separator-color, #3a3a3a);
+            border-radius: 12px;
+            color: var(--tg-theme-text-color, #fff);
             font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        
+        .input-field:focus {
+            border-color: var(--tg-theme-button-color, #2AABEE);
+        }
+        
+        .input-field::placeholder {
+            color: var(--tg-theme-hint-color, #666);
+        }
+        
+        .button {
+            width: 100%;
+            padding: 16px;
+            background: var(--tg-theme-button-color, #2AABEE);
+            border: none;
+            border-radius: 12px;
+            color: var(--tg-theme-button-text-color, #fff);
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .button:active {
+            opacity: 0.8;
+        }
+        
+        .button.secondary {
+            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
+        }
+        
+        .info-text {
+            text-align: center;
+            color: var(--tg-theme-hint-color, #888);
+            font-size: 14px;
+            margin-top: 12px;
+        }
+        
+        .history-item {
+            padding: 12px;
+            background: var(--tg-theme-bg-color, #1a1a1a);
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        
+        .history-type {
+            font-weight: 500;
+        }
+        
+        .history-type.deposit {
+            color: #4CAF50;
+        }
+        
+        .history-type.withdraw {
+            color: #FF9800;
+        }
+        
+        .history-type.referral {
+            color: #2196F3;
+        }
+        
+        .history-amount {
+            font-weight: 600;
+        }
+        
+        .history-date {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #888);
+        }
+        
+        .history-desc {
+            font-size: 13px;
+            color: var(--tg-theme-hint-color, #888);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 32px 16px;
+            color: var(--tg-theme-hint-color, #888);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 16px 0;
+        }
+        
+        .stat-card {
+            background: var(--tg-theme-bg-color, #1a1a1a);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--tg-theme-button-color, #2AABEE);
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #888);
+            margin-top: 4px;
+        }
+        
+        .ref-link {
+            background: var(--tg-theme-bg-color, #1a1a1a);
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 13px;
+            word-break: break-all;
+            margin: 16px 0;
+            border: 1px solid var(--tg-theme-section-separator-color, #3a3a3a);
+        }
+        
+        .copy-btn {
+            margin-top: 8px;
+            padding: 10px;
+            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
+            border: none;
+            border-radius: 8px;
+            color: var(--tg-theme-text-color, #fff);
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        .toast.show {
+            opacity: 1;
         }
     </style>
 </head>
 <body>
-    <div class="profile">
-        <h3>👤 Профиль</h3>
-        <p>🆔 ID: <span id="user-id">...</span></p>
-        <p>📛 Имя: <span id="user-name">...</span></p>
-        <p>💰 Баланс: <span id="user-balance">...</span> ₽</p>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 Zonlik Bot</h1>
+        </div>
+        
+        <div class="card">
+            <div class="profile-row">
+                <span class="profile-label">🆔 ID</span>
+                <span class="profile-value" id="user-id">—</span>
+            </div>
+            <div class="profile-row">
+                <span class="profile-label">📛 Имя</span>
+                <span class="profile-value" id="user-name">—</span>
+            </div>
+            <div class="profile-row">
+                <span class="profile-label">👤 Username</span>
+                <span class="profile-value" id="user-username">—</span>
+            </div>
+            
+            <div class="balance">
+                <span id="user-balance">0.00</span> ₽
+            </div>
+        </div>
+        
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('withdraw')">📤 Вывод</button>
+            <button class="tab" onclick="switchTab('stats')">📊 Статистика</button>
+            <button class="tab" onclick="switchTab('referral')">🔗 Рефералы</button>
+        </div>
+        
+        <!-- Вкладка Вывод -->
+        <div id="tab-withdraw" class="tab-content active">
+            <div class="card">
+                <div class="input-group">
+                    <label class="input-label">💵 Сумма вывода (мин. 15 ₽)</label>
+                    <input type="number" id="withdraw-amount" class="input-field" placeholder="Введите сумму" min="15" step="1">
+                </div>
+                
+                <div class="input-group">
+                    <label class="input-label">💳 Номер карты</label>
+                    <input type="text" id="withdraw-card" class="input-field" placeholder="4276 XXXX XXXX XXXX">
+                </div>
+                
+                <button class="button" onclick="requestWithdraw()">
+                    📤 Отправить заявку
+                </button>
+                
+                <div class="info-text">
+                    Заявка будет обработана в течение 24 часов
+                </div>
+            </div>
+        </div>
+        
+        <!-- Вкладка Статистика -->
+        <div id="tab-stats" class="tab-content">
+            <div class="card">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-earned">0</div>
+                        <div class="stat-label">💵 Заработано</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-withdrawn">0</div>
+                        <div class="stat-label">📤 Выведено</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="referral-count">0</div>
+                        <div class="stat-label">👥 Рефералов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="referral-earned">0</div>
+                        <div class="stat-label">💰 С рефералов</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 16px 0 12px; font-size: 16px;">📋 Последние операции</h3>
+                <div id="history-list">
+                    <div class="empty-state">Загрузка...</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Вкладка Рефералы -->
+        <div id="tab-referral" class="tab-content">
+            <div class="card">
+                <h3 style="margin-bottom: 12px; font-size: 16px;">🔗 Ваша реферальная ссылка</h3>
+                
+                <div class="ref-link" id="ref-link">Загрузка...</div>
+                
+                <button class="copy-btn" onclick="copyRefLink()">📋 Копировать ссылку</button>
+                
+                <div style="margin-top: 24px;">
+                    <div class="profile-row">
+                        <span class="profile-label">👥 Приглашено</span>
+                        <span class="profile-value" id="ref-count">0</span>
+                    </div>
+                    <div class="profile-row">
+                        <span class="profile-label">💵 Заработано</span>
+                        <span class="profile-value" id="ref-earned">0 ₽</span>
+                    </div>
+                </div>
+                
+                <div class="info-text" style="margin-top: 16px;">
+                    +2 ₽ за каждого друга, прошедшего проверку
+                </div>
+            </div>
+        </div>
     </div>
     
-    <button class="button" onclick="requestWithdraw()">📤 Запросить вывод</button>
+    <div class="toast" id="toast">Скопировано!</div>
     
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
         const tg = window.Telegram.WebApp;
+        
+        // Инициализация
         tg.ready();
-        tg.expand(); // Разворачиваем на весь экран
+        tg.expand();
+        tg.enableClosingConfirmation();
         
-        const user = tg.initDataUnsafe?.user;
-        if (user) {
-            document.getElementById('user-id').textContent = user.id;
-            document.getElementById('user-name').textContent = user.first_name;
+        // Устанавливаем цвет верхней панели
+        tg.setHeaderColor('bg_color');
+        
+        // Данные пользователя
+        let userData = {
+            id: null,
+            name: null,
+            username: null,
+            balance: 0,
+            internalId: null
+        };
+        
+        // Получаем данные пользователя из Telegram
+        const tgUser = tg.initDataUnsafe?.user;
+        if (tgUser) {
+            userData.id = tgUser.id;
+            userData.name = tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '');
+            userData.username = tgUser.username || 'не указан';
+            
+            document.getElementById('user-id').textContent = tgUser.id;
+            document.getElementById('user-name').textContent = userData.name;
+            document.getElementById('user-username').textContent = userData.username;
         }
         
-        // Функция для получения баланса (нужно будет доработать)
-        function loadBalance() {
-            // Здесь можно сделать запрос к твоему API
-            document.getElementById('user-balance').textContent = '0.00';
+        // Загружаем данные пользователя из бота
+        async function loadUserData() {
+            try {
+                // Отправляем запрос на получение данных
+                tg.sendData(JSON.stringify({
+                    action: 'get_user_data'
+                }));
+            } catch (e) {
+                console.error('Ошибка загрузки данных:', e);
+            }
         }
         
+        // Обработка данных, полученных от бота через CloudStorage или через sendData
+        function updateUserData(data) {
+            if (data.internal_id) userData.internalId = data.internal_id;
+            if (data.balance !== undefined) {
+                userData.balance = data.balance;
+                document.getElementById('user-balance').textContent = data.balance.toFixed(2);
+            }
+            if (data.total_earned !== undefined) {
+                document.getElementById('total-earned').textContent = data.total_earned.toFixed(0);
+            }
+            if (data.total_withdrawn !== undefined) {
+                document.getElementById('total-withdrawn').textContent = data.total_withdrawn.toFixed(0);
+            }
+            if (data.referral_count !== undefined) {
+                document.getElementById('referral-count').textContent = data.referral_count;
+                document.getElementById('ref-count').textContent = data.referral_count;
+            }
+            if (data.referral_earned !== undefined) {
+                document.getElementById('referral-earned').textContent = data.referral_earned.toFixed(0);
+                document.getElementById('ref-earned').textContent = data.referral_earned.toFixed(2) + ' ₽';
+            }
+            if (data.ref_link) {
+                document.getElementById('ref-link').textContent = data.ref_link;
+            }
+            if (data.history) {
+                renderHistory(data.history);
+            }
+        }
+        
+        // Отображение истории операций
+        function renderHistory(history) {
+            const container = document.getElementById('history-list');
+            
+            if (!history || history.length === 0) {
+                container.innerHTML = '<div class="empty-state">Нет операций</div>';
+                return;
+            }
+            
+            let html = '';
+            history.slice(0, 10).forEach(item => {
+                const typeClass = item.type === 'deposit' || item.type === 'referral_bonus' ? 'deposit' : 'withdraw';
+                const typeText = {
+                    'deposit': '💰 Пополнение',
+                    'withdraw': '📤 Вывод',
+                    'referral_bonus': '👤 Реферал'
+                }[item.type] || item.type;
+                
+                const sign = item.type === 'withdraw' ? '-' : '+';
+                const amountColor = item.type === 'withdraw' ? '#FF9800' : '#4CAF50';
+                
+                html += `
+                    <div class="history-item">
+                        <div class="history-header">
+                            <span class="history-type ${typeClass}">${typeText}</span>
+                            <span class="history-amount" style="color: ${amountColor}">${sign}${item.amount.toFixed(2)} ₽</span>
+                        </div>
+                        <div class="history-desc">${item.description || ''}</div>
+                        <div class="history-date">${item.date || ''}</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+        
+        // Переключение вкладок
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`tab-${tab}`).classList.add('active');
+        }
+        
+        // Запрос на вывод
         function requestWithdraw() {
+            const amountInput = document.getElementById('withdraw-amount');
+            const cardInput = document.getElementById('withdraw-card');
+            
+            const amount = parseFloat(amountInput.value);
+            const card = cardInput.value.trim();
+            
+            if (!amount || amount < 15) {
+                showToast('❌ Минимальная сумма вывода: 15 ₽');
+                return;
+            }
+            
+            if (amount > userData.balance) {
+                showToast('❌ Недостаточно средств');
+                return;
+            }
+            
+            if (!card) {
+                showToast('❌ Укажите номер карты');
+                return;
+            }
+            
+            // Отправляем данные боту
             tg.sendData(JSON.stringify({
                 action: 'withdraw_request',
-                amount: 100
+                amount: amount,
+                card: card
             }));
+            
+            // Очищаем поля
+            amountInput.value = '';
+            cardInput.value = '';
+            
+            showToast('✅ Заявка отправлена!');
         }
         
-        loadBalance();
+        // Копирование реферальной ссылки
+        function copyRefLink() {
+            const link = document.getElementById('ref-link').textContent;
+            
+            navigator.clipboard?.writeText(link).then(() => {
+                showToast('📋 Ссылка скопирована!');
+            }).catch(() => {
+                // Fallback
+                const textarea = document.createElement('textarea');
+                textarea.value = link;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showToast('📋 Ссылка скопирована!');
+            });
+        }
+        
+        // Показ уведомления
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Получаем тему Telegram и применяем
+        function applyTheme() {
+            const theme = tg.colorScheme;
+            document.body.classList.add(theme);
+        }
+        
+        // Слушаем изменения темы
+        tg.onEvent('themeChanged', applyTheme);
+        
+        // Загружаем данные при старте
+        loadUserData();
+        applyTheme();
+        
+        // Обработка нажатия главной кнопки Telegram
+        tg.MainButton.setText('📤 Вывести средства');
+        tg.MainButton.show();
+        tg.MainButton.onClick(() => {
+            switchTab('withdraw');
+        });
+        
+        // Обработка кнопки "Назад"
+        tg.BackButton.onClick(() => {
+            switchTab('withdraw');
+        });
     </script>
 </body>
 </html>
