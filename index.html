@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zonlik Bot</title>
+    <title>ХИМИК · ПАНЕЛЬКА</title>
     <style>
         * {
             margin: 0;
@@ -12,164 +12,235 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #1a1a1a;
-            color: #ffffff;
-            padding: 16px;
+            font-family: 'Courier New', monospace;
+            background: #0d0d0d;
+            color: #b0b0b0;
+            padding: 12px;
             min-height: 100vh;
         }
         
-        .container {
-            max-width: 400px;
+        .game-container {
+            max-width: 450px;
             margin: 0 auto;
         }
         
-        .header {
-            text-align: center;
-            margin-bottom: 24px;
+        /* Стиль панельки */
+        .panel {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            margin-bottom: 10px;
+            padding: 14px;
+            box-shadow: 3px 3px 0 #0a0a0a;
         }
         
-        .header h1 {
-            font-size: 24px;
-            font-weight: 600;
-            color: #2AABEE;
-        }
-        
-        .card {
-            background: #2c2c2c;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 16px;
-        }
-        
-        .profile-row {
+        .panel-title {
+            font-size: 16px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #8B0000;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 6px;
             display: flex;
             justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #3a3a3a;
-        }
-        
-        .profile-row:last-child {
-            border-bottom: none;
-        }
-        
-        .profile-label {
-            color: #888;
-            font-size: 14px;
-        }
-        
-        .profile-value {
-            font-weight: 500;
-            font-size: 16px;
-        }
-        
-        .balance {
-            font-size: 32px;
-            font-weight: 700;
-            color: #4CAF50;
-            text-align: center;
-            margin: 16px 0;
-        }
-        
-        .input-group {
-            margin-bottom: 16px;
-        }
-        
-        .input-label {
-            display: block;
-            margin-bottom: 8px;
-            color: #888;
-            font-size: 14px;
-        }
-        
-        .input-field {
-            width: 100%;
-            padding: 14px 16px;
-            background: #1a1a1a;
-            border: 1px solid #3a3a3a;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
-            outline: none;
-        }
-        
-        .input-field:focus {
-            border-color: #2AABEE;
-        }
-        
-        .button {
-            width: 100%;
-            padding: 16px;
-            background: #2AABEE;
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-bottom: 12px;
-        }
-        
-        .button:active {
-            opacity: 0.8;
-        }
-        
-        .button.secondary {
-            background: #2c2c2c;
-        }
-        
-        .info-text {
-            text-align: center;
-            color: #888;
-            font-size: 14px;
-            margin-top: 12px;
-        }
-        
-        .ref-link {
-            background: #1a1a1a;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 13px;
-            word-break: break-all;
-            margin: 16px 0;
-            border: 1px solid #3a3a3a;
-        }
-        
-        .copy-btn {
-            padding: 12px;
-            background: #2c2c2c;
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 14px;
-            cursor: pointer;
-            width: 100%;
         }
         
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin: 16px 0;
+            gap: 8px;
+            margin-bottom: 8px;
         }
         
-        .stat-card {
-            background: #1a1a1a;
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-        }
-        
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2AABEE;
+        .stat {
+            background: #111;
+            padding: 8px;
+            border: 1px solid #2a2a2a;
         }
         
         .stat-label {
-            font-size: 12px;
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+        }
+        
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: #c0c0c0;
+        }
+        
+        .stat-value.danger {
+            color: #8B0000;
+        }
+        
+        .stat-value.success {
+            color: #2e7d32;
+        }
+        
+        .button {
+            background: #222;
+            border: 1px solid #444;
+            color: #ccc;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 6px;
+            transition: all 0.1s;
+        }
+        
+        .button:hover {
+            background: #2a2a2a;
+            border-color: #666;
+        }
+        
+        .button.primary {
+            background: #2a0a0a;
+            border-color: #8B0000;
+            color: #ff6666;
+        }
+        
+        .button.danger {
+            background: #1a0a0a;
+            border-color: #660000;
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 10px;
+        }
+        
+        .tab {
+            flex: 1;
+            background: #1a1a1a;
+            border: 1px solid #333;
             color: #888;
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            background: #2a2a2a;
+            color: #ccc;
+            border-bottom: 2px solid #8B0000;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .recipe-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .recipe-item {
+            background: #151515;
+            border: 1px solid #2a2a2a;
+            padding: 10px;
+            margin-bottom: 6px;
+        }
+        
+        .recipe-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #c0c0c0;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .recipe-desc {
+            font-size: 11px;
+            color: #777;
             margin-top: 4px;
+        }
+        
+        .recipe-ingredients {
+            font-size: 10px;
+            color: #555;
+            margin-top: 6px;
+        }
+        
+        .inventory-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px;
+            border-bottom: 1px solid #2a2a2a;
+            font-size: 12px;
+        }
+        
+        .client-card {
+            background: #151515;
+            border-left: 3px solid #8B0000;
+            padding: 12px;
+            margin-bottom: 10px;
+        }
+        
+        .client-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #c0c0c0;
+        }
+        
+        .client-story {
+            font-size: 11px;
+            color: #666;
+            margin: 6px 0;
+            font-style: italic;
+        }
+        
+        .client-stats {
+            display: flex;
+            gap: 12px;
+            font-size: 10px;
+            color: #555;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: #1a1a1a;
+            border: 2px solid #8B0000;
+            padding: 20px;
+            max-width: 400px;
+            width: 100%;
         }
         
         .toast {
@@ -177,246 +248,1178 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 14px;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            padding: 12px 20px;
+            font-size: 12px;
+            text-transform: uppercase;
             opacity: 0;
             transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 1000;
+            z-index: 2000;
         }
         
         .toast.show {
             opacity: 1;
         }
         
-        .success-message {
-            background: #4CAF50;
-            color: white;
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 16px;
+        .heat-bar {
+            width: 100%;
+            height: 8px;
+            background: #111;
+            border: 1px solid #333;
+            margin-top: 4px;
         }
         
-        .error-message {
-            background: #f44336;
-            color: white;
-            padding: 16px;
-            border-radius: 12px;
-            text-align: center;
-            margin-bottom: 16px;
+        .heat-fill {
+            height: 100%;
+            background: #8B0000;
+            width: 0%;
+        }
+        
+        .active-cook {
+            background: #1a0a0a;
+            border: 1px solid #660000;
+            padding: 8px;
+            margin-bottom: 6px;
+            font-size: 11px;
+        }
+        
+        .timer {
+            color: #ff6666;
+        }
+        
+        input, select {
+            width: 100%;
+            background: #111;
+            border: 1px solid #444;
+            color: #ccc;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        label {
+            font-size: 11px;
+            color: #666;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 4px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>🤖 Zonlik Bot</h1>
-        </div>
-        
-        <div id="message-container"></div>
-        
-        <div class="card">
-            <div class="profile-row">
-                <span class="profile-label">🆔 Внутренний ID</span>
-                <span class="profile-value" id="internal-id">—</span>
+    <div class="game-container">
+        <!-- Статус-бар -->
+        <div class="panel">
+            <div class="panel-title">
+                <span>🧪 ХИМИК v2.0</span>
+                <span id="user-id">ID: --</span>
             </div>
-            <div class="profile-row">
-                <span class="profile-label">👤 Telegram ID</span>
-                <span class="profile-value" id="telegram-id">—</span>
-            </div>
-            <div class="profile-row">
-                <span class="profile-label">📛 Имя</span>
-                <span class="profile-value" id="user-name">—</span>
-            </div>
-            
-            <div class="balance">
-                <span id="user-balance">0.00</span> ₽
-            </div>
-        </div>
-        
-        <div class="card">
-            <h3 style="margin-bottom: 16px;">📤 Вывод средств</h3>
-            
-            <div class="input-group">
-                <label class="input-label">💵 Сумма (мин. 15 ₽)</label>
-                <input type="number" id="withdraw-amount" class="input-field" placeholder="Введите сумму" min="15" step="1" value="15">
-            </div>
-            
-            <div class="input-group">
-                <label class="input-label">💳 Номер карты</label>
-                <input type="text" id="withdraw-card" class="input-field" placeholder="4276 XXXX XXXX XXXX">
-            </div>
-            
-            <button class="button" onclick="submitWithdraw()">
-                📤 Отправить заявку на вывод
-            </button>
-            
-            <div class="info-text">
-                Заявка будет обработана администратором
-            </div>
-        </div>
-        
-        <div class="card">
-            <h3 style="margin-bottom: 16px;">📊 Статистика</h3>
-            
             <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="total-earned">0</div>
-                    <div class="stat-label">💵 Заработано</div>
+                <div class="stat">
+                    <div class="stat-label">💰 БАЛАНС</div>
+                    <div class="stat-value success" id="balance">0.00 ₽</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="total-withdrawn">0</div>
-                    <div class="stat-label">📤 Выведено</div>
+                <div class="stat">
+                    <div class="stat-label">🏚️ ЛАБА</div>
+                    <div class="stat-value" id="lab-level">Хата</div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="referral-count">0</div>
-                    <div class="stat-label">👥 Рефералов</div>
+                <div class="stat">
+                    <div class="stat-label">🔥 ТЕПЛО</div>
+                    <div class="stat-value danger" id="heat">0%</div>
+                    <div class="heat-bar"><div class="heat-fill" id="heat-fill"></div></div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="referral-earned">0</div>
-                    <div class="stat-label">💰 С рефералов</div>
+                <div class="stat">
+                    <div class="stat-label">⭐ РЕПА</div>
+                    <div class="stat-value" id="reputation">50</div>
                 </div>
             </div>
         </div>
         
-        <div class="card">
-            <h3 style="margin-bottom: 16px;">🔗 Реферальная система</h3>
+        <!-- Табы -->
+        <div class="tabs">
+            <div class="tab active" data-tab="cook">🧪 ВАРКА</div>
+            <div class="tab" data-tab="inventory">📦 СКЛАД</div>
+            <div class="tab" data-tab="clients">👥 КЛИЕНТЫ</div>
+            <div class="tab" data-tab="upgrade">🏚️ АПГРЕЙД</div>
+        </div>
+        
+        <!-- Варка -->
+        <div class="tab-content active" id="tab-cook">
+            <div class="panel">
+                <div class="panel-title">АКТИВНЫЕ ВАРКИ</div>
+                <div id="active-cooks-container">
+                    <div style="color: #444; text-align: center; padding: 10px;">Нет активных варок</div>
+                </div>
+            </div>
             
-            <div class="ref-link" id="ref-link">Загрузка...</div>
-            
-            <button class="copy-btn" onclick="copyRefLink()">📋 Копировать ссылку</button>
-            
-            <div class="info-text" style="margin-top: 16px;">
-                +2 ₽ за каждого друга, прошедшего проверку
+            <div class="panel">
+                <div class="panel-title">ДОСТУПНЫЕ РЕЦЕПТЫ</div>
+                <div class="button-group">
+                    <button class="button" data-filter="all">ВСЕ</button>
+                    <button class="button" data-filter="light">🌿 ЛЁГКИЕ</button>
+                    <button class="button" data-filter="medium">💊 СРЕДНИЕ</button>
+                    <button class="button" data-filter="heavy">🔮 ТЯЖЁЛЫЕ</button>
+                    <button class="button" data-filter="pharma">🏥 АПТЕЧНЫЕ</button>
+                    <button class="button" data-filter="designer">🧬 ДИЗАЙНЕРСКИЕ</button>
+                </div>
+                <div class="recipe-list" id="recipe-list"></div>
             </div>
         </div>
         
-        <button class="button secondary" onclick="window.close()">
-            ✖️ Закрыть
-        </button>
+        <!-- Склад -->
+        <div class="tab-content" id="tab-inventory">
+            <div class="panel">
+                <div class="panel-title">📦 ИНГРЕДИЕНТЫ</div>
+                <div id="ingredients-list"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">💊 ГОТОВЫЙ ТОВАР</div>
+                <div id="products-list"></div>
+            </div>
+            <div class="panel">
+                <button class="button primary" id="buy-ingredients-btn">🛒 ЗАКУПИТЬСЯ У БАРЫГИ</button>
+                <button class="button" id="sell-all-btn">💰 СБЫТ ВСЁ</button>
+            </div>
+        </div>
+        
+        <!-- Клиенты -->
+        <div class="tab-content" id="tab-clients">
+            <div class="panel">
+                <div class="panel-title">👥 ПОСТОЯННЫЕ</div>
+                <div id="clients-list"></div>
+            </div>
+            <div class="panel">
+                <button class="button primary" id="wait-client-btn">🚪 ЖДАТЬ КЛИЕНТА</button>
+                <button class="button" id="client-stories-btn">📖 ИСТОРИИ</button>
+            </div>
+        </div>
+        
+        <!-- Апгрейд -->
+        <div class="tab-content" id="tab-upgrade">
+            <div class="panel">
+                <div class="panel-title">🏚️ УРОВЕНЬ ЛАБОРАТОРИИ</div>
+                <div id="lab-info"></div>
+                <button class="button primary" id="upgrade-lab-btn">⬆️ УЛУЧШИТЬ</button>
+            </div>
+            <div class="panel">
+                <div class="panel-title">👔 ПЕРСОНАЛ</div>
+                <div id="staff-list"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">📊 СТАТИСТИКА</div>
+                <div id="game-stats"></div>
+            </div>
+        </div>
     </div>
     
-    <div class="toast" id="toast">Скопировано!</div>
+    <!-- Модалка покупки -->
+    <div class="modal" id="buy-modal">
+        <div class="modal-content">
+            <div class="panel-title">🛒 БАРЫГА</div>
+            <div id="buy-list"></div>
+            <button class="button" id="close-buy-modal">ЗАКРЫТЬ</button>
+        </div>
+    </div>
     
+    <!-- Модалка клиента -->
+    <div class="modal" id="client-modal">
+        <div class="modal-content">
+            <div class="panel-title" id="client-modal-title">КЛИЕНТ</div>
+            <div id="client-modal-content"></div>
+            <div class="button-group">
+                <button class="button primary" id="client-sell-btn">✅ ПРОДАТЬ</button>
+                <button class="button" id="client-decline-btn">❌ ОТКАЗАТЬ</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Тосты -->
+    <div class="toast" id="toast"></div>
+
     <script>
-        // Получаем параметры из URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const internalId = urlParams.get('id');
-        const balance = parseFloat(urlParams.get('balance')) || 0;
-        const totalEarned = parseFloat(urlParams.get('earned')) || 0;
-        const totalWithdrawn = parseFloat(urlParams.get('withdrawn')) || 0;
-        const referralCount = parseInt(urlParams.get('ref_count')) || 0;
-        const referralEarned = parseFloat(urlParams.get('ref_earned')) || 0;
-        const refLink = urlParams.get('ref_link') || '';
-        const telegramId = urlParams.get('tg_id') || '—';
-        const userName = urlParams.get('name') || '—';
+        // ==============================================
+        // ДАННЫЕ ИГРЫ
+        // ==============================================
         
-        // Отображаем данные
-        document.getElementById('internal-id').textContent = internalId || '—';
-        document.getElementById('telegram-id').textContent = telegramId;
-        document.getElementById('user-name').textContent = decodeURIComponent(userName);
-        document.getElementById('user-balance').textContent = balance.toFixed(2);
-        document.getElementById('total-earned').textContent = totalEarned.toFixed(0);
-        document.getElementById('total-withdrawn').textContent = totalWithdrawn.toFixed(0);
-        document.getElementById('referral-count').textContent = referralCount;
-        document.getElementById('referral-earned').textContent = referralEarned.toFixed(0);
+        // Ингредиенты (реалистичные названия)
+        const INGREDIENTS = {
+            // Растительные
+            seeds: { name: '🌱 Семена конопли', price: 5, type: 'plant' },
+            soil: { name: '🪴 Почвогрунт', price: 20, type: 'plant' },
+            fertilizer: { name: '💩 Удобрения', price: 35, type: 'plant' },
+            spores: { name: '🔬 Споры псилоцибы', price: 50, type: 'plant' },
+            substrate: { name: '🧫 Субстрат', price: 30, type: 'plant' },
+            cactus: { name: '🌵 Пейот', price: 80, type: 'plant' },
+            khat: { name: '🍃 Листья ката', price: 40, type: 'plant' },
+            kratom: { name: '🌿 Кратом', price: 45, type: 'plant' },
+            salvia: { name: '🍂 Шалфей предсказателей', price: 60, type: 'plant' },
+            iboga: { name: '🌳 Корень ибоги', price: 200, type: 'plant' },
+            // Химикаты
+            ephedrine: { name: '💊 Эфедрин', price: 40, type: 'pharma' },
+            pseudoephedrine: { name: '💊 Псевдоэфедрин', price: 45, type: 'pharma' },
+            codeine: { name: '💊 Кодеин', price: 20, type: 'pharma' },
+            tramadol: { name: '💊 Трамадол', price: 30, type: 'pharma' },
+            morphine: { name: '💉 Морфин', price: 150, type: 'pharma' },
+            fentanyl: { name: '⚠️ Фентанил', price: 500, type: 'pharma' },
+            ketamine: { name: '💉 Кетамин', price: 120, type: 'pharma' },
+            // Прекурсоры
+            red_phosphorus: { name: '🔥 Красный фосфор', price: 60, type: 'precursor' },
+            iodine: { name: '🧪 Йод кристаллический', price: 40, type: 'precursor' },
+            hydriodic_acid: { name: '⚗️ Йодоводород', price: 80, type: 'precursor' },
+            phenylacetone: { name: '🧬 Фенилацетон (P2P)', price: 200, type: 'precursor' },
+            methylamine: { name: '🧪 Метиламин', price: 100, type: 'precursor' },
+            safrole: { name: '🌿 Сафрол', price: 150, type: 'precursor' },
+            piperonal: { name: '🌸 Пиперональ', price: 130, type: 'precursor' },
+            benzaldehyde: { name: '🥜 Бензальдегид', price: 50, type: 'precursor' },
+            nitroethane: { name: '💨 Нитроэтан', price: 70, type: 'precursor' },
+            // Растворители
+            acetone: { name: '🧴 Ацетон', price: 15, type: 'solvent' },
+            toluene: { name: '🧴 Толуол', price: 20, type: 'solvent' },
+            ether: { name: '💨 Диэтиловый эфир', price: 35, type: 'solvent' },
+            chloroform: { name: '💤 Хлороформ', price: 45, type: 'solvent' },
+            methanol: { name: '🧪 Метанол', price: 10, type: 'solvent' },
+            ammonia: { name: '💨 Аммиак', price: 15, type: 'solvent' },
+            // Кислоты
+            sulfuric_acid: { name: '⚠️ Серная кислота', price: 30, type: 'acid' },
+            hydrochloric_acid: { name: '⚠️ Соляная кислота', price: 25, type: 'acid' },
+            acetic_anhydride: { name: '⚗️ Уксусный ангидрид', price: 300, type: 'acid' },
+            formic_acid: { name: '🐜 Муравьиная кислота', price: 40, type: 'acid' },
+            // Прочее
+            lithium: { name: '🔋 Литий', price: 50, type: 'metal' },
+            sodium: { name: '💧 Натрий', price: 30, type: 'metal' },
+            mercury: { name: '☠️ Ртуть', price: 100, type: 'metal' },
+            lsd_crystal: { name: '🌈 ЛСД кристалл', price: 500, type: 'drug' },
+            ergotamine: { name: '🌾 Эрготамин', price: 200, type: 'precursor' },
+            dmt_bark: { name: '🌳 Кора мимозы', price: 80, type: 'plant' },
+            syrian_rue: { name: '🌿 Гармала', price: 40, type: 'plant' },
+        };
         
-        if (refLink) {
-            document.getElementById('ref-link').textContent = refLink;
-        } else if (internalId) {
-            document.getElementById('ref-link').textContent = `https://t.me/zonlik_bot?start=ref${internalId}`;
+        // РЕЦЕПТЫ (реалистичные)
+        const RECIPES = {
+            // 🌿 ЛЁГКИЕ
+            weed: {
+                name: '🌿 Марихуана', type: 'light',
+                ingredients: { seeds: 10, soil: 1 },
+                time: 6, yield: [10, 20], price: 30, risk: 5,
+                desc: 'Сушёные шишки конопли. Классика.'
+            },
+            hashish: {
+                name: '🍯 Гашиш', type: 'light',
+                ingredients: { weed: 20 },
+                time: 4, yield: [3, 6], price: 200, risk: 8,
+                desc: 'Прессованная пыльца. Крепче травы.'
+            },
+            brownie: {
+                name: '🍪 Брауни', type: 'light',
+                ingredients: { weed: 5 },
+                time: 2, yield: [3, 5], price: 80, risk: 3,
+                desc: 'Съедобное. Долгий приход.'
+            },
+            mushrooms: {
+                name: '🍄 Псилоцибы', type: 'light',
+                ingredients: { spores: 1, substrate: 1 },
+                time: 12, yield: [5, 10], price: 100, risk: 8,
+                desc: 'Галлюциногенные грибы.'
+            },
+            mescaline: {
+                name: '🌵 Мескалин', type: 'light',
+                ingredients: { cactus: 3 },
+                time: 24, yield: [1, 2], price: 300, risk: 12,
+                desc: 'Из пейота. Цветные видения.'
+            },
+            khat_tea: {
+                name: '🍵 Чай из ката', type: 'light',
+                ingredients: { khat: 5 },
+                time: 1, yield: [3, 5], price: 60, risk: 2,
+                desc: 'Лёгкий стимулятор.'
+            },
+            kratom_powder: {
+                name: '🌿 Порошок кратома', type: 'light',
+                ingredients: { kratom: 3 },
+                time: 2, yield: [5, 8], price: 70, risk: 3,
+                desc: 'Опиатоподобный эффект.'
+            },
+            salvia_extract: {
+                name: '🍂 Экстракт сальвии', type: 'light',
+                ingredients: { salvia: 5, acetone: 1 },
+                time: 8, yield: [1, 2], price: 400, risk: 10,
+                desc: 'Короткое, но мощное путешествие.'
+            },
+            // 💊 СРЕДНИЕ
+            amphetamine: {
+                name: '💨 Амфетамин (фен)',
+                type: 'medium',
+                ingredients: { phenylacetone: 1, methylamine: 1, sulfuric_acid: 1 },
+                time: 8, yield: [5, 10], price: 150, risk: 20,
+                desc: 'Классический стимулятор.'
+            },
+            methamphetamine: {
+                name: '❄️ Метамфетамин (лёд)',
+                type: 'medium',
+                ingredients: { ephedrine: 5, red_phosphorus: 1, iodine: 1 },
+                time: 16, yield: [3, 7], price: 800, risk: 35,
+                desc: 'Кристаллический. Сильнее амфетамина.'
+            },
+            mdma: {
+                name: '🧡 МДМА (экстази)',
+                type: 'medium',
+                ingredients: { safrole: 1, methylamine: 1 },
+                time: 12, yield: [5, 10], price: 250, risk: 25,
+                desc: 'Эмпатоген. Любовь и музыка.'
+            },
+            mda: {
+                name: '💜 МДА (тенамфетамин)',
+                type: 'medium',
+                ingredients: { safrole: 1, ammonia: 1 },
+                time: 14, yield: [4, 8], price: 300, risk: 28,
+                desc: 'Более психоделичный аналог МДМА.'
+            },
+            mdpv: {
+                name: '🧟 МДПВ (соль для ванн)',
+                type: 'medium',
+                ingredients: { piperonal: 1, methylamine: 1, hydrochloric_acid: 1 },
+                time: 10, yield: [3, 6], price: 200, risk: 40,
+                desc: 'Мощный стимулятор. Вызывает агрессию.'
+            },
+            a_pvp: {
+                name: '🔥 α-PVP (флакка)',
+                type: 'medium',
+                ingredients: { piperonal: 2, methylamine: 1, hydrochloric_acid: 1 },
+                time: 10, yield: [3, 5], price: 250, risk: 45,
+                desc: 'Ещё сильнее МДПВ. Зомби-наркотик.'
+            },
+            mephedrone: {
+                name: '💎 Мефедрон (меф)',
+                type: 'medium',
+                ingredients: { piperonal: 1, methylamine: 1, hydrochloric_acid: 1 },
+                time: 8, yield: [5, 10], price: 180, risk: 30,
+                desc: 'Стимулятор с эмпатогенным эффектом.'
+            },
+            ketamine_liquid: {
+                name: '💉 Кетамин жидкий',
+                type: 'medium',
+                ingredients: { ketamine: 1, methanol: 1 },
+                time: 4, yield: [2, 4], price: 400, risk: 20,
+                desc: 'Диссоциатив. K-hole.'
+            },
+            ghb: {
+                name: '💧 ГОМК (бутират)',
+                type: 'medium',
+                ingredients: { sodium: 1, chloroform: 1 },
+                time: 6, yield: [3, 6], price: 150, risk: 15,
+                desc: 'Депрессант. Жидкий экстази.'
+            },
+            gbl: {
+                name: '🧪 ГБЛ (прекурсор ГОМК)',
+                type: 'medium',
+                ingredients: { sodium: 1, toluene: 1 },
+                time: 4, yield: [4, 8], price: 120, risk: 12,
+                desc: 'Промышленный растворитель.'
+            },
+            // 🔮 ТЯЖЁЛЫЕ
+            heroin: {
+                name: '💉 Героин',
+                type: 'heavy',
+                ingredients: { morphine: 1, acetic_anhydride: 1 },
+                time: 24, yield: [2, 5], price: 1500, risk: 50,
+                desc: 'Диацетилморфин. Король опиатов.'
+            },
+            desomorphine: {
+                name: '🔥 Дезоморфин (крокодил)',
+                type: 'heavy',
+                ingredients: { codeine: 10, red_phosphorus: 1, iodine: 1, gasoline: 1 },
+                time: 4, yield: [3, 6], price: 200, risk: 60,
+                desc: 'Гниёт плоть. Самый опасный.'
+            },
+            fentanyl_citrate: {
+                name: '⚠️ Фентанил цитрат',
+                type: 'heavy',
+                ingredients: { fentanyl: 1, hydrochloric_acid: 1 },
+                time: 8, yield: [10, 20], price: 100, risk: 70,
+                desc: 'В 100 раз сильнее морфина. Осторожно с дозой.'
+            },
+            carfentanil: {
+                name: '☠️ Карфентанил',
+                type: 'heavy',
+                ingredients: { fentanyl: 1, acetic_anhydride: 1 },
+                time: 12, yield: [5, 10], price: 50, risk: 90,
+                desc: 'В 10000 раз сильнее морфина. Для слонов.'
+            },
+            cocaine: {
+                name: '❄️ Кокаин',
+                type: 'heavy',
+                ingredients: { coca_base: 1, acetone: 2, ether: 1 },
+                time: 6, yield: [5, 10], price: 600, risk: 40,
+                desc: 'Белый порошок. Статус и разорение.'
+            },
+            crack: {
+                name: '🧨 Крэк',
+                type: 'heavy',
+                ingredients: { cocaine: 5, sodium: 1 },
+                time: 1, yield: [4, 7], price: 200, risk: 45,
+                desc: 'Кокаин для курения. Мгновенная зависимость.'
+            },
+            // 🏥 АПТЕЧНЫЕ
+            codeine_syrup: {
+                name: '🍇 Кодеиновый сироп (лин)',
+                type: 'pharma',
+                ingredients: { codeine: 3 },
+                time: 2, yield: [1, 2], price: 500, risk: 10,
+                desc: 'Спрайт с кодеином. Свинг.'
+            },
+            tramadol_pills: {
+                name: '💊 Трамадол таблетки',
+                type: 'pharma',
+                ingredients: { tramadol: 5 },
+                time: 1, yield: [10, 20], price: 40, risk: 5,
+                desc: 'Опиоидный анальгетик.'
+            },
+            lyrica: {
+                name: '💊 Лирика (прегабалин)',
+                type: 'pharma',
+                ingredients: { codeine: 2 },
+                time: 1, yield: [5, 10], price: 60, risk: 5,
+                desc: 'Габапентин. Эйфория и расслабление.'
+            },
+            xanax: {
+                name: '💊 Ксанакс (алпразолам)',
+                type: 'pharma',
+                ingredients: { codeine: 1 },
+                time: 1, yield: [10, 20], price: 50, risk: 3,
+                desc: 'Бензодиазепин. Против тревоги.'
+            },
+            phenazepam: {
+                name: '💊 Феназепам',
+                type: 'pharma',
+                ingredients: { codeine: 1 },
+                time: 1, yield: [20, 30], price: 30, risk: 2,
+                desc: 'Советский транквилизатор.'
+            },
+            // 🧬 ДИЗАЙНЕРСКИЕ / ПСИХОДЕЛИЧЕСКИЕ
+            lsd: {
+                name: '🌈 ЛСД (кислота)',
+                type: 'designer',
+                ingredients: { ergotamine: 1, hydriodic_acid: 1, ammonia: 1 },
+                time: 36, yield: [50, 100], price: 100, risk: 30,
+                desc: 'Марки. Путешествие на 12 часов.'
+            },
+            dmt: {
+                name: '👁️ ДМТ',
+                type: 'designer',
+                ingredients: { dmt_bark: 5, syrian_rue: 2, toluene: 1 },
+                time: 18, yield: [1, 3], price: 800, risk: 25,
+                desc: 'Молекула духа. Прорыв за 15 минут.'
+            },
+            ayahuasca: {
+                name: '🍵 Аяуаска',
+                type: 'designer',
+                ingredients: { dmt_bark: 3, syrian_rue: 5 },
+                time: 24, yield: [1, 2], price: 600, risk: 20,
+                desc: 'Отвар. Церемониальное использование.'
+            },
+            changa: {
+                name: '🚬 Чанга',
+                type: 'designer',
+                ingredients: { dmt: 1, syrian_rue: 1 },
+                time: 4, yield: [2, 4], price: 500, risk: 22,
+                desc: 'Курительная смесь с ДМТ.'
+            },
+            nbome: {
+                name: '🌈 25I-NBOMe',
+                type: 'designer',
+                ingredients: { benzaldehyde: 2, methylamine: 1 },
+                time: 16, yield: [10, 20], price: 80, risk: 60,
+                desc: 'Фальшивый ЛСД. Опасен.'
+            },
+            dox: {
+                name: '⚡ DOx (DOM, DOC)',
+                type: 'designer',
+                ingredients: { benzaldehyde: 2, ammonia: 1 },
+                time: 20, yield: [5, 10], price: 150, risk: 35,
+                desc: 'Амфетаминовые психоделики. Долгий трип.'
+            },
+            '2c-b': {
+                name: '🌸 2C-B',
+                type: 'designer',
+                ingredients: { benzaldehyde: 1, methylamine: 1, bromine: 1 },
+                time: 14, yield: [5, 10], price: 200, risk: 30,
+                desc: 'Нексус. Психоделик с эмпатогеном.'
+            },
+            ibogaine: {
+                name: '🌳 Ибогаин',
+                type: 'designer',
+                ingredients: { iboga: 1, methanol: 2 },
+                time: 48, yield: [1, 2], price: 2000, risk: 25,
+                desc: 'От героиновой зависимости. Мощнейший трип.'
+            },
+            pcp: {
+                name: '👹 Фенциклидин (PCP)',
+                type: 'designer',
+                ingredients: { piperonal: 1, methylamine: 1, hydrochloric_acid: 1 },
+                time: 12, yield: [3, 6], price: 300, risk: 55,
+                desc: 'Ангельская пыль. Безумие и сила.'
+            },
+            // 🎯 ЭКСПЕРИМЕНТАЛЬНЫЕ
+            quaalude: {
+                name: '💊 Кваалюд (метаквалон)',
+                type: 'designer',
+                ingredients: { codeine: 5, toluene: 1 },
+                time: 10, yield: [3, 5], price: 400, risk: 25,
+                desc: 'Легендарный афродизиак. Запрещён везде.'
+            },
+            stp: {
+                name: '🌀 STP (DOM)',
+                type: 'designer',
+                ingredients: { benzaldehyde: 2, methylamine: 2 },
+                time: 24, yield: [3, 5], price: 350, risk: 40,
+                desc: 'Спокойствие, Тишина, Покой. Трип на 20+ часов.'
+            },
+            bromo_dragonfly: {
+                name: '🐉 Бромо-стрекоза',
+                type: 'designer',
+                ingredients: { benzaldehyde: 3, bromine: 2 },
+                time: 20, yield: [2, 4], price: 600, risk: 65,
+                desc: 'Экстремально мощный. Трип на 2-3 дня.'
+            }
+        };
+        
+        // Уровни лаборатории
+        const LAB_LEVELS = {
+            1: { name: '🏚️ СЪЁМНАЯ ХАТА', slots: 1, storage: 10, risk_mod: 1.0, upgrade_cost: 500 },
+            2: { name: '🚗 ГАРАЖНЫЙ БОКС', slots: 2, storage: 50, risk_mod: 0.7, upgrade_cost: 2000 },
+            3: { name: '🏠 ЧАСТНЫЙ ДОМ', slots: 3, storage: 200, risk_mod: 0.5, upgrade_cost: 5000 },
+            4: { name: '🏭 АНГАР', slots: 5, storage: 1000, risk_mod: 0.3, upgrade_cost: 15000 },
+            5: { name: '🕳️ БУНКЕР', slots: 10, storage: 999999, risk_mod: 0.1, upgrade_cost: 0 }
+        };
+        
+        // Клиенты
+        const CLIENTS = [
+            { name: 'Макс «Пепел»', story: 'Блэк-металлист. Группа «Хтонь». Нужны спиды для записи.', prefers: ['amphetamine', 'methamphetamine'] },
+            { name: 'Варя «Морг»', story: 'Готесса. Работает в морге. За коксом или герычем.', prefers: ['cocaine', 'heroin'] },
+            { name: 'Дэн «Цепи»', story: 'Индастриал-фрик. 47 шрамов. Крокодил.', prefers: ['desomorphine'] },
+            { name: 'Кир «Струна»', story: 'Панк из «Гнилых Зубов». План и экстази.', prefers: ['weed', 'mdma'] },
+            { name: 'Соня «Паутина»', story: 'Эмо-девочка. Режет руки. Колёса.', prefers: ['xanax', 'codeine_syrup'] },
+            { name: 'Лёша «Бит»', story: 'Драммер «Электро-труп». Кристаллы.', prefers: ['methamphetamine', 'mdpv'] },
+            { name: 'Антон «Доцент»', story: 'Бывший учитель. Героин.', prefers: ['heroin', 'fentanyl_citrate'] },
+            { name: 'Лена «Королева»', story: 'Бывшая модель. Кокс.', prefers: ['cocaine', 'crack'] },
+            { name: 'Влад «Клавиша»', story: 'Синти-поп. Радуга.', prefers: ['lsd', 'mdma'] },
+            { name: 'Шестой', story: 'Бывший снайпер. Зомби.', prefers: ['mdpv', 'a_pvp'] },
+            { name: 'Без Имени', story: 'Не помнит кто он. Зомби.', prefers: ['a_pvp', 'desomorphine'] },
+            { name: 'Толян «Мотор»', story: 'Автомеханик. Крокодил.', prefers: ['desomorphine', 'tramadol_pills'] }
+        ];
+        
+        // Состояние игры
+        let gameState = {
+            userId: null,
+            userName: null,
+            balance: 0,
+            labLevel: 1,
+            heat: 0,
+            reputation: 50,
+            inventory: {},
+            activeCooks: [],
+            clients: [],
+            staff: {},
+            stats: { earned: 0, sold: 0, cooked: 0 }
+        };
+        
+        let currentFilter = 'all';
+        let currentClient = null;
+        let pendingSale = null;
+        
+        // ==============================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ==============================================
+        
+        function init() {
+            loadFromURL();
+            loadFromStorage();
+            updateUI();
+            renderRecipes();
+            renderInventory();
+            renderClients();
+            renderLabInfo();
+            renderStaff();
+            startTimers();
         }
         
-        // Функция отправки заявки на вывод
-        function submitWithdraw() {
-            const amount = parseFloat(document.getElementById('withdraw-amount').value);
-            const card = document.getElementById('withdraw-card').value.trim();
+        function loadFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            gameState.userId = params.get('id') || '?';
+            gameState.userName = params.get('name') ? decodeURIComponent(params.get('name')) : 'Химик';
+            gameState.balance = parseFloat(params.get('balance')) || 0;
+            gameState.labLevel = parseInt(params.get('lab')) || 1;
+            gameState.heat = parseInt(params.get('heat')) || 0;
+            gameState.reputation = parseInt(params.get('rep')) || 50;
             
-            if (!amount || amount < 15) {
-                showMessage('❌ Минимальная сумма вывода: 15 ₽', 'error');
+            document.getElementById('user-id').textContent = `ID: ${gameState.userId}`;
+        }
+        
+        function loadFromStorage() {
+            const saved = localStorage.getItem(`chemist_${gameState.userId}`);
+            if (saved) {
+                const data = JSON.parse(saved);
+                gameState.inventory = data.inventory || {};
+                gameState.activeCooks = data.activeCooks || [];
+                gameState.clients = data.clients || [];
+                gameState.staff = data.staff || {};
+                gameState.stats = data.stats || { earned: 0, sold: 0, cooked: 0 };
+            }
+            
+            // Стартовые ингредиенты
+            if (Object.keys(gameState.inventory).length === 0) {
+                gameState.inventory = {
+                    seeds: 20, soil: 2, codeine: 10, ephedrine: 5,
+                    red_phosphorus: 1, iodine: 1, acetone: 3
+                };
+            }
+        }
+        
+        function saveToStorage() {
+            localStorage.setItem(`chemist_${gameState.userId}`, JSON.stringify({
+                inventory: gameState.inventory,
+                activeCooks: gameState.activeCooks,
+                clients: gameState.clients,
+                staff: gameState.staff,
+                stats: gameState.stats
+            }));
+        }
+        
+        // ==============================================
+        // UI ОБНОВЛЕНИЕ
+        // ==============================================
+        
+        function updateUI() {
+            document.getElementById('balance').textContent = `${gameState.balance.toFixed(2)} ₽`;
+            document.getElementById('lab-level').textContent = LAB_LEVELS[gameState.labLevel].name;
+            document.getElementById('heat').textContent = `${gameState.heat}%`;
+            document.getElementById('heat-fill').style.width = `${gameState.heat}%`;
+            document.getElementById('reputation').textContent = gameState.reputation;
+            
+            // Цвет тепла
+            const heatEl = document.getElementById('heat');
+            if (gameState.heat > 60) heatEl.style.color = '#ff3333';
+            else if (gameState.heat > 30) heatEl.style.color = '#ff9900';
+            else heatEl.style.color = '#c0c0c0';
+        }
+        
+        // ==============================================
+        // РЕНДЕР РЕЦЕПТОВ
+        // ==============================================
+        
+        function renderRecipes() {
+            const container = document.getElementById('recipe-list');
+            let html = '';
+            
+            for (const [id, r] of Object.entries(RECIPES)) {
+                if (currentFilter !== 'all' && r.type !== currentFilter) continue;
+                
+                const canCook = checkIngredients(r.ingredients);
+                const ingText = Object.entries(r.ingredients).map(([k, v]) => 
+                    `${INGREDIENTS[k]?.name || k}: ${v}`
+                ).join(', ');
+                
+                html += `
+                    <div class="recipe-item" style="opacity: ${canCook ? 1 : 0.6}">
+                        <div class="recipe-name">
+                            <span>${r.name}</span>
+                            <span>${r.time}ч | ${r.price}₽</span>
+                        </div>
+                        <div class="recipe-desc">${r.desc}</div>
+                        <div class="recipe-ingredients">📦 ${ingText}</div>
+                        <div style="margin-top: 8px;">
+                            <button class="button" onclick="startCook('${id}')" ${!canCook ? 'disabled' : ''}>
+                                🧪 ВАРИТЬ (🔥+${r.risk}%)
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html || '<div style="color:#444;text-align:center">Нет рецептов</div>';
+        }
+        
+        function checkIngredients(ings) {
+            for (const [k, v] of Object.entries(ings)) {
+                if ((gameState.inventory[k] || 0) < v) return false;
+            }
+            return true;
+        }
+        
+        function startCook(recipeId) {
+            const recipe = RECIPES[recipeId];
+            
+            // Проверка слотов
+            if (gameState.activeCooks.length >= LAB_LEVELS[gameState.labLevel].slots) {
+                showToast('❌ Нет свободных слотов!');
                 return;
             }
             
-            if (amount > balance) {
-                showMessage('❌ Недостаточно средств на балансе', 'error');
+            // Проверка ингредиентов
+            if (!checkIngredients(recipe.ingredients)) {
+                showToast('❌ Не хватает ингредиентов');
                 return;
             }
             
-            if (!card) {
-                showMessage('❌ Укажите номер карты', 'error');
-                return;
+            // Списываем ингредиенты
+            for (const [k, v] of Object.entries(recipe.ingredients)) {
+                gameState.inventory[k] = (gameState.inventory[k] || 0) - v;
             }
             
-            // Формируем ссылку для возврата в бота
-            const data = JSON.stringify({
-                action: 'withdraw',
-                amount: amount,
-                card: card,
-                internal_id: internalId
+            // Добавляем варку
+            const endTime = Date.now() + recipe.time * 3600000;
+            gameState.activeCooks.push({
+                id: Date.now() + Math.random(),
+                recipeId,
+                recipeName: recipe.name,
+                endTime,
+                risk: Math.floor(recipe.risk * LAB_LEVELS[gameState.labLevel].risk_mod)
             });
             
-            // Открываем ссылку с данными
-            const botUrl = `https://t.me/zonlik_bot?start=withdraw_${btoa(data)}`;
+            // Увеличиваем тепло
+            gameState.heat = Math.min(100, gameState.heat + recipe.risk);
+            gameState.stats.cooked++;
             
-            showMessage('✅ Заявка сформирована! Нажмите кнопку ниже чтобы отправить', 'success');
+            saveToStorage();
+            updateUI();
+            renderRecipes();
+            renderInventory();
+            renderActiveCooks();
+            showToast(`✅ Варка запущена: ${recipe.name}`);
+        }
+        
+        function renderActiveCooks() {
+            const container = document.getElementById('active-cooks-container');
+            const now = Date.now();
             
-            // Создаём кнопку для отправки
-            const container = document.getElementById('message-container');
-            container.innerHTML = `
-                <div class="success-message">
-                    ✅ Заявка на ${amount} ₽ готова!
-                </div>
-                <a href="${botUrl}" style="text-decoration: none;">
-                    <button class="button" style="background: #4CAF50;">
-                        📤 Отправить заявку боту
-                    </button>
-                </a>
+            const active = gameState.activeCooks.filter(c => c.endTime > now);
+            const completed = gameState.activeCooks.filter(c => c.endTime <= now);
+            
+            // Завершаем готовые
+            completed.forEach(c => completeCook(c));
+            
+            if (active.length === 0) {
+                container.innerHTML = '<div style="color:#444;text-align:center;padding:10px;">Нет активных варок</div>';
+                return;
+            }
+            
+            let html = '';
+            active.forEach(cook => {
+                const remaining = cook.endTime - now;
+                const hours = Math.floor(remaining / 3600000);
+                const mins = Math.floor((remaining % 3600000) / 60000);
+                
+                html += `
+                    <div class="active-cook">
+                        <div><strong>${cook.recipeName}</strong></div>
+                        <div class="timer">⏳ ${hours}ч ${mins}м</div>
+                        <div style="color:#666;">🔥 +${cook.risk}%</div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+            gameState.activeCooks = active;
+            saveToStorage();
+        }
+        
+        function completeCook(cook) {
+            const recipe = RECIPES[cook.recipeId];
+            const [minY, maxY] = recipe.yield;
+            const amount = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+            
+            gameState.inventory[cook.recipeId] = (gameState.inventory[cook.recipeId] || 0) + amount;
+            showToast(`✅ ${recipe.name} готов! +${amount} ед.`);
+        }
+        
+        // ==============================================
+        // СКЛАД
+        // ==============================================
+        
+        function renderInventory() {
+            // Ингредиенты
+            const ingContainer = document.getElementById('ingredients-list');
+            let ingHtml = '';
+            for (const [k, v] of Object.entries(gameState.inventory)) {
+                if (INGREDIENTS[k] && v > 0) {
+                    ingHtml += `
+                        <div class="inventory-item">
+                            <span>${INGREDIENTS[k].name}</span>
+                            <span>${v} шт.</span>
+                        </div>
+                    `;
+                }
+            }
+            ingContainer.innerHTML = ingHtml || '<div style="color:#444">Пусто</div>';
+            
+            // Продукты
+            const prodContainer = document.getElementById('products-list');
+            let prodHtml = '';
+            for (const [k, v] of Object.entries(gameState.inventory)) {
+                if (RECIPES[k] && v > 0) {
+                    prodHtml += `
+                        <div class="inventory-item">
+                            <span>${RECIPES[k].name}</span>
+                            <span>${v} ед. (${RECIPES[k].price}₽)</span>
+                        </div>
+                    `;
+                }
+            }
+            prodContainer.innerHTML = prodHtml || '<div style="color:#444">Нет товара</div>';
+        }
+        
+        function sellAll() {
+            let total = 0;
+            for (const [k, v] of Object.entries(gameState.inventory)) {
+                if (RECIPES[k] && v > 0) {
+                    total += RECIPES[k].price * v;
+                    delete gameState.inventory[k];
+                }
+            }
+            
+            if (total === 0) {
+                showToast('❌ Нечего продавать');
+                return;
+            }
+            
+            gameState.balance += total;
+            gameState.stats.earned += total;
+            gameState.stats.sold++;
+            
+            saveToStorage();
+            updateUI();
+            renderInventory();
+            showToast(`💰 Продано на ${total.toFixed(2)} ₽`);
+            
+            // Отправляем данные боту
+            syncWithBot('sell', total);
+        }
+        
+        // ==============================================
+        // КЛИЕНТЫ
+        // ==============================================
+        
+        function renderClients() {
+            const container = document.getElementById('clients-list');
+            if (gameState.clients.length === 0) {
+                container.innerHTML = '<div style="color:#444;text-align:center;">Нет постоянных клиентов</div>';
+                return;
+            }
+            
+            let html = '';
+            gameState.clients.slice(0, 5).forEach(c => {
+                html += `
+                    <div class="client-card">
+                        <div class="client-name">${c.name}</div>
+                        <div class="client-story">${c.story}</div>
+                        <div class="client-stats">
+                            <span>❤️ ${c.health}%</span>
+                            <span>💊 ${c.addiction}%</span>
+                            <span>⭐ ${c.loyalty}</span>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+        
+        function waitClient() {
+            const client = CLIENTS[Math.floor(Math.random() * CLIENTS.length)];
+            
+            // Ищем товар для клиента
+            let available = [];
+            for (const pref of client.prefers) {
+                if ((gameState.inventory[pref] || 0) > 0) {
+                    available.push(pref);
+                }
+            }
+            
+            if (available.length === 0) {
+                showToast(`❌ ${client.name} ушёл — нет товара`);
+                return;
+            }
+            
+            const productId = available[Math.floor(Math.random() * available.length)];
+            const recipe = RECIPES[productId];
+            const amount = Math.min(3, gameState.inventory[productId]);
+            const price = recipe.price * amount;
+            
+            currentClient = client;
+            pendingSale = { productId, amount, price };
+            
+            // Показываем модалку
+            document.getElementById('client-modal-title').textContent = client.name;
+            document.getElementById('client-modal-content').innerHTML = `
+                <p style="margin-bottom:10px;"><em>"${client.story}"</em></p>
+                <p>Хочет купить: <strong>${recipe.name}</strong> (${amount} ед.)</p>
+                <p>Предлагает: <strong style="color:#2e7d32;">${price} ₽</strong></p>
+                <p style="color:#666;margin-top:10px;">❤️ Зависимость: ${Math.floor(Math.random()*50+30)}%</p>
+            `;
+            document.getElementById('client-modal').classList.add('active');
+        }
+        
+        function sellToClient() {
+            if (!pendingSale) return;
+            
+            const { productId, amount, price } = pendingSale;
+            
+            if ((gameState.inventory[productId] || 0) < amount) {
+                showToast('❌ Товар пропал');
+                closeModal();
+                return;
+            }
+            
+            gameState.inventory[productId] -= amount;
+            gameState.balance += price;
+            gameState.reputation = Math.min(100, gameState.reputation + 2);
+            gameState.stats.earned += price;
+            
+            // Добавляем клиента в постоянные
+            const existing = gameState.clients.find(c => c.name === currentClient.name);
+            if (existing) {
+                existing.addiction = Math.min(100, existing.addiction + 5);
+                existing.loyalty += 2;
+            } else {
+                gameState.clients.push({
+                    ...currentClient,
+                    health: 80,
+                    addiction: 30,
+                    loyalty: 50
+                });
+            }
+            
+            saveToStorage();
+            updateUI();
+            renderInventory();
+            renderClients();
+            closeModal();
+            showToast(`✅ Продано за ${price} ₽! Репутация +2`);
+            syncWithBot('sell', price);
+        }
+        
+        function closeModal() {
+            document.getElementById('client-modal').classList.remove('active');
+            document.getElementById('buy-modal').classList.remove('active');
+            currentClient = null;
+            pendingSale = null;
+        }
+        
+        // ==============================================
+        // АПГРЕЙД
+        // ==============================================
+        
+        function renderLabInfo() {
+            const info = LAB_LEVELS[gameState.labLevel];
+            const next = LAB_LEVELS[gameState.labLevel + 1];
+            
+            document.getElementById('lab-info').innerHTML = `
+                <div class="inventory-item"><span>Уровень</span><span>${gameState.labLevel} — ${info.name}</span></div>
+                <div class="inventory-item"><span>Слотов варки</span><span>${info.slots}</span></div>
+                <div class="inventory-item"><span>Множитель риска</span><span>${(info.risk_mod * 100).toFixed(0)}%</span></div>
+                ${next ? `<div class="inventory-item"><span>След. уровень</span><span>${next.upgrade_cost} ₽</span></div>` : ''}
             `;
             
-            // Скроллим вверх
-            window.scrollTo(0, 0);
+            const btn = document.getElementById('upgrade-lab-btn');
+            if (!next) {
+                btn.disabled = true;
+                btn.textContent = '🏆 МАКСИМУМ';
+            } else if (gameState.balance < next.upgrade_cost) {
+                btn.disabled = true;
+                btn.textContent = `❌ НЕ ХВАТАЕТ ${next.upgrade_cost} ₽`;
+            } else {
+                btn.disabled = false;
+                btn.textContent = `⬆️ УЛУЧШИТЬ ЗА ${next.upgrade_cost} ₽`;
+            }
         }
         
-        // Показ сообщений
-        function showMessage(text, type) {
-            const container = document.getElementById('message-container');
-            container.innerHTML = `<div class="${type}-message">${text}</div>`;
+        function upgradeLab() {
+            const next = LAB_LEVELS[gameState.labLevel + 1];
+            if (!next || gameState.balance < next.upgrade_cost) return;
             
-            setTimeout(() => {
-                container.innerHTML = '';
-            }, 3000);
-        }
-        
-        // Копирование ссылки
-        function copyRefLink() {
-            const link = document.getElementById('ref-link').textContent;
+            gameState.balance -= next.upgrade_cost;
+            gameState.labLevel++;
+            gameState.heat = Math.max(0, gameState.heat - 20);
             
-            navigator.clipboard?.writeText(link).then(() => {
-                showToast('📋 Ссылка скопирована!');
-            }).catch(() => {
-                const textarea = document.createElement('textarea');
-                textarea.value = link;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand('copy');
-                document.body.removeChild(textarea);
-                showToast('📋 Ссылка скопирована!');
-            });
+            saveToStorage();
+            updateUI();
+            renderLabInfo();
+            showToast(`✅ Лаборатория улучшена до ${LAB_LEVELS[gameState.labLevel].name}`);
         }
         
-        function showToast(message) {
+        function renderStaff() {
+            const container = document.getElementById('staff-list');
+            // Заглушка
+            container.innerHTML = '<div style="color:#444;text-align:center;">Скоро...</div>';
+        }
+        
+        function renderGameStats() {
+            document.getElementById('game-stats').innerHTML = `
+                <div class="inventory-item"><span>Всего сварено</span><span>${gameState.stats.cooked}</span></div>
+                <div class="inventory-item"><span>Всего продаж</span><span>${gameState.stats.sold}</span></div>
+                <div class="inventory-item"><span>Заработано</span><span>${gameState.stats.earned.toFixed(2)} ₽</span></div>
+            `;
+        }
+        
+        // ==============================================
+        // ПОКУПКА ИНГРЕДИЕНТОВ
+        // ==============================================
+        
+        function showBuyModal() {
+            const container = document.getElementById('buy-list');
+            let html = '';
+            
+            for (const [id, ing] of Object.entries(INGREDIENTS)) {
+                html += `
+                    <div class="inventory-item">
+                        <span>${ing.name}</span>
+                        <span>
+                            ${ing.price} ₽
+                            <button class="button" style="padding:4px 8px;width:auto;" onclick="buyIngredient('${id}')">КУПИТЬ</button>
+                        </span>
+                    </div>
+                `;
+            }
+            
+            container.innerHTML = html;
+            document.getElementById('buy-modal').classList.add('active');
+        }
+        
+        function buyIngredient(ingId) {
+            const ing = INGREDIENTS[ingId];
+            if (gameState.balance < ing.price) {
+                showToast('❌ Не хватает денег');
+                return;
+            }
+            
+            gameState.balance -= ing.price;
+            gameState.inventory[ingId] = (gameState.inventory[ingId] || 0) + 1;
+            
+            saveToStorage();
+            updateUI();
+            renderInventory();
+            showToast(`✅ Куплено: ${ing.name}`);
+        }
+        
+        // ==============================================
+        // СИНХРОНИЗАЦИЯ С БОТОМ
+        // ==============================================
+        
+        function syncWithBot(action, amount) {
+            if (window.Telegram?.WebApp) {
+                const tg = window.Telegram.WebApp;
+                tg.sendData(JSON.stringify({
+                    action: 'game_action',
+                    type: action,
+                    amount: amount,
+                    balance: gameState.balance,
+                    heat: gameState.heat,
+                    reputation: gameState.reputation,
+                    labLevel: gameState.labLevel
+                }));
+            }
+        }
+        
+        // ==============================================
+        // ТАЙМЕРЫ И ТОСТЫ
+        // ==============================================
+        
+        function startTimers() {
+            setInterval(() => {
+                // Остывание тепла
+                if (gameState.heat > 0) {
+                    gameState.heat = Math.max(0, gameState.heat - 1);
+                    updateUI();
+                }
+                renderActiveCooks();
+            }, 60000); // Каждую минуту
+            
+            renderActiveCooks();
+        }
+        
+        function showToast(text) {
             const toast = document.getElementById('toast');
-            toast.textContent = message;
+            toast.textContent = text;
             toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 2000);
+            setTimeout(() => toast.classList.remove('show'), 2000);
         }
+        
+        // ==============================================
+        // ТАБЫ
+        // ==============================================
+        
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
+            
+            if (tabId === 'upgrade') {
+                renderLabInfo();
+                renderGameStats();
+            }
+        }
+        
+        // ==============================================
+        // ОБРАБОТЧИКИ СОБЫТИЙ
+        // ==============================================
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            init();
+            
+            // Табы
+            document.querySelectorAll('.tab').forEach(t => {
+                t.addEventListener('click', () => switchTab(t.dataset.tab));
+            });
+            
+            // Фильтры рецептов
+            document.querySelectorAll('[data-filter]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    currentFilter = btn.dataset.filter;
+                    renderRecipes();
+                });
+            });
+            
+            // Кнопки
+            document.getElementById('buy-ingredients-btn').addEventListener('click', showBuyModal);
+            document.getElementById('sell-all-btn').addEventListener('click', sellAll);
+            document.getElementById('wait-client-btn').addEventListener('click', waitClient);
+            document.getElementById('upgrade-lab-btn').addEventListener('click', upgradeLab);
+            document.getElementById('close-buy-modal').addEventListener('click', closeModal);
+            document.getElementById('client-sell-btn').addEventListener('click', sellToClient);
+            document.getElementById('client-decline-btn').addEventListener('click', () => {
+                gameState.reputation = Math.max(0, gameState.reputation - 1);
+                updateUI();
+                closeModal();
+                showToast('❌ Клиент ушёл. Репутация -1');
+            });
+            document.getElementById('client-stories-btn').addEventListener('click', () => {
+                const client = CLIENTS[Math.floor(Math.random() * CLIENTS.length)];
+                showToast(`${client.name}: "${client.story}"`);
+            });
+            
+            // Telegram WebApp
+            if (window.Telegram?.WebApp) {
+                const tg = window.Telegram.WebApp;
+                tg.ready();
+                tg.expand();
+                tg.enableClosingConfirmation();
+                tg.MainButton.setText('💰 ВЫВЕСТИ');
+                tg.MainButton.show();
+                tg.MainButton.onClick(() => {
+                    window.location.href = `https://t.me/zonlik_bot?start=withdraw_${btoa(JSON.stringify({
+                        id: gameState.userId,
+                        amount: gameState.balance
+                    }))}`;
+                });
+            }
+        });
+        
+        // Глобальные функции для onclick
+        window.startCook = startCook;
+        window.buyIngredient = buyIngredient;
     </script>
 </body>
 </html>
