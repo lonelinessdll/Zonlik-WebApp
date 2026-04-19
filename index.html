@@ -12,9 +12,9 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: var(--tg-theme-bg-color, #1a1a1a);
-            color: var(--tg-theme-text-color, #ffffff);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #ffffff;
             padding: 16px;
             min-height: 100vh;
         }
@@ -32,11 +32,11 @@
         .header h1 {
             font-size: 24px;
             font-weight: 600;
-            color: var(--tg-theme-hint-color, #2AABEE);
+            color: #2AABEE;
         }
         
         .card {
-            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
+            background: #2c2c2c;
             border-radius: 16px;
             padding: 20px;
             margin-bottom: 16px;
@@ -46,7 +46,7 @@
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid var(--tg-theme-section-separator-color, #3a3a3a);
+            border-bottom: 1px solid #3a3a3a;
         }
         
         .profile-row:last-child {
@@ -54,7 +54,7 @@
         }
         
         .profile-label {
-            color: var(--tg-theme-hint-color, #888);
+            color: #888;
             font-size: 14px;
         }
         
@@ -64,43 +64,11 @@
         }
         
         .balance {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: #4CAF50;
             text-align: center;
             margin: 16px 0;
-        }
-        
-        .tabs {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-        
-        .tab {
-            flex: 1;
-            padding: 12px;
-            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
-            border: none;
-            border-radius: 12px;
-            color: var(--tg-theme-text-color, #fff);
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        .tab.active {
-            background: var(--tg-theme-button-color, #2AABEE);
-            color: var(--tg-theme-button-text-color, #fff);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
         }
         
         .input-group {
@@ -110,41 +78,36 @@
         .input-label {
             display: block;
             margin-bottom: 8px;
-            color: var(--tg-theme-hint-color, #888);
+            color: #888;
             font-size: 14px;
         }
         
         .input-field {
             width: 100%;
             padding: 14px 16px;
-            background: var(--tg-theme-bg-color, #1a1a1a);
-            border: 1px solid var(--tg-theme-section-separator-color, #3a3a3a);
+            background: #1a1a1a;
+            border: 1px solid #3a3a3a;
             border-radius: 12px;
-            color: var(--tg-theme-text-color, #fff);
+            color: #fff;
             font-size: 16px;
             outline: none;
-            transition: border-color 0.2s;
         }
         
         .input-field:focus {
-            border-color: var(--tg-theme-button-color, #2AABEE);
-        }
-        
-        .input-field::placeholder {
-            color: var(--tg-theme-hint-color, #666);
+            border-color: #2AABEE;
         }
         
         .button {
             width: 100%;
             padding: 16px;
-            background: var(--tg-theme-button-color, #2AABEE);
+            background: #2AABEE;
             border: none;
             border-radius: 12px;
-            color: var(--tg-theme-button-text-color, #fff);
+            color: #fff;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: opacity 0.2s;
+            margin-bottom: 12px;
         }
         
         .button:active {
@@ -152,63 +115,35 @@
         }
         
         .button.secondary {
-            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
+            background: #2c2c2c;
         }
         
         .info-text {
             text-align: center;
-            color: var(--tg-theme-hint-color, #888);
+            color: #888;
             font-size: 14px;
             margin-top: 12px;
         }
         
-        .history-item {
-            padding: 12px;
-            background: var(--tg-theme-bg-color, #1a1a1a);
+        .ref-link {
+            background: #1a1a1a;
+            padding: 14px;
             border-radius: 12px;
-            margin-bottom: 8px;
-        }
-        
-        .history-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 4px;
-        }
-        
-        .history-type {
-            font-weight: 500;
-        }
-        
-        .history-type.deposit {
-            color: #4CAF50;
-        }
-        
-        .history-type.withdraw {
-            color: #FF9800;
-        }
-        
-        .history-type.referral {
-            color: #2196F3;
-        }
-        
-        .history-amount {
-            font-weight: 600;
-        }
-        
-        .history-date {
-            font-size: 12px;
-            color: var(--tg-theme-hint-color, #888);
-        }
-        
-        .history-desc {
             font-size: 13px;
-            color: var(--tg-theme-hint-color, #888);
+            word-break: break-all;
+            margin: 16px 0;
+            border: 1px solid #3a3a3a;
         }
         
-        .empty-state {
-            text-align: center;
-            padding: 32px 16px;
-            color: var(--tg-theme-hint-color, #888);
+        .copy-btn {
+            padding: 12px;
+            background: #2c2c2c;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            cursor: pointer;
+            width: 100%;
         }
         
         .stats-grid {
@@ -219,7 +154,7 @@
         }
         
         .stat-card {
-            background: var(--tg-theme-bg-color, #1a1a1a);
+            background: #1a1a1a;
             border-radius: 12px;
             padding: 16px;
             text-align: center;
@@ -228,35 +163,13 @@
         .stat-value {
             font-size: 24px;
             font-weight: 700;
-            color: var(--tg-theme-button-color, #2AABEE);
+            color: #2AABEE;
         }
         
         .stat-label {
             font-size: 12px;
-            color: var(--tg-theme-hint-color, #888);
+            color: #888;
             margin-top: 4px;
-        }
-        
-        .ref-link {
-            background: var(--tg-theme-bg-color, #1a1a1a);
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 13px;
-            word-break: break-all;
-            margin: 16px 0;
-            border: 1px solid var(--tg-theme-section-separator-color, #3a3a3a);
-        }
-        
-        .copy-btn {
-            margin-top: 8px;
-            padding: 10px;
-            background: var(--tg-theme-secondary-bg-color, #2c2c2c);
-            border: none;
-            border-radius: 8px;
-            color: var(--tg-theme-text-color, #fff);
-            font-size: 14px;
-            cursor: pointer;
-            width: 100%;
         }
         
         .toast {
@@ -278,6 +191,24 @@
         .toast.show {
             opacity: 1;
         }
+        
+        .success-message {
+            background: #4CAF50;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
     </style>
 </head>
 <body>
@@ -286,18 +217,20 @@
             <h1>🤖 Zonlik Bot</h1>
         </div>
         
+        <div id="message-container"></div>
+        
         <div class="card">
             <div class="profile-row">
-                <span class="profile-label">🆔 ID</span>
-                <span class="profile-value" id="user-id">—</span>
+                <span class="profile-label">🆔 Внутренний ID</span>
+                <span class="profile-value" id="internal-id">—</span>
+            </div>
+            <div class="profile-row">
+                <span class="profile-label">👤 Telegram ID</span>
+                <span class="profile-value" id="telegram-id">—</span>
             </div>
             <div class="profile-row">
                 <span class="profile-label">📛 Имя</span>
                 <span class="profile-value" id="user-name">—</span>
-            </div>
-            <div class="profile-row">
-                <span class="profile-label">👤 Username</span>
-                <span class="profile-value" id="user-username">—</span>
             </div>
             
             <div class="balance">
@@ -305,257 +238,166 @@
             </div>
         </div>
         
-        <div class="tabs">
-            <button class="tab active" onclick="switchTab('withdraw')">📤 Вывод</button>
-            <button class="tab" onclick="switchTab('stats')">📊 Статистика</button>
-            <button class="tab" onclick="switchTab('referral')">🔗 Рефералы</button>
+        <div class="card">
+            <h3 style="margin-bottom: 16px;">📤 Вывод средств</h3>
+            
+            <div class="input-group">
+                <label class="input-label">💵 Сумма (мин. 15 ₽)</label>
+                <input type="number" id="withdraw-amount" class="input-field" placeholder="Введите сумму" min="15" step="1" value="15">
+            </div>
+            
+            <div class="input-group">
+                <label class="input-label">💳 Номер карты</label>
+                <input type="text" id="withdraw-card" class="input-field" placeholder="4276 XXXX XXXX XXXX">
+            </div>
+            
+            <button class="button" onclick="submitWithdraw()">
+                📤 Отправить заявку на вывод
+            </button>
+            
+            <div class="info-text">
+                Заявка будет обработана администратором
+            </div>
         </div>
         
-        <!-- Вкладка Вывод -->
-        <div id="tab-withdraw" class="tab-content active">
-            <div class="card">
-                <div class="input-group">
-                    <label class="input-label">💵 Сумма вывода (мин. 15 ₽)</label>
-                    <input type="number" id="withdraw-amount" class="input-field" placeholder="Введите сумму" min="15" step="1">
+        <div class="card">
+            <h3 style="margin-bottom: 16px;">📊 Статистика</h3>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-earned">0</div>
+                    <div class="stat-label">💵 Заработано</div>
                 </div>
-                
-                <div class="input-group">
-                    <label class="input-label">💳 Номер карты</label>
-                    <input type="text" id="withdraw-card" class="input-field" placeholder="4276 XXXX XXXX XXXX">
+                <div class="stat-card">
+                    <div class="stat-value" id="total-withdrawn">0</div>
+                    <div class="stat-label">📤 Выведено</div>
                 </div>
-                
-                <button class="button" onclick="requestWithdraw()">
-                    📤 Отправить заявку
-                </button>
-                
-                <div class="info-text">
-                    Заявка будет обработана в течение 24 часов
+                <div class="stat-card">
+                    <div class="stat-value" id="referral-count">0</div>
+                    <div class="stat-label">👥 Рефералов</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="referral-earned">0</div>
+                    <div class="stat-label">💰 С рефералов</div>
                 </div>
             </div>
         </div>
         
-        <!-- Вкладка Статистика -->
-        <div id="tab-stats" class="tab-content">
-            <div class="card">
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value" id="total-earned">0</div>
-                        <div class="stat-label">💵 Заработано</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="total-withdrawn">0</div>
-                        <div class="stat-label">📤 Выведено</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="referral-count">0</div>
-                        <div class="stat-label">👥 Рефералов</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value" id="referral-earned">0</div>
-                        <div class="stat-label">💰 С рефералов</div>
-                    </div>
-                </div>
-                
-                <h3 style="margin: 16px 0 12px; font-size: 16px;">📋 Последние операции</h3>
-                <div id="history-list">
-                    <div class="empty-state">Загрузка...</div>
-                </div>
+        <div class="card">
+            <h3 style="margin-bottom: 16px;">🔗 Реферальная система</h3>
+            
+            <div class="ref-link" id="ref-link">Загрузка...</div>
+            
+            <button class="copy-btn" onclick="copyRefLink()">📋 Копировать ссылку</button>
+            
+            <div class="info-text" style="margin-top: 16px;">
+                +2 ₽ за каждого друга, прошедшего проверку
             </div>
         </div>
         
-        <!-- Вкладка Рефералы -->
-        <div id="tab-referral" class="tab-content">
-            <div class="card">
-                <h3 style="margin-bottom: 12px; font-size: 16px;">🔗 Ваша реферальная ссылка</h3>
-                
-                <div class="ref-link" id="ref-link">Загрузка...</div>
-                
-                <button class="copy-btn" onclick="copyRefLink()">📋 Копировать ссылку</button>
-                
-                <div style="margin-top: 24px;">
-                    <div class="profile-row">
-                        <span class="profile-label">👥 Приглашено</span>
-                        <span class="profile-value" id="ref-count">0</span>
-                    </div>
-                    <div class="profile-row">
-                        <span class="profile-label">💵 Заработано</span>
-                        <span class="profile-value" id="ref-earned">0 ₽</span>
-                    </div>
-                </div>
-                
-                <div class="info-text" style="margin-top: 16px;">
-                    +2 ₽ за каждого друга, прошедшего проверку
-                </div>
-            </div>
-        </div>
+        <button class="button secondary" onclick="window.close()">
+            ✖️ Закрыть
+        </button>
     </div>
     
     <div class="toast" id="toast">Скопировано!</div>
     
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script>
-        const tg = window.Telegram.WebApp;
+        // Получаем параметры из URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const internalId = urlParams.get('id');
+        const balance = parseFloat(urlParams.get('balance')) || 0;
+        const totalEarned = parseFloat(urlParams.get('earned')) || 0;
+        const totalWithdrawn = parseFloat(urlParams.get('withdrawn')) || 0;
+        const referralCount = parseInt(urlParams.get('ref_count')) || 0;
+        const referralEarned = parseFloat(urlParams.get('ref_earned')) || 0;
+        const refLink = urlParams.get('ref_link') || '';
+        const telegramId = urlParams.get('tg_id') || '—';
+        const userName = urlParams.get('name') || '—';
         
-        // Инициализация
-        tg.ready();
-        tg.expand();
-        tg.enableClosingConfirmation();
+        // Отображаем данные
+        document.getElementById('internal-id').textContent = internalId || '—';
+        document.getElementById('telegram-id').textContent = telegramId;
+        document.getElementById('user-name').textContent = decodeURIComponent(userName);
+        document.getElementById('user-balance').textContent = balance.toFixed(2);
+        document.getElementById('total-earned').textContent = totalEarned.toFixed(0);
+        document.getElementById('total-withdrawn').textContent = totalWithdrawn.toFixed(0);
+        document.getElementById('referral-count').textContent = referralCount;
+        document.getElementById('referral-earned').textContent = referralEarned.toFixed(0);
         
-        // Устанавливаем цвет верхней панели
-        tg.setHeaderColor('bg_color');
-        
-        // Данные пользователя
-        let userData = {
-            id: null,
-            name: null,
-            username: null,
-            balance: 0,
-            internalId: null
-        };
-        
-        // Получаем данные пользователя из Telegram
-        const tgUser = tg.initDataUnsafe?.user;
-        if (tgUser) {
-            userData.id = tgUser.id;
-            userData.name = tgUser.first_name + (tgUser.last_name ? ' ' + tgUser.last_name : '');
-            userData.username = tgUser.username || 'не указан';
-            
-            document.getElementById('user-id').textContent = tgUser.id;
-            document.getElementById('user-name').textContent = userData.name;
-            document.getElementById('user-username').textContent = userData.username;
+        if (refLink) {
+            document.getElementById('ref-link').textContent = refLink;
+        } else if (internalId) {
+            document.getElementById('ref-link').textContent = `https://t.me/zonlik_bot?start=ref${internalId}`;
         }
         
-        // Загружаем данные пользователя из бота
-        async function loadUserData() {
-            try {
-                // Отправляем запрос на получение данных
-                tg.sendData(JSON.stringify({
-                    action: 'get_user_data'
-                }));
-            } catch (e) {
-                console.error('Ошибка загрузки данных:', e);
-            }
-        }
-        
-        // Обработка данных, полученных от бота через CloudStorage или через sendData
-        function updateUserData(data) {
-            if (data.internal_id) userData.internalId = data.internal_id;
-            if (data.balance !== undefined) {
-                userData.balance = data.balance;
-                document.getElementById('user-balance').textContent = data.balance.toFixed(2);
-            }
-            if (data.total_earned !== undefined) {
-                document.getElementById('total-earned').textContent = data.total_earned.toFixed(0);
-            }
-            if (data.total_withdrawn !== undefined) {
-                document.getElementById('total-withdrawn').textContent = data.total_withdrawn.toFixed(0);
-            }
-            if (data.referral_count !== undefined) {
-                document.getElementById('referral-count').textContent = data.referral_count;
-                document.getElementById('ref-count').textContent = data.referral_count;
-            }
-            if (data.referral_earned !== undefined) {
-                document.getElementById('referral-earned').textContent = data.referral_earned.toFixed(0);
-                document.getElementById('ref-earned').textContent = data.referral_earned.toFixed(2) + ' ₽';
-            }
-            if (data.ref_link) {
-                document.getElementById('ref-link').textContent = data.ref_link;
-            }
-            if (data.history) {
-                renderHistory(data.history);
-            }
-        }
-        
-        // Отображение истории операций
-        function renderHistory(history) {
-            const container = document.getElementById('history-list');
-            
-            if (!history || history.length === 0) {
-                container.innerHTML = '<div class="empty-state">Нет операций</div>';
-                return;
-            }
-            
-            let html = '';
-            history.slice(0, 10).forEach(item => {
-                const typeClass = item.type === 'deposit' || item.type === 'referral_bonus' ? 'deposit' : 'withdraw';
-                const typeText = {
-                    'deposit': '💰 Пополнение',
-                    'withdraw': '📤 Вывод',
-                    'referral_bonus': '👤 Реферал'
-                }[item.type] || item.type;
-                
-                const sign = item.type === 'withdraw' ? '-' : '+';
-                const amountColor = item.type === 'withdraw' ? '#FF9800' : '#4CAF50';
-                
-                html += `
-                    <div class="history-item">
-                        <div class="history-header">
-                            <span class="history-type ${typeClass}">${typeText}</span>
-                            <span class="history-amount" style="color: ${amountColor}">${sign}${item.amount.toFixed(2)} ₽</span>
-                        </div>
-                        <div class="history-desc">${item.description || ''}</div>
-                        <div class="history-date">${item.date || ''}</div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-        }
-        
-        // Переключение вкладок
-        function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
-            document.querySelector(`[onclick="switchTab('${tab}')"]`).classList.add('active');
-            document.getElementById(`tab-${tab}`).classList.add('active');
-        }
-        
-        // Запрос на вывод
-        function requestWithdraw() {
-            const amountInput = document.getElementById('withdraw-amount');
-            const cardInput = document.getElementById('withdraw-card');
-            
-            const amount = parseFloat(amountInput.value);
-            const card = cardInput.value.trim();
+        // Функция отправки заявки на вывод
+        function submitWithdraw() {
+            const amount = parseFloat(document.getElementById('withdraw-amount').value);
+            const card = document.getElementById('withdraw-card').value.trim();
             
             if (!amount || amount < 15) {
-                showToast('❌ Минимальная сумма вывода: 15 ₽');
+                showMessage('❌ Минимальная сумма вывода: 15 ₽', 'error');
                 return;
             }
             
-            if (amount > userData.balance) {
-                showToast('❌ Недостаточно средств');
+            if (amount > balance) {
+                showMessage('❌ Недостаточно средств на балансе', 'error');
                 return;
             }
             
             if (!card) {
-                showToast('❌ Укажите номер карты');
+                showMessage('❌ Укажите номер карты', 'error');
                 return;
             }
             
-            // Отправляем данные боту
-            tg.sendData(JSON.stringify({
-                action: 'withdraw_request',
+            // Формируем ссылку для возврата в бота
+            const data = JSON.stringify({
+                action: 'withdraw',
                 amount: amount,
-                card: card
-            }));
+                card: card,
+                internal_id: internalId
+            });
             
-            // Очищаем поля
-            amountInput.value = '';
-            cardInput.value = '';
+            // Открываем ссылку с данными
+            const botUrl = `https://t.me/zonlik_bot?start=withdraw_${btoa(data)}`;
             
-            showToast('✅ Заявка отправлена!');
+            showMessage('✅ Заявка сформирована! Нажмите кнопку ниже чтобы отправить', 'success');
+            
+            // Создаём кнопку для отправки
+            const container = document.getElementById('message-container');
+            container.innerHTML = `
+                <div class="success-message">
+                    ✅ Заявка на ${amount} ₽ готова!
+                </div>
+                <a href="${botUrl}" style="text-decoration: none;">
+                    <button class="button" style="background: #4CAF50;">
+                        📤 Отправить заявку боту
+                    </button>
+                </a>
+            `;
+            
+            // Скроллим вверх
+            window.scrollTo(0, 0);
         }
         
-        // Копирование реферальной ссылки
+        // Показ сообщений
+        function showMessage(text, type) {
+            const container = document.getElementById('message-container');
+            container.innerHTML = `<div class="${type}-message">${text}</div>`;
+            
+            setTimeout(() => {
+                container.innerHTML = '';
+            }, 3000);
+        }
+        
+        // Копирование ссылки
         function copyRefLink() {
             const link = document.getElementById('ref-link').textContent;
             
             navigator.clipboard?.writeText(link).then(() => {
                 showToast('📋 Ссылка скопирована!');
             }).catch(() => {
-                // Fallback
                 const textarea = document.createElement('textarea');
                 textarea.value = link;
                 document.body.appendChild(textarea);
@@ -566,7 +408,6 @@
             });
         }
         
-        // Показ уведомления
         function showToast(message) {
             const toast = document.getElementById('toast');
             toast.textContent = message;
@@ -576,31 +417,6 @@
                 toast.classList.remove('show');
             }, 2000);
         }
-        
-        // Получаем тему Telegram и применяем
-        function applyTheme() {
-            const theme = tg.colorScheme;
-            document.body.classList.add(theme);
-        }
-        
-        // Слушаем изменения темы
-        tg.onEvent('themeChanged', applyTheme);
-        
-        // Загружаем данные при старте
-        loadUserData();
-        applyTheme();
-        
-        // Обработка нажатия главной кнопки Telegram
-        tg.MainButton.setText('📤 Вывести средства');
-        tg.MainButton.show();
-        tg.MainButton.onClick(() => {
-            switchTab('withdraw');
-        });
-        
-        // Обработка кнопки "Назад"
-        tg.BackButton.onClick(() => {
-            switchTab('withdraw');
-        });
     </script>
 </body>
 </html>
