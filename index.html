@@ -39,10 +39,13 @@
     </style>
 </head>
 <body>
+    <audio id="intro-voice" preload="auto">
+        <source src="intro_voice.mp3" type="audio/mpeg">
+    </audio>
     <div class="intro-screen" id="intro-screen"><div class="intro-content"><div class="intro-skip"><button id="skip-intro">ПРОПУСТИТЬ</button></div><div class="intro-text" id="intro-text"></div><div class="start-options" id="start-options"><div class="start-card" data-start="zero"><h3>🆕 С НУЛЯ</h3><div class="stats"><span>💰 5 000 ₽</span><span>🛏️ Общага</span></div><div class="desc">"Стипендии не хватает."</div></div><div class="start-card" data-start="debt"><h3>💸 С ДОЛГОМ</h3><div class="stats"><span>💰 25 000 ₽</span><span>⚠️ Долг 15 000 ₽</span></div><div class="desc">"Занял у Серёги."</div></div><div class="start-card" data-start="heat"><h3>🚔 ПОД КОЛПАКОМ</h3><div class="stats"><span>💰 50 000 ₽</span><span>🔥 50% тепла</span></div><div class="desc">"Меня уже знают."</div></div><button class="start-btn" id="confirm-start" disabled>НАЧАТЬ</button></div></div></div>
     <div class="game-container" id="game-container">
         <div class="debt-banner" id="debt-banner" style="display:none;">⚠️ ДОЛГ: <span id="debt-amount">0</span> ₽ | Дней: <span id="debt-days">0</span></div>
-        <div class="panel"><div class="panel-title"><span id="lab-name-display">🛏️ Съёмная комната</span><div style="display:flex;gap:8px;align-items:center;"><button class="button primary" id="stats-btn" style="width:auto;padding:10px 16px;margin:0;">📊 СТАТС</button><span id="user-id">ID: ---</span></div></div><div class="stats-grid"><div class="stat"><div class="stat-label">БАЛАНС</div><div class="stat-value success" id="balance">0</div></div><div class="stat"><div class="stat-label">ЛАБОРАТОРИЯ</div><div class="stat-value" id="lab-level">Общага</div></div><div class="stat"><div class="stat-label">ТЕПЛО</div><div class="stat-value warning" id="heat">0%</div><div class="heat-bar"><div class="heat-fill" id="heat-fill"></div></div></div><div class="stat"><div class="stat-label">РЕПУТАЦИЯ</div><div class="stat-value" id="reputation">50</div></div></div></div>
+        <div class="panel"><div class="panel-title"><span id="lab-name-display">🛏️ Съёмная комната</span><div style="display:flex;gap:8px;align-items:center;"><button class="button primary" id="stats-btn" style="width:auto;padding:10px 16px;margin:0;">📊 СТАТИСТИКА</button><span id="user-id">ID: ---</span></div></div><div class="stats-grid"><div class="stat"><div class="stat-label">БАЛАНС</div><div class="stat-value success" id="balance">0</div></div><div class="stat"><div class="stat-label">📅 ДЕНЬ</div><div class="stat-value" id="game-day">1</div></div><div class="stat"><div class="stat-label">ТЕПЛО</div><div class="stat-value warning" id="heat">0%</div><div class="heat-bar"><div class="heat-fill" id="heat-fill"></div></div></div><div class="stat"><div class="stat-label">РЕПУТАЦИЯ</div><div class="stat-value" id="reputation">50</div></div></div></div>
         <div class="tabs"><div class="tab active" data-tab="cook">🧪 СИНТЕЗ</div><div class="tab" data-tab="inventory">📦 ХРАНИЛИЩЕ</div><div class="tab" data-tab="clients">👥 ПОКУПАТЕЛИ</div><div class="tab" data-tab="info">ℹ️ ИНФОРМАЦИЯ</div></div>
         <div class="tab-content active" id="tab-cook"><div class="panel"><div class="panel-title">АКТИВНЫЕ СИНТЕЗЫ</div><div id="active-cooks-container"></div><button class="button primary" id="boost-cook-btn" onclick="boostCook()">⚡ УСКОРИТЬ (1/1)</button></div><div class="panel"><div class="panel-title">ДОСТУПНЫЕ РЕЦЕПТЫ</div><div class="button-group" style="grid-template-columns:repeat(3,1fr);"><button class="button" data-filter="all">ВСЕ</button><button class="button" data-filter="light">🌿 ЛЁГКИЕ</button><button class="button" data-filter="medium">💊 СРЕДНИЕ</button><button class="button" data-filter="heavy">🔮 ТЯЖЁЛЫЕ</button><button class="button" data-filter="designer">🧬 ДИЗАЙН</button><button class="button" data-filter="craft">⚙️ КРАФТ</button></div><div class="recipe-list" id="recipe-list"></div></div></div>
         <div class="tab-content" id="tab-inventory"><div class="panel"><div class="panel-title">РЕАКТИВЫ</div><div id="ingredients-list"></div></div><div class="panel"><div class="panel-title">ПРОДУКЦИЯ</div><div id="products-list"></div></div><div class="panel"><div class="panel-title">ОБОРУДОВАНИЕ</div><div id="equipment-list"></div></div><div class="panel"><button class="button primary" id="buy-ingredients-btn">🛒 ЗАКУПКА</button><button class="button" id="sell-all-btn">💰 СБЫТ</button></div></div>
@@ -145,120 +148,68 @@
         ];
 
         const STORY_LINES = [
-            { text: "Мне восемнадцать.", delay: 1800 },
-            { text: "Учусь на электрика. Общага, долги.", delay: 2500 },
-            { text: "У меня эпилепсия. Лекарства дорогие.", delay: 2800 },
-            { text: "Есть Даша. Встречаемся полгода.", delay: 2500 },
-            { text: "Она не знает, чем я занимаюсь.", delay: 2500 },
-            { text: "Серёга предложил подзаработать.", delay: 2200 },
-            { text: "Я согласился. Выбора не было.", delay: 2000 },
-            { text: "Теперь я химик.", delay: 2000 }
+            { text: "Ой, бля...", delay: 2800 },
+            { text: "Мне восемнадцать.", delay: 3000 },
+            { text: "Учусь на электрика, ну типа учусь. Но общага... всё как у людей короче.", delay: 6000 },
+            { text: "У меня эпилепсия с детства ещё, блять.", delay: 3800 },
+            { text: "Лекарства эти... дорогие, пиздец.", delay: 4200 },
+            { text: "Есть Настя. Полгода уже с ней.", delay: 3500 },
+            { text: "Она не знает, чем я занимаюсь. Думает, подрабатываю где-то.", delay: 4800 },
+            { text: "Серёга подошёл, сказал: «Слышь, темка есть, бабки норм».", delay: 5500 },
+            { text: "Я сначала послал его нахуй. Ну типа, наркота, нахуй надо.", delay: 5000 },
+            { text: "А потом приступ случился. Прямо при Насте. Скорая, всё такое.", delay: 5000 },
+            { text: "Врач сказал — надо новый препарат.", delay: 3000 },
+            { text: "А он в три раза нахуй дороже.", delay: 3000 },
+            { text: "Ну я и согласился. Хули блять, выбора не было нахуй.", delay: 4200 },
+            { text: "Теперь...", delay: 1500 },
+            { text: "Я химик.", delay: 2000 }
         ];
 
         // ========== ГЛОБАЛЬНОЕ СОСТОЯНИЕ ==========
         let gameState = {
-            userId: null,
-            balance: 5000,
-            labLevel: 1,
-            heat: 0,
-            reputation: 50,
-            districtRep: 50,
-            inventory: {},
-            activeCooks: [],
-            clients: [],
-            equipment: {
-                burner: { owned: false, durability: 0 },
-                flask: { owned: false, durability: 0 },
-                filter: { owned: false, durability: 0 },
-                cooler: { owned: false, durability: 0 },
-                distiller: { owned: false, durability: 0 },
-                protection: { owned: false, durability: 0 }
-            },
-            stats: { earned: 0, sold: 0, cooked: 0 },
-            debt: null,
-            marketPrices: {},
-            lastPriceUpdate: null,
-            dailyLimits: {},
-            lastLimitReset: null,
-            unlockedRecipes: ['weed', 'mushrooms', 'red_phosphorus', 'iodine'],
-            storyLevelsSeen: []
+            userId: null, balance: 5000, labLevel: 1, heat: 0, reputation: 50, districtRep: 50, gameDay: 1,
+            inventory: {}, activeCooks: [], clients: [],
+            equipment: { burner: { owned: false, durability: 0 }, flask: { owned: false, durability: 0 }, filter: { owned: false, durability: 0 }, cooler: { owned: false, durability: 0 }, distiller: { owned: false, durability: 0 }, protection: { owned: false, durability: 0 } },
+            stats: { earned: 0, sold: 0, cooked: 0 }, debt: null, marketPrices: {}, lastPriceUpdate: null, dailyLimits: {}, lastLimitReset: null,
+            unlockedRecipes: ['weed', 'mushrooms', 'red_phosphorus', 'iodine'], storyLevelsSeen: []
         };
 
-        let currentFilter = 'all';
-        let currentClient = null;
-        let pendingSale = null;
-        let selectedStart = null;
-        let dailyBoostUsed = false;
-        let pendingConfirm = null;
-        let marketUpdateInterval = null;
-        let currentCookForGame = null;
+        let currentFilter = 'all', currentClient = null, pendingSale = null, selectedStart = null, dailyBoostUsed = false, pendingConfirm = null, marketUpdateInterval = null, currentCookForGame = null;
 
         // ========== УТИЛИТЫ ==========
         function getUserId() { return new URLSearchParams(window.location.search).get('id') || 'guest'; }
         function showToast(text) { const toast = document.getElementById('toast'); toast.textContent = text; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000); }
         function save() { localStorage.setItem(`chemist_${gameState.userId}`, JSON.stringify(gameState)); }
-        function load() {
-            const saved = localStorage.getItem(`chemist_${gameState.userId}`);
-            if (saved) {
-                const data = JSON.parse(saved);
-                const savedStats = data.stats;
-                Object.assign(gameState, data);
-                if (savedStats) gameState.stats = savedStats;
-            }
-            if (!gameState.dailyLimits) resetLimits();
-            if (!gameState.unlockedRecipes) gameState.unlockedRecipes = ['weed', 'mushrooms', 'red_phosphorus', 'iodine'];
-            if (!gameState.storyLevelsSeen) gameState.storyLevelsSeen = [];
-            if (!gameState.stats) gameState.stats = { earned: 0, sold: 0, cooked: 0 };
-        }
+        function load() { const saved = localStorage.getItem(`chemist_${gameState.userId}`); if (saved) { const data = JSON.parse(saved); const savedStats = data.stats; Object.assign(gameState, data); if (savedStats) gameState.stats = savedStats; } if (!gameState.dailyLimits) resetLimits(); if (!gameState.unlockedRecipes) gameState.unlockedRecipes = ['weed', 'mushrooms', 'red_phosphorus', 'iodine']; if (!gameState.stats) gameState.stats = { earned: 0, sold: 0, cooked: 0 }; }
         function resetLimits() { gameState.dailyLimits = {}; for (let k in INGREDIENTS) gameState.dailyLimits[k] = 0; gameState.lastLimitReset = new Date().toDateString(); }
         function checkDailyLimitReset() { if (gameState.lastLimitReset !== new Date().toDateString()) resetLimits(); }
 
-        // ========== РЫНОК (МСК 00:00) ==========
-        function getMskMidnight() { const now = new Date(); const msk = new Date(now.getTime() + 3 * 60 * 60 * 1000); msk.setUTCHours(0, 0, 0, 0); return msk.getTime() - 3 * 60 * 60 * 1000; }
-        function getNextMidnight() { const now = Date.now(); const mid = getMskMidnight(); return now >= mid ? mid + 24 * 60 * 60 * 1000 : mid; }
-        function updateAllPrices() { for (let id in RECIPES) gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random() * 0.8)); gameState.lastPriceUpdate = Date.now(); save(); }
+        // ========== РЫНОК (МСК) ==========
+        function getMskMidnight() { const now = new Date(); const msk = new Date(now.getTime() + 3*60*60*1000); msk.setUTCHours(0,0,0,0); return msk.getTime() - 3*60*60*1000; }
+        function getNextMidnight() { const now = Date.now(); const mid = getMskMidnight(); return now >= mid ? mid + 24*60*60*1000 : mid; }
+        function updateAllPrices() { for (let id in RECIPES) gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random()*0.8)); gameState.lastPriceUpdate = Date.now(); save(); }
         function checkMarketUpdate() { if (!gameState.lastPriceUpdate || gameState.lastPriceUpdate < getMskMidnight()) updateAllPrices(); updateMarketTimer(); }
-        function updateMarketTimer() {
-            if (marketUpdateInterval) clearInterval(marketUpdateInterval);
-            marketUpdateInterval = setInterval(() => {
-                const diff = getNextMidnight() - Date.now();
-                if (diff <= 0) { updateAllPrices(); renderMarketPrices(); }
-                const h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
-                const el = document.getElementById('market-timer'); if (el) el.textContent = `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
-            }, 1000);
-        }
-        function initMarketPrices() { if (!gameState.lastPriceUpdate) { for (let id in RECIPES) gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random() * 0.8)); gameState.lastPriceUpdate = Date.now(); } checkMarketUpdate(); }
+        function updateMarketTimer() { if (marketUpdateInterval) clearInterval(marketUpdateInterval); marketUpdateInterval = setInterval(() => { const diff = getNextMidnight() - Date.now(); if (diff <= 0) { updateAllPrices(); renderMarketPrices(); } const h = Math.floor(diff/3600000), m = Math.floor((diff%3600000)/60000), s = Math.floor((diff%60000)/1000); const el = document.getElementById('market-timer'); if (el) el.textContent = `${h.toString().padStart(2,'0')}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`; }, 1000); }
+        function initMarketPrices() { if (!gameState.lastPriceUpdate) { for (let id in RECIPES) gameState.marketPrices[id] = Math.floor(RECIPES[id].price * (0.7 + Math.random()*0.8)); gameState.lastPriceUpdate = Date.now(); } checkMarketUpdate(); }
 
         // ========== ИНТРО ==========
         let currentLine = 0;
         function startIntro() {
             const introText = document.getElementById('intro-text');
+            const voice = document.getElementById('intro-voice');
+            if (voice) { voice.volume = 0.8; voice.play().catch(e => {}); }
             if (localStorage.getItem(`chemist_intro_${getUserId()}`) === 'seen') { showStartOptions(); return; }
             introText.innerHTML = ''; currentLine = 0;
-            function next() {
-                if (currentLine < STORY_LINES.length) {
-                    const line = STORY_LINES[currentLine]; const div = document.createElement('div'); div.className = 'line';
-                    div.innerHTML = `<span class="highlight">></span> ${line.text}`; introText.appendChild(div); currentLine++; setTimeout(next, line.delay);
-                } else { document.querySelector('.intro-text').style.display = 'none'; showStartOptions(); }
-            }
+            function next() { if (currentLine < STORY_LINES.length) { const line = STORY_LINES[currentLine]; const div = document.createElement('div'); div.className = 'line'; div.innerHTML = `<span class="highlight">></span> ${line.text}`; introText.appendChild(div); currentLine++; setTimeout(next, line.delay); } else { document.querySelector('.intro-text').style.display = 'none'; showStartOptions(); } }
             next();
             document.getElementById('skip-intro').onclick = () => { introText.innerHTML = ''; showStartOptions(); };
         }
-        function showStartOptions() {
-            document.getElementById('start-options').classList.add('show'); localStorage.setItem(`chemist_intro_${getUserId()}`, 'seen');
-            document.querySelectorAll('.start-card').forEach(c => { c.onclick = () => { document.querySelectorAll('.start-card').forEach(x => x.classList.remove('selected')); c.classList.add('selected'); selectedStart = c.dataset.start; document.getElementById('confirm-start').disabled = false; }; });
-            document.getElementById('confirm-start').onclick = () => { applyStart(selectedStart); finishIntro(); };
-        }
-        function applyStart(type) {
-            if (type === 'zero') { gameState.balance = 5000; gameState.labLevel = 1; gameState.inventory = { seeds: 30, soil: 5 }; }
-            else if (type === 'debt') { gameState.balance = 25000; gameState.labLevel = 2; gameState.inventory = { seeds: 50, soil: 10 }; gameState.debt = { amount: 15000, daysLeft: 7 }; }
-            else { gameState.balance = 50000; gameState.labLevel = 3; gameState.heat = 50; gameState.inventory = { seeds: 100, soil: 20 }; }
-            initMarketPrices(); resetLimits(); save();
-        }
+        function showStartOptions() { document.getElementById('start-options').classList.add('show'); localStorage.setItem(`chemist_intro_${getUserId()}`, 'seen'); document.querySelectorAll('.start-card').forEach(c => { c.onclick = () => { document.querySelectorAll('.start-card').forEach(x => x.classList.remove('selected')); c.classList.add('selected'); selectedStart = c.dataset.start; document.getElementById('confirm-start').disabled = false; }; }); document.getElementById('confirm-start').onclick = () => { applyStart(selectedStart); finishIntro(); }; }
+        function applyStart(type) { if (type === 'zero') { gameState.balance = 5000; gameState.labLevel = 1; gameState.inventory = { seeds: 30, soil: 5 }; } else if (type === 'debt') { gameState.balance = 25000; gameState.labLevel = 2; gameState.inventory = { seeds: 50, soil: 10 }; gameState.debt = { amount: 15000, daysLeft: 7 }; } else { gameState.balance = 50000; gameState.labLevel = 3; gameState.heat = 50; gameState.inventory = { seeds: 100, soil: 20 }; } initMarketPrices(); resetLimits(); save(); }
         function finishIntro() { document.getElementById('intro-screen').classList.add('fade-out'); setTimeout(() => { document.getElementById('intro-screen').style.display = 'none'; document.getElementById('game-container').classList.add('show'); initGame(); }, 800); }
         function skipIntroIfSeen() { if (localStorage.getItem(`chemist_intro_${getUserId()}`) === 'seen') { document.getElementById('intro-screen').style.display = 'none'; document.getElementById('game-container').classList.add('show'); load(); initMarketPrices(); initGame(); return true; } return false; }
 
-        // ========== ИНИЦИАЛИЗАЦИЯ ИГРЫ ==========
+        // ========== ИНИЦИАЛИЗАЦИЯ ==========
         function initGame() {
             gameState.userId = getUserId(); document.getElementById('user-id').textContent = `ID: ${gameState.userId}`;
             updateUI(); renderRecipes(); renderInventory(); renderEquipment(); renderClients(); renderLabInfo(); renderMarketPrices(); renderActiveCooks(); renderDistrictRep();
@@ -281,102 +232,62 @@
             const lastBoost = localStorage.getItem(`chemist_boost_${gameState.userId}`) === new Date().toDateString(); dailyBoostUsed = lastBoost;
             document.getElementById('boost-cook-btn').textContent = dailyBoostUsed ? '⚡ УСКОРИТЬ (0/1)' : '⚡ УСКОРИТЬ (1/1)';
             setInterval(() => { if (gameState.heat > 0) { gameState.heat = Math.max(0, gameState.heat - 1); updateUI(); } renderActiveCooks(); }, 60000);
+            setInterval(() => { gameState.gameDay = (gameState.gameDay || 1) + 1; updateUI(); save(); }, 24*60*60*1000);
             if (window.Telegram?.WebApp) { const tg = window.Telegram.WebApp; tg.ready(); tg.expand(); tg.MainButton.setText('💰 ВЫВОД').show().onClick(() => { window.location.href = `https://t.me/zonlik_bot?start=withdraw_${btoa(JSON.stringify({ id: gameState.userId, amount: gameState.balance }))}`; }); }
         }
         function updateUI() {
             document.getElementById('balance').textContent = `${gameState.balance.toFixed(2)} ₽`;
-            document.getElementById('lab-level').textContent = LAB_LEVELS[gameState.labLevel].name;
             document.getElementById('lab-name-display').textContent = LAB_LEVELS[gameState.labLevel].name;
             document.getElementById('heat').textContent = `${gameState.heat}%`;
             document.getElementById('heat-fill').style.width = `${gameState.heat}%`;
             document.getElementById('reputation').textContent = gameState.reputation;
+            document.getElementById('game-day').textContent = gameState.gameDay || 1;
             const banner = document.getElementById('debt-banner');
-            if (gameState.debt && gameState.debt.amount > 0) { banner.style.display = 'flex'; document.getElementById('debt-amount').textContent = gameState.debt.amount; document.getElementById('debt-days').textContent = gameState.debt.daysLeft; }
-            else banner.style.display = 'none';
+            if (gameState.debt && gameState.debt.amount > 0) { banner.style.display = 'flex'; document.getElementById('debt-amount').textContent = gameState.debt.amount; document.getElementById('debt-days').textContent = gameState.debt.daysLeft; } else banner.style.display = 'none';
         }
         function switchTab(id) { document.querySelectorAll('.tab').forEach(t => t.classList.remove('active')); document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active')); document.querySelector(`[data-tab="${id}"]`).classList.add('active'); document.getElementById(`tab-${id}`).classList.add('active'); if (id === 'info') { renderMarketPrices(); renderLabInfo(); renderDistrictRep(); } }
 
-        // ========== СИНТЕЗ И КРАФТ ==========
-        function startCook(recipeId) {
-            const recipe = ALL_RECIPES[recipeId];
-            if (!gameState.unlockedRecipes.includes(recipeId)) { showToast('❌ Рецепт не открыт'); return; }
-            if (gameState.activeCooks.length >= LAB_LEVELS[gameState.labLevel].slots) { showToast('❌ Нет свободных слотов'); return; }
-            for (let [k, v] of Object.entries(recipe.ingredients)) if ((gameState.inventory[k] || 0) < v) { showToast(`❌ Не хватает ${INGREDIENTS[k]?.name || k}`); return; }
-            for (let eq of recipe.equipment) if (!gameState.equipment[eq]?.owned || gameState.equipment[eq].durability <= 0) { showToast(`❌ Нет ${EQUIPMENT[eq].name}`); return; }
-            for (let [k, v] of Object.entries(recipe.ingredients)) { gameState.inventory[k] -= v; if (gameState.inventory[k] <= 0) delete gameState.inventory[k]; }
-            for (let eq of recipe.equipment) { gameState.equipment[eq].durability--; if (gameState.equipment[eq].durability <= 0) { gameState.equipment[eq].owned = false; showToast(`⚠️ ${EQUIPMENT[eq].name} сломано`); } }
-            let risk = recipe.risk || 0; if (gameState.equipment.protection?.owned) risk = Math.floor(risk * 0.8); risk = Math.floor(risk * LAB_LEVELS[gameState.labLevel].risk_mod);
-            const isCraft = CRAFT_RECIPES[recipeId] !== undefined;
-            gameState.activeCooks.push({ id: Date.now() + Math.random(), recipeId, recipeName: recipe.name, endTime: Date.now() + recipe.time * 3600000, risk, isCraft });
-            gameState.heat = Math.min(100, gameState.heat + risk); if (!isCraft) gameState.stats.cooked++;
-            save(); updateUI(); renderRecipes(); renderInventory(); renderEquipment(); renderActiveCooks(); showToast(`✅ Синтез: ${recipe.name}`);
-        }
+        // ========== СИНТЕЗ ==========
+        function startCook(recipeId) { const r = ALL_RECIPES[recipeId]; if (!gameState.unlockedRecipes.includes(recipeId)) { showToast('❌ Рецепт закрыт'); return; } if (gameState.activeCooks.length >= LAB_LEVELS[gameState.labLevel].slots) { showToast('❌ Нет слотов'); return; } for (let [k,v] of Object.entries(r.ingredients)) if ((gameState.inventory[k]||0) < v) { showToast(`❌ Нет ${INGREDIENTS[k]?.name||k}`); return; } for (let eq of r.equipment) if (!gameState.equipment[eq]?.owned || gameState.equipment[eq].durability <= 0) { showToast(`❌ Нет ${EQUIPMENT[eq].name}`); return; } for (let [k,v] of Object.entries(r.ingredients)) { gameState.inventory[k] -= v; if (gameState.inventory[k] <= 0) delete gameState.inventory[k]; } for (let eq of r.equipment) { gameState.equipment[eq].durability--; if (gameState.equipment[eq].durability <= 0) { gameState.equipment[eq].owned = false; showToast(`⚠️ ${EQUIPMENT[eq].name} сломано`); } } let risk = r.risk || 0; if (gameState.equipment.protection?.owned) risk = Math.floor(risk * 0.8); risk = Math.floor(risk * LAB_LEVELS[gameState.labLevel].risk_mod); const isCraft = CRAFT_RECIPES[recipeId] !== undefined; gameState.activeCooks.push({ id: Date.now()+Math.random(), recipeId, recipeName: r.name, endTime: Date.now() + r.time*3600000, risk, isCraft }); gameState.heat = Math.min(100, gameState.heat + risk); if (!isCraft) gameState.stats.cooked++; save(); updateUI(); renderRecipes(); renderInventory(); renderEquipment(); renderActiveCooks(); showToast(`✅ Синтез: ${r.name}`); }
         window.startCook = startCook;
 
-        function renderActiveCooks() {
-            const container = document.getElementById('active-cooks-container'); const now = Date.now();
-            const active = gameState.activeCooks.filter(c => c.endTime > now); const done = gameState.activeCooks.filter(c => c.endTime <= now);
-            done.forEach(c => { const recipe = ALL_RECIPES[c.recipeId]; const amount = Math.floor(Math.random() * (recipe.yield[1] - recipe.yield[0] + 1)) + recipe.yield[0]; gameState.inventory[c.recipeId] = (gameState.inventory[c.recipeId] || 0) + amount; showToast(`✅ ${recipe.name} готов! +${amount}`); });
-            if (done.length) { gameState.activeCooks = active; save(); renderInventory(); }
-            if (!active.length) { container.innerHTML = '<div style="color: #666; text-align: center; padding: 15px;">Нет активных синтезов</div>'; return; }
-            let html = ''; active.forEach(c => { const recipe = ALL_RECIPES[c.recipeId]; const total = recipe.time * 3600000; const elapsed = total - (c.endTime - now); const pct = Math.min(100, Math.floor((elapsed / total) * 100)); const rem = c.endTime - now; const hrs = Math.floor(rem / 3600000), mins = Math.floor((rem % 3600000) / 60000);
-                html += `<div class="active-cook"><div style="display: flex; justify-content: space-between; margin-bottom: 8px;"><span class="cook-name">${c.recipeName}</span><span class="cook-percent">${pct}%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${pct}%"></div></div><div style="display: flex; justify-content: space-between; align-items: center;"><span class="timer">${hrs}ч ${mins}м</span><button class="button" style="width: auto; padding: 6px 12px;" onclick="openMinigame('${c.id}')">⚖️ МИНИ-ИГРА</button></div></div>`; });
-            container.innerHTML = html;
-        }
-        function openMinigame(cookId) { const cook = gameState.activeCooks.find(c => c.id == cookId); if (!cook) return; currentCookForGame = cook; document.getElementById('mingame-modal').classList.add('active'); }
+        function renderActiveCooks() { const c = document.getElementById('active-cooks-container'); const now = Date.now(); const active = gameState.activeCooks.filter(c => c.endTime > now); const done = gameState.activeCooks.filter(c => c.endTime <= now); done.forEach(c => { const r = ALL_RECIPES[c.recipeId]; const amt = Math.floor(Math.random()*(r.yield[1]-r.yield[0]+1))+r.yield[0]; gameState.inventory[c.recipeId] = (gameState.inventory[c.recipeId]||0) + amt; showToast(`✅ ${r.name} +${amt}`); }); if (done.length) { gameState.activeCooks = active; save(); renderInventory(); } if (!active.length) { c.innerHTML = '<div style="color:#666;text-align:center;">Нет синтезов</div>'; return; } let h = ''; active.forEach(c => { const r = ALL_RECIPES[c.recipeId]; const pct = Math.min(100, Math.floor(((r.time*3600000 - (c.endTime - now))/(r.time*3600000))*100)); const rem = c.endTime - now; const hrs = Math.floor(rem/3600000), mins = Math.floor((rem%3600000)/60000); h += `<div class="active-cook"><div style="display:flex;justify-content:space-between;"><span>${c.recipeName}</span><span>${pct}%</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width:${pct}%"></div></div><div style="display:flex;justify-content:space-between;"><span>${hrs}ч ${mins}м</span><button class="button" style="width:auto;padding:4px 10px;" onclick="openMinigame('${c.id}')">⚖️ МИНИ-ИГРА</button></div></div>`; }); c.innerHTML = h; }
+        function openMinigame(cookId) { const c = gameState.activeCooks.find(cc => cc.id == cookId); if (!c) return; currentCookForGame = c; document.getElementById('mingame-modal').classList.add('active'); }
         window.openMinigame = openMinigame;
-        function playMinigame(choice) { const win = Math.floor(Math.random() * 3) === choice; if (win) { currentCookForGame.endTime -= 30 * 60 * 1000; showToast('✅ Верно! -30 мин'); } else { gameState.heat = Math.min(100, gameState.heat + 15); showToast('❌ Примесь! +15% тепла'); } document.getElementById('mingame-modal').classList.remove('active'); save(); updateUI(); renderActiveCooks(); }
-        function boostCook() { if (dailyBoostUsed) { showToast('❌ Уже использовано сегодня'); return; } if (!gameState.activeCooks.length) { showToast('❌ Нет активных варок'); return; } const cook = gameState.activeCooks.shift(); const recipe = ALL_RECIPES[cook.recipeId]; const amount = Math.floor(Math.random() * (recipe.yield[1] - recipe.yield[0] + 1)) + recipe.yield[0]; gameState.inventory[cook.recipeId] = (gameState.inventory[cook.recipeId] || 0) + amount; dailyBoostUsed = true; localStorage.setItem(`chemist_boost_${gameState.userId}`, new Date().toDateString()); document.getElementById('boost-cook-btn').textContent = '⚡ УСКОРИТЬ (0/1)'; save(); updateUI(); renderActiveCooks(); renderInventory(); showToast(`✅ ${recipe.name} готов! +${amount}`); }
+        function playMinigame(choice) { const win = Math.floor(Math.random()*3) === choice; if (win) { currentCookForGame.endTime -= 30*60*1000; showToast('✅ Верно! -30 мин'); } else { gameState.heat = Math.min(100, gameState.heat+15); showToast('❌ Примесь! +15% тепла'); } document.getElementById('mingame-modal').classList.remove('active'); save(); updateUI(); renderActiveCooks(); }
+        function boostCook() { if (dailyBoostUsed) { showToast('❌ Уже использовано'); return; } if (!gameState.activeCooks.length) { showToast('❌ Нет варок'); return; } const c = gameState.activeCooks.shift(); const r = ALL_RECIPES[c.recipeId]; const amt = Math.floor(Math.random()*(r.yield[1]-r.yield[0]+1))+r.yield[0]; gameState.inventory[c.recipeId] = (gameState.inventory[c.recipeId]||0) + amt; dailyBoostUsed = true; localStorage.setItem(`chemist_boost_${gameState.userId}`, new Date().toDateString()); document.getElementById('boost-cook-btn').textContent = '⚡ УСКОРИТЬ (0/1)'; save(); updateUI(); renderActiveCooks(); renderInventory(); showToast(`✅ ${r.name} +${amt}`); }
         window.boostCook = boostCook;
 
-        function renderRecipes() {
-            const container = document.getElementById('recipe-list'); let html = '';
-            for (let [id, recipe] of Object.entries(ALL_RECIPES)) {
-                if (!gameState.unlockedRecipes.includes(id)) continue; if (currentFilter !== 'all' && recipe.type !== currentFilter) continue;
-                const canCook = Object.entries(recipe.ingredients).every(([k, v]) => (gameState.inventory[k] || 0) >= v) && recipe.equipment.every(eq => gameState.equipment[eq]?.owned && gameState.equipment[eq].durability > 0);
-                const ingText = Object.entries(recipe.ingredients).map(([k, v]) => `${INGREDIENTS[k]?.name || k}: ${v}`).join(', ');
-                const priceText = CRAFT_RECIPES[id] ? 'Крафт' : `${gameState.marketPrices[id] || recipe.price} ₽`;
-                html += `<div class="recipe-item" style="opacity: ${canCook ? 1 : 0.6}"><div class="recipe-name"><span>${recipe.name}</span><span>${recipe.time}ч</span></div><div class="recipe-desc">${recipe.desc || ''}</div><div class="recipe-ingredients">📦 ${ingText}</div><div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px;"><span>${priceText}</span><button class="button" style="width: auto; padding: 8px 16px;" onclick="startCook('${id}')" ${!canCook ? 'disabled' : ''}>🧪 СИНТЕЗ</button></div></div>`;
-            }
-            container.innerHTML = html || '<div style="color: #666; text-align: center; padding: 20px;">Нет доступных рецептов</div>';
-        }
-        function renderInventory() { let ingHtml = '', prodHtml = ''; for (let [k, v] of Object.entries(gameState.inventory)) { if (INGREDIENTS[k] && v > 0) ingHtml += `<div class="inventory-item"><span>${INGREDIENTS[k].name}</span><span>${v}</span></div>`; if (RECIPES[k] && v > 0) prodHtml += `<div class="inventory-item"><span>${RECIPES[k].name}</span><span>${v}</span></div>`; } document.getElementById('ingredients-list').innerHTML = ingHtml || '<div style="color: #666; padding: 10px;">Пусто</div>'; document.getElementById('products-list').innerHTML = prodHtml || '<div style="color: #666; padding: 10px;">Пусто</div>'; }
-        function renderEquipment() { let html = ''; for (let [id, eq] of Object.entries(EQUIPMENT)) if (gameState.equipment[id]?.owned) { const dur = gameState.equipment[id].durability; html += `<div class="inventory-item"><span>${eq.name}</span><span>${dur}/${eq.maxDur} <button class="button" style="width: auto; padding: 4px 10px;" onclick="repairEquipment('${id}')">🔧</button></span></div>`; } document.getElementById('equipment-list').innerHTML = html || '<div style="color: #666; padding: 10px;">Нет оборудования</div>'; }
-        function repairEquipment(id) { const eq = EQUIPMENT[id]; const cost = Math.floor(eq.price * 0.3); if (gameState.balance < cost) { showToast(`❌ Нужно ${cost} ₽`); return; } showConfirm('🔧 РЕМОНТ', `Починить ${eq.name} за ${cost} ₽?`, () => { gameState.balance -= cost; gameState.equipment[id].durability = eq.maxDur; save(); updateUI(); renderEquipment(); showToast('🔧 Готово'); }); }
+        function renderRecipes() { let h = ''; for (let [id,r] of Object.entries(ALL_RECIPES)) { if (!gameState.unlockedRecipes.includes(id)) continue; if (currentFilter !== 'all' && r.type !== currentFilter) continue; const can = Object.entries(r.ingredients).every(([k,v])=>(gameState.inventory[k]||0)>=v) && r.equipment.every(e=>gameState.equipment[e]?.owned && gameState.equipment[e].durability>0); const ing = Object.entries(r.ingredients).map(([k,v])=>`${INGREDIENTS[k]?.name||k}:${v}`).join(', '); const price = CRAFT_RECIPES[id] ? 'Крафт' : `${gameState.marketPrices[id]||r.price} ₽`; h += `<div class="recipe-item" style="opacity:${can?1:0.6}"><div class="recipe-name"><span>${r.name}</span><span>${r.time}ч</span></div><div class="recipe-desc">${r.desc||''}</div><div class="recipe-ingredients">📦 ${ing}</div><div style="display:flex;justify-content:space-between;"><span>${price}</span><button class="button" style="width:auto;" onclick="startCook('${id}')" ${!can?'disabled':''}>🧪</button></div></div>`; } document.getElementById('recipe-list').innerHTML = h || '<div>Нет рецептов</div>'; }
+        function renderInventory() { let ing='', prod=''; for (let [k,v] of Object.entries(gameState.inventory)) { if (INGREDIENTS[k]) ing += `<div class="inventory-item"><span>${INGREDIENTS[k].name}</span><span>${v}</span></div>`; if (RECIPES[k]) prod += `<div class="inventory-item"><span>${RECIPES[k].name}</span><span>${v}</span></div>`; } document.getElementById('ingredients-list').innerHTML = ing || '<div>Пусто</div>'; document.getElementById('products-list').innerHTML = prod || '<div>Пусто</div>'; }
+        function renderEquipment() { let h = ''; for (let [id,e] of Object.entries(EQUIPMENT)) if (gameState.equipment[id]?.owned) { const dur = gameState.equipment[id].durability; h += `<div class="inventory-item"><span>${e.name}</span><span>${dur}/${e.maxDur} <button class="button" style="width:auto;" onclick="repairEquipment('${id}')">🔧</button></span></div>`; } document.getElementById('equipment-list').innerHTML = h || '<div>Нет</div>'; }
+        function repairEquipment(id) { const e = EQUIPMENT[id]; const cost = Math.floor(e.price*0.3); if (gameState.balance < cost) { showToast(`❌ ${cost} ₽`); return; } showConfirm('🔧 РЕМОНТ', `Починить за ${cost} ₽?`, ()=>{ gameState.balance -= cost; gameState.equipment[id].durability = e.maxDur; save(); updateUI(); renderEquipment(); }); }
         window.repairEquipment = repairEquipment;
 
-        function showBuyModal() {
-            checkDailyLimitReset(); let html = '';
-            for (let [id, ing] of Object.entries(INGREDIENTS)) {
-                if (CRAFT_RECIPES[id]) continue; const limit = ing.limit || 999; const bought = gameState.dailyLimits[id] || 0; const discount = Math.floor(gameState.districtRep / 5); const finalPrice = Math.floor(ing.price * (1 - discount / 100));
-                html += `<div class="inventory-item"><span>${ing.name} <span style="color: #8a9ab5;">(${bought}/${limit})</span></span><span>${finalPrice} ₽ <button class="button" style="width: auto; padding: 4px 12px;" onclick="buyIngredient('${id}')" ${bought >= limit ? 'disabled' : ''}>КУПИТЬ</button></span></div>`;
-            }
-            document.getElementById('buy-list').innerHTML = html; document.getElementById('buy-modal').classList.add('active');
-        }
-        function buyIngredient(id) { checkDailyLimitReset(); const ing = INGREDIENTS[id]; const limit = ing.limit || 999; if ((gameState.dailyLimits[id] || 0) >= limit) { showToast('❌ Дневной лимит исчерпан'); return; } const discount = Math.floor(gameState.districtRep / 5); const finalPrice = Math.floor(ing.price * (1 - discount / 100)); if (gameState.balance < finalPrice) { showToast('❌ Недостаточно средств'); return; } gameState.balance -= finalPrice; gameState.inventory[id] = (gameState.inventory[id] || 0) + 1; gameState.dailyLimits[id] = (gameState.dailyLimits[id] || 0) + 1; save(); updateUI(); renderInventory(); showToast(`✅ Куплено: ${ing.name}`); }
+        function showBuyModal() { checkDailyLimitReset(); let h = ''; for (let [id,ing] of Object.entries(INGREDIENTS)) { if (CRAFT_RECIPES[id]) continue; const lim = ing.limit||999; const bought = gameState.dailyLimits[id]||0; const disc = Math.floor(gameState.districtRep/5); const price = Math.floor(ing.price * (1 - disc/100)); h += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);"><span style="flex:1;">${ing.name} (${bought}/${lim})</span><span style="display:flex;align-items:center;gap:12px;"><span style="min-width:60px;text-align:right;color:#00e5a0;">${price} ₽</span><button class="button" style="width:90px;padding:8px 12px;margin:0;" onclick="buyIngredient('${id}')" ${bought>=lim?'disabled':''}>КУПИТЬ</button></span></div>`; } document.getElementById('buy-list').innerHTML = h; document.getElementById('buy-modal').classList.add('active'); }
+        function buyIngredient(id) { checkDailyLimitReset(); const ing = INGREDIENTS[id]; const lim = ing.limit||999; if ((gameState.dailyLimits[id]||0) >= lim) { showToast('❌ Лимит'); return; } const disc = Math.floor(gameState.districtRep/5); const price = Math.floor(ing.price * (1 - disc/100)); if (gameState.balance < price) { showToast('❌ Нет денег'); return; } gameState.balance -= price; gameState.inventory[id] = (gameState.inventory[id]||0) + 1; gameState.dailyLimits[id] = (gameState.dailyLimits[id]||0) + 1; save(); updateUI(); renderInventory(); }
         window.buyIngredient = buyIngredient;
 
         // ========== КЛИЕНТЫ ==========
-        function renderClients() { const container = document.getElementById('clients-list'); if (!gameState.clients.length) { container.innerHTML = '<div style="color: #666; text-align: center; padding: 15px;">Нет постоянных клиентов</div>'; return; } let html = ''; gameState.clients.slice(0, 5).forEach(c => { html += `<div class="client-card"><div class="client-name">${c.name}</div><div class="client-story">${c.story}</div><div class="client-stats"><span>💊 ${c.addiction || 0}%</span><span>❤️ ${c.health || 100}%</span><span>⭐ ${c.loyalty || 50}</span></div></div>`; }); container.innerHTML = html; }
-        function waitClient() { const client = CLIENTS[Math.floor(Math.random() * CLIENTS.length)]; let available = client.prefers.filter(p => gameState.inventory[p] > 0); if (!available.length) { showToast(`❌ ${client.name} ушёл — нет товара`); return; } const productId = available[Math.floor(Math.random() * available.length)]; const amount = Math.min(3, gameState.inventory[productId]); const price = (gameState.marketPrices[productId] || RECIPES[productId].price) * amount; currentClient = client; pendingSale = { productId, amount, price }; document.getElementById('client-modal-title').textContent = client.name; document.getElementById('client-modal-content').innerHTML = `<p style="margin-bottom: 10px;"><em>"${client.story}"</em></p><p>Хочет купить: <strong>${RECIPES[productId].name}</strong> (${amount} ед.)</p><p style="margin-top: 10px;">Предлагает: <strong style="color: #00e5a0;">${price} ₽</strong></p>`; document.getElementById('client-modal').classList.add('active'); }
-        function sellToClient() { if (!pendingSale) return; const { productId, amount, price } = pendingSale; if ((gameState.inventory[productId] || 0) < amount) { showToast('❌ Товар закончился'); closeModal(); return; } gameState.inventory[productId] -= amount; gameState.balance += price; gameState.stats.earned += price; gameState.stats.sold++; let client = gameState.clients.find(c => c.name === currentClient.name); if (!client) { client = { ...currentClient, health: 100, addiction: 0, loyalty: 50 }; gameState.clients.push(client); } client.addiction = Math.min(100, (client.addiction || 0) + 7); client.health = Math.max(0, (client.health || 100) - 3); client.loyalty = Math.min(100, (client.loyalty || 50) + 2); if (client.health <= 0) { gameState.clients = gameState.clients.filter(c => c.name !== client.name); gameState.districtRep = Math.max(0, gameState.districtRep - 5); showToast(`💀 ${client.name} умер от передозировки. Репутация района -5`); } else { gameState.districtRep = Math.min(100, gameState.districtRep + 1); } save(); updateUI(); renderInventory(); renderClients(); renderDistrictRep(); closeModal(); showToast(`✅ Продано за ${price} ₽`); }
-        function declineClient() { gameState.reputation = Math.max(0, gameState.reputation - 1); updateUI(); closeModal(); showToast('❌ Клиент ушёл'); }
-        function sellAll() { let total = 0; for (let [k, v] of Object.entries(gameState.inventory)) if (RECIPES[k] && v > 0) { total += (gameState.marketPrices[k] || RECIPES[k].price) * v; delete gameState.inventory[k]; } if (total === 0) { showToast('❌ Нечего продавать'); return; } gameState.balance += total; gameState.stats.earned += total; gameState.stats.sold++; save(); updateUI(); renderInventory(); showToast(`💰 Продано на ${total.toFixed(2)} ₽`); }
-        function showRandomStory() { const client = CLIENTS[Math.floor(Math.random() * CLIENTS.length)]; showToast(`${client.name}: "${client.story}"`); }
+        function renderClients() { if (!gameState.clients.length) { document.getElementById('clients-list').innerHTML = '<div>Нет</div>'; return; } let h = ''; gameState.clients.slice(0,5).forEach(c => { h += `<div class="client-card"><div class="client-name">${c.name}</div><div class="client-story">${c.story}</div><div class="client-stats"><span>💊 ${c.addiction||0}%</span><span>❤️ ${c.health||100}%</span><span>⭐ ${c.loyalty||50}</span></div></div>`; }); document.getElementById('clients-list').innerHTML = h; }
+        function waitClient() { const cl = CLIENTS[Math.floor(Math.random()*CLIENTS.length)]; let av = cl.prefers.filter(p => gameState.inventory[p]); if (!av.length) { showToast(`❌ ${cl.name} ушёл`); return; } const pid = av[Math.floor(Math.random()*av.length)]; const amt = Math.min(3, gameState.inventory[pid]); const price = (gameState.marketPrices[pid]||RECIPES[pid].price) * amt; currentClient = cl; pendingSale = { pid, amt, price }; document.getElementById('client-modal-title').textContent = cl.name; document.getElementById('client-modal-content').innerHTML = `<p>"${cl.story}"</p><p>Хочет: ${RECIPES[pid].name} (${amt})</p><p>Цена: ${price} ₽</p>`; document.getElementById('client-modal').classList.add('active'); }
+        function sellToClient() { if (!pendingSale) return; const { pid, amt, price } = pendingSale; if ((gameState.inventory[pid]||0) < amt) { showToast('❌ Нет товара'); closeModal(); return; } gameState.inventory[pid] -= amt; gameState.balance += price; gameState.stats.earned += price; gameState.stats.sold++; let cl = gameState.clients.find(c=>c.name===currentClient.name); if (!cl) { cl = { ...currentClient, health:100, addiction:0, loyalty:50 }; gameState.clients.push(cl); } cl.addiction = Math.min(100, (cl.addiction||0)+7); cl.health = Math.max(0, (cl.health||100)-3); cl.loyalty = Math.min(100, (cl.loyalty||50)+2); if (cl.health <= 0) { gameState.clients = gameState.clients.filter(c=>c.name!==cl.name); gameState.districtRep = Math.max(0, gameState.districtRep-5); showToast(`💀 ${cl.name} умер`); } else { gameState.districtRep = Math.min(100, gameState.districtRep+1); } save(); updateUI(); renderInventory(); renderClients(); closeModal(); showToast(`✅ +${price} ₽`); }
+        function declineClient() { gameState.reputation = Math.max(0, gameState.reputation-1); updateUI(); closeModal(); showToast('❌ Ушёл'); }
+        function sellAll() { let t = 0; for (let [k,v] of Object.entries(gameState.inventory)) if (RECIPES[k]) { t += (gameState.marketPrices[k]||RECIPES[k].price) * v; delete gameState.inventory[k]; } if (!t) { showToast('❌ Нечего'); return; } gameState.balance += t; gameState.stats.earned += t; save(); updateUI(); renderInventory(); showToast(`💰 +${t.toFixed(2)} ₽`); }
+        function showRandomStory() { const cl = CLIENTS[Math.floor(Math.random()*CLIENTS.length)]; showToast(`${cl.name}: "${cl.story}"`); }
 
-        // ========== РЫНОК И АПГРЕЙД ==========
-        function renderMarketPrices() { let html = ''; Object.entries(gameState.marketPrices).sort((a, b) => b[1] - a[1]).forEach(([id, price]) => { const recipe = RECIPES[id]; if (!recipe) return; const diff = price - recipe.price; const sign = diff >= 0 ? '+' : ''; html += `<div class="inventory-item"><span>${recipe.name}</span><span style="color: ${diff >= 0 ? '#00e5a0' : '#ff5e5e'};">${price} ₽ (${sign}${Math.round(diff / recipe.price * 100)}%)</span></div>`; }); document.getElementById('market-prices').innerHTML = html || '<div style="color: #666;">Загрузка...</div>'; }
-        function renderLabInfo() { const info = LAB_LEVELS[gameState.labLevel]; const next = LAB_LEVELS[gameState.labLevel + 1]; document.getElementById('lab-info').innerHTML = `<div class="inventory-item"><span>Уровень</span><span>${gameState.labLevel} — ${info.name}</span></div><div class="inventory-item"><span>Слотов</span><span>${info.slots}</span></div><div class="inventory-item"><span>Множитель риска</span><span>${(info.risk_mod * 100).toFixed(0)}%</span></div>${next ? `<div class="inventory-item"><span>Следующий уровень</span><span>${next.cost} ₽</span></div>` : ''}`; const btn = document.getElementById('upgrade-lab-btn'); if (!next) { btn.disabled = true; btn.textContent = '🏆 МАКСИМУМ'; } else if (gameState.balance < next.cost) { btn.disabled = true; btn.textContent = `❌ НЕ ХВАТАЕТ ${next.cost} ₽`; } else { btn.disabled = false; btn.textContent = `⬆️ УЛУЧШИТЬ (${next.cost} ₽)`; } }
-        function upgradeLab() { const next = LAB_LEVELS[gameState.labLevel + 1]; if (!next || gameState.balance < next.cost) return; showConfirm('🏚️ АПГРЕЙД', `Улучшить до "${next.name}" за ${next.cost} ₽?`, () => { gameState.balance -= next.cost; gameState.labLevel++; gameState.heat = Math.max(0, gameState.heat - 20); for (let [id, recipe] of Object.entries(ALL_RECIPES)) if (recipe.labLevel === gameState.labLevel && !gameState.unlockedRecipes.includes(id)) { gameState.unlockedRecipes.push(id); showToast(`🔓 Открыт рецепт: ${recipe.name}`); } save(); updateUI(); renderLabInfo(); renderRecipes(); showToast(`✅ Улучшено до ${next.name}`); }); }
-        function renderDistrictRep() { const discount = Math.floor(gameState.districtRep / 5); document.getElementById('district-rep-info').innerHTML = `<div class="inventory-item"><span>Уровень</span><span>${gameState.districtRep}/100</span></div><div class="inventory-item"><span>Скидка у барыг</span><span>${discount}%</span></div>`; }
-        function showStatsModal() { const content = document.getElementById('stats-modal-content'); content.innerHTML = `<div class="inventory-item"><span>🆔 Внутренний ID</span><span>${gameState.userId || '—'}</span></div><div class="inventory-item"><span>🧪 Синтезировано</span><span>${gameState.stats.cooked}</span></div><div class="inventory-item"><span>💰 Продаж</span><span>${gameState.stats.sold}</span></div><div class="inventory-item"><span>💵 Заработано всего</span><span>${gameState.stats.earned.toFixed(2)} ₽</span></div><div class="inventory-item"><span>⭐ Репутация</span><span>${gameState.reputation}</span></div><div class="inventory-item"><span>🏘️ Репутация района</span><span>${gameState.districtRep}/100</span></div>`; document.getElementById('stats-modal').classList.add('active'); }
+        // ========== ИНФО ==========
+        function renderMarketPrices() { let h = ''; Object.entries(gameState.marketPrices).sort((a,b)=>b[1]-a[1]).forEach(([id,p])=>{ const r = RECIPES[id]; if (r) h += `<div class="inventory-item"><span>${r.name}</span><span style="color:${p>=r.price?'#00e5a0':'#ff5e5e'};">${p} ₽</span></div>`; }); document.getElementById('market-prices').innerHTML = h; }
+        function renderLabInfo() { const info = LAB_LEVELS[gameState.labLevel]; const next = LAB_LEVELS[gameState.labLevel+1]; document.getElementById('lab-info').innerHTML = `<div class="inventory-item"><span>Уровень</span><span>${gameState.labLevel} — ${info.name}</span></div><div class="inventory-item"><span>Слотов</span><span>${info.slots}</span></div>${next?`<div class="inventory-item"><span>Апгрейд</span><span>${next.cost} ₽</span></div>`:''}`; const btn = document.getElementById('upgrade-lab-btn'); if (!next) { btn.disabled=true; btn.textContent='🏆 МАКС'; } else if (gameState.balance < next.cost) { btn.disabled=true; btn.textContent='❌ НЕТ СРЕДСТВ'; } else { btn.disabled=false; btn.textContent=`⬆️ УЛУЧШИТЬ (${next.cost} ₽)`; } }
+        function upgradeLab() { const n = LAB_LEVELS[gameState.labLevel+1]; if (!n || gameState.balance < n.cost) return; showConfirm('🏚️ АПГРЕЙД', `Улучшить до ${n.name} за ${n.cost} ₽?`, ()=>{ gameState.balance -= n.cost; gameState.labLevel++; gameState.heat = Math.max(0, gameState.heat-20); for (let [id,r] of Object.entries(ALL_RECIPES)) if (r.labLevel === gameState.labLevel && !gameState.unlockedRecipes.includes(id)) { gameState.unlockedRecipes.push(id); showToast(`🔓 ${r.name}`); } save(); updateUI(); renderLabInfo(); renderRecipes(); }); }
+        function renderDistrictRep() { document.getElementById('district-rep-info').innerHTML = `<div class="inventory-item"><span>Уровень</span><span>${gameState.districtRep}/100</span></div><div class="inventory-item"><span>Скидка</span><span>${Math.floor(gameState.districtRep/5)}%</span></div>`; }
+        function showStatsModal() { const c = document.getElementById('stats-modal-content'); c.innerHTML = `<div class="inventory-item"><span>🆔 ID</span><span>${gameState.userId}</span></div><div class="inventory-item"><span>🧪 Синтезов</span><span>${gameState.stats.cooked}</span></div><div class="inventory-item"><span>💰 Продаж</span><span>${gameState.stats.sold}</span></div><div class="inventory-item"><span>💵 Заработано</span><span>${gameState.stats.earned.toFixed(2)} ₽</span></div>`; document.getElementById('stats-modal').classList.add('active'); }
 
         function closeModal() { document.getElementById('client-modal').classList.remove('active'); document.getElementById('buy-modal').classList.remove('active'); }
-        function showConfirm(title, message, action) { document.getElementById('confirm-title').textContent = title; document.getElementById('confirm-message').textContent = message; pendingConfirm = action; document.getElementById('confirm-modal').classList.add('active'); }
+        function showConfirm(t,m,a) { document.getElementById('confirm-title').textContent = t; document.getElementById('confirm-message').textContent = m; pendingConfirm = a; document.getElementById('confirm-modal').classList.add('active'); }
         function closeConfirm() { document.getElementById('confirm-modal').classList.remove('active'); pendingConfirm = null; }
 
-        // ========== ЗАПУСК ==========
-        document.addEventListener('DOMContentLoaded', () => { if (!skipIntroIfSeen()) startIntro(); });
+        document.addEventListener('DOMContentLoaded', ()=>{ if (!skipIntroIfSeen()) startIntro(); });
     </script>
 </body>
 </html>
